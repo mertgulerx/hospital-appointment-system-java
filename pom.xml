@@ -102,7 +102,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                mertguler.hospitalreservationsystemjava/mertguler.HelloApplication
+                                mertguler.hospitalreservationsystemjava/mertguler.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
