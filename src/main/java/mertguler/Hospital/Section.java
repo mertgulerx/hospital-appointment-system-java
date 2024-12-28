@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 
 public class Section implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final int id;
     private String name;
     private LinkedList<Doctor> doctors;
@@ -67,7 +68,7 @@ public class Section implements Serializable {
             return true;
         }
 
-        else if (this.getName().equals(comparedSection.getName())){
+        if (this.getName().equals(comparedSection.getName())){
             return true;
         }
 

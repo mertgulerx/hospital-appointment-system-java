@@ -1,23 +1,34 @@
 package mertguler;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.util.Scanner;
 
-public class Main extends Application {
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hospital Reservation System");
-        stage.setScene(scene);
-        stage.show();
-    }
+public class Main{
+    public static boolean gui_mode = false;
 
     public static void main(String[] args) {
-        launch();
+        // launch();
+        Scanner scanner = new Scanner(System.in);
+
+        CRS crs = new CRS();
+        System.out.println("GUI or Text User Interface? (1/0)");
+
+        try {
+            int input = Integer.valueOf(scanner.nextLine());
+            if (input == 1){
+                gui_mode = true;
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if (!gui_mode){
+            TextUI textUI = new TextUI(scanner,crs);
+            textUI.start();
+        }
+
+
+
     }
 }

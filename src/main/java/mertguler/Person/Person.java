@@ -3,6 +3,7 @@ package mertguler.Person;
 import java.io.Serializable;
 
 public class Person implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name;
     private final Long national_id;
 
@@ -16,7 +17,7 @@ public class Person implements Serializable {
         return name;
     }
 
-    public Long getNational_id(){
+    public long getNational_id(){
         return national_id;
     }
 

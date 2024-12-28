@@ -36,3 +36,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/out/artifacts/hospital_reservation_system_java_jar/hospital-reservation-system-java.jar
+/.idea/artifacts/hospital_reservation_system_java_jar.xml
+/src/main/resources/META-INF/MANIFEST.MF

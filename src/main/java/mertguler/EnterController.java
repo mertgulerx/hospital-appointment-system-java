@@ -7,7 +7,6 @@ public class EnterController {
     @FXML
     private Label welcomeText;
 
-    @FXML
     protected void onEnterButtonClick() {
         welcomeText.setText("Welcome to Hospital Reservation System");
     }

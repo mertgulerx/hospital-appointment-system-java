@@ -3,16 +3,15 @@ package mertguler;
 public class Plans {
     /*
 
-    Can a patient have more than one rendezvous?
-    what a ugly word.
+    Part 4
+    Some fixes and Text User Interface
 
-
-    Do we have to use linkedlist ? can we use hashmap
 
     Next things to do
-    // Add Rendezvous class
-    How are we going to implement this?
+    Continue on text UI
 
+    Make other menus on text ui
+    serialization
 
 
 
