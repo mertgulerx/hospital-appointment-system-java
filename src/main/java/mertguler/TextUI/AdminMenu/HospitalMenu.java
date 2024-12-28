@@ -1,77 +1,22 @@
-package mertguler;
+package mertguler.TextUI.AdminMenu;
 
+import mertguler.CRS;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
-public class TextUI {
-    private Scanner scanner;
+import static mertguler.TextUI.TextUI.clear;
+import static mertguler.TextUI.TextUI.header;
+
+public class HospitalMenu {
     private CRS crs;
+    private Scanner scanner;
 
-    public TextUI(Scanner scanner, CRS crs) {
-        this.scanner = scanner;
+    public HospitalMenu(Scanner scanner, CRS crs){
         this.crs = crs;
-    }
-
-    public void start() {
-        mainMenu();
-    }
-
-    public void mainMenu() {
-        while (true) {
-            clear();
-            header();
-            int input = 9;
-            System.out.println("\nAdmin Mode: 0");
-            System.out.println("User Mode: 1");
-
-            System.out.println("\nSelect operating mode (0/1):");
-
-            try {
-                input = Integer.valueOf(scanner.nextLine());
-            } catch (Exception e) {
-                System.out.println("Please enter only 0 or 1.");
-                System.out.println("\nPress anything to return");
-                scanner.nextLine();
-                continue;
-            }
-
-            if (input == 0) {
-                adminMenu();
-            }
-        }
-    }
-
-    public void adminMenu() {
-        while (true) {
-            clear();
-            header();
-            int input = 9;
-            System.out.println("\nHospital Management: 1");
-            System.out.println("Section Management: 2");
-            System.out.println("Doctor Management: 3");
-            System.out.println("Patient Management: 4");
-            System.out.println("Rendezvous Management: 5");
-            System.out.println("Return to last menu: 0");
-            System.out.println("\nSelect operating mode (1-5):");
-            try {
-                input = Integer.valueOf(scanner.nextLine());
-            } catch (Exception e) {
-                System.out.println("Please enter only valid numbers within range");
-                System.out.println("\nPress anything to return");
-                scanner.nextLine();
-                continue;
-            }
-
-            if (input == 0) {
-                break;
-            } else if (input == 1) {
-                hospitalManager();
-            }
-        }
+        this.scanner = scanner;
     }
 
     public void hospitalManager() {
@@ -218,19 +163,10 @@ public class TextUI {
                 .comparing(Hospital::getId);
 
         crs.getHospitals().values().stream()
-                                .sorted(comparator)
-                                        .forEach(System.out::println);
+                .sorted(comparator)
+                .forEach(System.out::println);
 
         System.out.println("Press anything to return");
         scanner.nextLine();
-    }
-
-    public void header(){
-        System.out.println("Hospital Rendezvous System - Text UI V1.0");
-    }
-
-    public void clear(){
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
     }
 }

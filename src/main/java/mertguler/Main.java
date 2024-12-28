@@ -1,6 +1,8 @@
 package mertguler;
 
 
+import mertguler.TextUI.TextUI;
+
 import java.util.Scanner;
 
 public class Main{
