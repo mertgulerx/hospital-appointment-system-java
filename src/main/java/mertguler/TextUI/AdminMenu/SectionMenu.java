@@ -2,7 +2,6 @@ package mertguler.TextUI.AdminMenu;
 
 import mertguler.CRS;
 import mertguler.Exceptions.DuplicateInfoException;
-import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;
 
@@ -16,20 +15,19 @@ public class SectionMenu {
     private Scanner scanner;
     private CRS crs;
     private Hospital hospital;
+    private HospitalMenu hospitalMenu;
 
-    public SectionMenu(Scanner scanner, CRS crs){
+    public SectionMenu(Scanner scanner, CRS crs, HospitalMenu hospitalMenu){
         this.scanner = scanner;
         this.crs = crs;
+        this.hospitalMenu = hospitalMenu;
     }
 
-    public SectionMenu(Scanner scanner, CRS crs, Hospital hospital){
-        this.scanner = scanner;
-        this.crs = crs;
+    public void setHospital(Hospital hospital){
         this.hospital = hospital;
     }
 
     public void sectionManager() {
-        HospitalMenu hospitalMenu = new HospitalMenu(scanner, crs);
         hospital = hospitalMenu.hospitalSelector();
         if (hospital == null){
             return;

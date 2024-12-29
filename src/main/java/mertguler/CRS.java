@@ -9,19 +9,25 @@ import mertguler.Person.Doctor;
 import mertguler.Person.Patient;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 
 public class CRS {
     private HashMap<Long, Patient> patients;
-    private LinkedList<Rendezvous> rendezvous;
+    private ArrayList<Rendezvous> rendezvouses;
     private HashMap<Integer, Hospital> hospitals;
+    private int rendezvousDayLimit;
+    public static final String datePattern = "dd-MM-yyyy";
 
     public CRS(){
         patients = new HashMap<>();
-        rendezvous = new LinkedList<>();
+        rendezvouses = new ArrayList<>();
         hospitals = new HashMap<>();
+        rendezvousDayLimit = 15;
     }
 
     public void saveTablesToDisk(String path){
@@ -71,9 +77,10 @@ public class CRS {
         Doctor doctor = hospitals.get(hospitalID).getSection(sectionID).getDoctor(diplomaID);
         if (!(doctor.getSchedule().addRendezvous(patients.get(patientID), desiredDate))){
             throw new DailyLimitException("Daily limit is exceeded for doctor: " + doctor + ", at the date: " + desiredDate);
+        } else {
+            return doctor.getSchedule().addRendezvous(patients.get(patientID), desiredDate);
         }
 
-        return doctor.getSchedule().addRendezvous(patients.get(patientID), desiredDate);
     }
 
     // Hospital Management //
@@ -156,6 +163,11 @@ public class CRS {
         }
     }
 
+    public Patient getPatient(long national_id){
+        checkPatientID(national_id);
+        return patients.get(national_id);
+    }
+
     public void patientAdder(String name, long national_id) throws DuplicateInfoException{
         checkPatientDuplication(national_id);
         Patient patient = new Patient(name, national_id);
@@ -191,6 +203,50 @@ public class CRS {
             throw new IDException("No doctor found with Diploma ID: " + diploma_id);
         }
     }
+
+    // Rendezvous Management //
+
+    public void setRendezvousDayLimit(int limit){
+        rendezvousDayLimit = limit;
+    }
+
+    public int getRendezvousDayLimit(){
+        return rendezvousDayLimit;
+    }
+
+    public ArrayList<Rendezvous> getRendezvouses(){
+        return rendezvouses;
+    }
+
+    // Date Management //
+    public LocalDateTime getCurrentDate(){
+        LocalDateTime currentDate = LocalDateTime.now();
+        return currentDate;
+    }
+
+    public String getFormatedDate(LocalDateTime date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return date.format(formatter);
+    }
+
+    public LocalDateTime getLastDate(){
+        LocalDateTime lastRendezvousDate = getCurrentDate().plusDays(15);
+        return lastRendezvousDate;
+    }
+
+    public static LocalDate isValidDate(String date){
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(datePattern);
+        LocalDate checkedDate = null;
+
+        try {
+            checkedDate = LocalDate.parse(date, dateFormatter);
+        } catch (DateTimeParseException e){
+            return null;
+        }
+        return checkedDate;
+    }
+
+
 
 
 }

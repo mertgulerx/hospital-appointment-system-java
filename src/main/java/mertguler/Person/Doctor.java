@@ -11,15 +11,16 @@ public class Doctor extends Person{
         super(name,national_id);
         this.diploma_id = diploma_id;
         maxPatientPerDay = 10;
-        createSchedule(maxPatientPerDay);
+        createSchedule();
     }
 
     public void changeMaxPatientPerDay(int maxPatientPerDay){
         this.maxPatientPerDay = maxPatientPerDay;
     }
 
-    public void createSchedule(int maxPatientPerDay){
+    public void createSchedule(){
         schedule = new Schedule(maxPatientPerDay);
+        schedule.setDoctor(this);
     }
 
     public void resetSchedule(){

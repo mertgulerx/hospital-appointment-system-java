@@ -256,8 +256,6 @@ public class HospitalMenu {
         return true;
     }
 
-
-
     public void returner(){
         System.out.println("Press anything to return");
         scanner.nextLine();

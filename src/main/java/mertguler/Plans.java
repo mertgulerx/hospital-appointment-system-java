@@ -3,17 +3,14 @@ package mertguler;
 public class Plans {
     /*
 
-    Part 6 ???
+    Part 9 ???
     Text User Interface
 
 
     Next things to do
-    Continue on text UI
+   Serialization
+   RendezvousMenu
 
-    Make other menus on text ui
-    serialization
-
-    Lets start to patients and rendezvous in text ui
 
 
 

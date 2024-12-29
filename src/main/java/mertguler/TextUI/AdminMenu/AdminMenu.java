@@ -13,13 +13,15 @@ public class AdminMenu {
     private SectionMenu sectionMenu;
     private DoctorMenu doctorMenu;
     private PatientMenu patientMenu;
+    private RendezvousMenu rendezvousMenu;
 
     public AdminMenu(Scanner scanner, CRS crs){
         this.scanner = scanner;
         hospitalMenu = new HospitalMenu(scanner, crs);
-        sectionMenu = new SectionMenu(scanner, crs);
-        doctorMenu = new DoctorMenu(scanner, crs);
+        sectionMenu = new SectionMenu(scanner, crs, hospitalMenu);
+        doctorMenu = new DoctorMenu(scanner, crs, hospitalMenu, sectionMenu);
         patientMenu = new PatientMenu(scanner, crs);
+        rendezvousMenu = new RendezvousMenu(scanner, crs, hospitalMenu, sectionMenu, doctorMenu);
     }
 
     public void start() {
@@ -53,6 +55,8 @@ public class AdminMenu {
                 doctorMenu.doctorManager();
             } else if (input == 4){
                 patientMenu.patientManager();
+            } else if (input == 5){
+                rendezvousMenu.rendezvousManager();
             }
         }
     }

@@ -3,9 +3,14 @@ package mertguler;
 
 import mertguler.TextUI.TextUI;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
-public class Main{
+import static mertguler.CRS.isValidDate;
+
+
+public class Main {
     public static boolean gui_mode = false;
 
     public static void main(String[] args) {
@@ -17,19 +22,18 @@ public class Main{
 
         try {
             int input = Integer.valueOf(scanner.nextLine());
-            if (input == 1){
+            if (input == 1) {
                 gui_mode = true;
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if (!gui_mode){
-            TextUI textUI = new TextUI(scanner,crs);
+        if (!gui_mode) {
+            TextUI textUI = new TextUI(scanner, crs);
             textUI.start();
         }
-
 
 
     }

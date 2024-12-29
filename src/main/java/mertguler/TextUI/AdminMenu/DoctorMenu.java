@@ -2,11 +2,11 @@ package mertguler.TextUI.AdminMenu;
 
 import mertguler.CRS;
 import mertguler.Exceptions.DuplicateInfoException;
-import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;
 import mertguler.Person.Doctor;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static mertguler.TextUI.TextUI.clear;
@@ -16,16 +16,19 @@ public class DoctorMenu {
     private Scanner scanner;
     private CRS crs;
     private Section section;
+    private HospitalMenu hospitalMenu;
+    private SectionMenu sectionMenu;
 
-    public DoctorMenu(Scanner scanner, CRS crs){
+    public DoctorMenu(Scanner scanner, CRS crs, HospitalMenu hospitalMenu, SectionMenu sectionMenu){
         this.scanner = scanner;
         this.crs = crs;
+        this.hospitalMenu = hospitalMenu;
+        this.sectionMenu = sectionMenu;
     }
 
     public void doctorManager(){
-        HospitalMenu hospitalMenu = new HospitalMenu(scanner, crs);
         Hospital hospital = hospitalMenu.hospitalSelector();
-        SectionMenu sectionMenu = new SectionMenu(scanner,crs, hospital);
+        sectionMenu.setHospital(hospital);
         section = sectionMenu.sectionSelector();
 
         if (section == null){
@@ -63,6 +66,132 @@ public class DoctorMenu {
                 section.listDoctors();
                 returner();
             }
+        }
+    }
+
+    public Doctor selectDoctor(Section section){
+        while (true){
+            clear();
+            header();
+            int diploma_id = 0;
+            int input = 9;
+
+            System.out.println("Select Doctor with Diploma ID: 1");
+            System.out.println("Select Doctor with Name: 2");
+            System.out.println("List Doctors: 3");
+            System.out.println("Return to last menu: 0");
+            System.out.println("\nSelect operating mode (1-3):");
+
+            try{
+                input = Integer.valueOf(scanner.nextLine());
+            } catch (Exception e){
+                System.out.println("Enter valid numbers only");
+                returner();
+                return null;
+            }
+
+            if (input == 0){
+                return null;
+            } else if (input == 1){
+                return searchDoctorWithId(section);
+            } else if (input == 2){
+                return searchDoctorWithName(section);
+            }
+        }
+    }
+
+    public Doctor searchDoctorWithId(Section section){
+        while (true){
+            clear();
+            header();
+            int diploma_id = 0;
+
+            System.out.println("\nEnter Diploma ID: ");
+
+            try{
+                diploma_id = Integer.valueOf(scanner.nextLine());
+            } catch (Exception e){
+                System.out.println("Enter valid numbers only");
+                returner();
+                clear();
+                return null;
+            }
+
+            Doctor doctor = section.getDoctor(diploma_id);
+            if (doctor == null){
+                System.out.println("Doctor is not found");
+                returner();
+                clear();
+                return null;
+            }
+
+            return doctor;
+        }
+    }
+
+    public Doctor searchDoctorWithName(Section section){
+        while (true){
+            clear();
+            header();
+            String name = "";
+
+            System.out.println("\nEnter Name: ");
+
+            try{
+                name = scanner.nextLine();
+            } catch (Exception e){
+                System.out.println("Enter valid characters only");
+                returner();
+                clear();
+                return null;
+            }
+
+            ArrayList<Doctor> searchedDoctorList = section.getDoctor(name);
+
+            if (searchedDoctorList == null){
+                System.out.println("No Doctor is found with name: " + name);
+                returner();
+                clear();
+                return null;
+            }
+
+            if (searchedDoctorList.size() == 1){
+                return searchedDoctorList.getFirst();
+            } else {
+                clear();
+                header();
+                System.out.println("Multiple Doctors are found with this name");
+                System.out.println("Please select a doctor from below by entering Diploma ID:");
+                System.out.println("Return to last menu: 0\n");
+
+                System.out.println("Found doctors: ");
+                for (Doctor doctor: searchedDoctorList){
+                    System.out.println(doctor);
+                }
+
+                int id = 0;
+                try {
+                    id = Integer.valueOf(scanner.nextLine());
+                } catch (Exception e){
+                    System.out.println("Enter valid numbers only");
+                }
+
+                if (id == 0){
+                    return null;
+                }
+
+                Doctor doctor = section.getDoctor(id);
+                if (doctor == null){
+                    clear();
+                    header();
+                    System.out.println("\nDoctor with Diploma ID: " + id + " is not found");
+                    returner();
+                    return null;
+                }
+
+                return doctor;
+            }
+
         }
     }
 

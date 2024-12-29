@@ -75,6 +75,28 @@ public class Section implements Serializable {
         return null;
     }
 
+    public ArrayList<Doctor> getDoctor(String name){
+        if (doctors.isEmpty()){
+            return null;
+        }
+
+        name = name.trim();
+        ArrayList<Doctor> foundDoctors = new ArrayList<>();
+
+        for (Doctor doctor: doctors){
+            if (doctor.getName().trim().equalsIgnoreCase(name)){
+                foundDoctors.add(doctor);
+            }
+        }
+
+        if (!foundDoctors.isEmpty()){
+            return foundDoctors;
+        } else {
+            return null;
+        }
+
+    }
+
     public int getId(){
         return id;
     }

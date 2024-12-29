@@ -13,6 +13,7 @@ public class Rendezvous implements Serializable {
     private Doctor doctor;
     private Patient patient;
 
+
     public Rendezvous(LocalDateTime desiredDate, Doctor doctor, Patient patient){
         dateTime = desiredDate;
         this.doctor = doctor;
