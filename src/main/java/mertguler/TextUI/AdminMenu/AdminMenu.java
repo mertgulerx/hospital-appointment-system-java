@@ -1,5 +1,7 @@
 package mertguler.TextUI.AdminMenu;
 
+import mertguler.CRS;
+
 import java.util.Scanner;
 
 import static mertguler.TextUI.TextUI.clear;
@@ -8,10 +10,16 @@ import static mertguler.TextUI.TextUI.header;
 public class AdminMenu {
     private Scanner scanner;
     private HospitalMenu hospitalMenu;
+    private SectionMenu sectionMenu;
+    private DoctorMenu doctorMenu;
+    private PatientMenu patientMenu;
 
-    public AdminMenu(Scanner scanner, HospitalMenu hospitalMenu){
+    public AdminMenu(Scanner scanner, CRS crs){
         this.scanner = scanner;
-        this.hospitalMenu = hospitalMenu;
+        hospitalMenu = new HospitalMenu(scanner, crs);
+        sectionMenu = new SectionMenu(scanner, crs);
+        doctorMenu = new DoctorMenu(scanner, crs);
+        patientMenu = new PatientMenu(scanner, crs);
     }
 
     public void start() {
@@ -39,6 +47,12 @@ public class AdminMenu {
                 break;
             } else if (input == 1) {
                 hospitalMenu.hospitalManager();
+            } else if (input == 2){
+                sectionMenu.sectionManager();
+            } else if (input == 3){
+                doctorMenu.doctorManager();
+            } else if (input == 4){
+                patientMenu.patientManager();
             }
         }
     }

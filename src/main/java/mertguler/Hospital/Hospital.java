@@ -1,13 +1,14 @@
 package mertguler.Hospital;
 
 import mertguler.Exceptions.DuplicateInfoException;
+import mertguler.Exceptions.IDException;
 
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Hospital implements Serializable {
     private static final long serialVersionUID = 1L;
-    private LinkedList<Section> sections;
+    private ArrayList<Section> sections;
     private String name;
     private final int id;
 
@@ -15,7 +16,7 @@ public class Hospital implements Serializable {
     public Hospital(String name, int id){
         this.name = name;
         this.id = id;
-        sections = new LinkedList<>();
+        sections = new ArrayList<>();
     }
 
     public void addSection(Section section) throws DuplicateInfoException {
@@ -27,7 +28,7 @@ public class Hospital implements Serializable {
     }
 
     // WHY FOR
-    private Section getSection(String name){
+    public Section getSection(String name){
         if (sections.isEmpty()){
             return null;
         }
@@ -41,9 +42,8 @@ public class Hospital implements Serializable {
         return null;
     }
 
-
     // Used in CRS
-    public Section getSection(int id){
+    public Section getSection(int id) {
         if (sections.isEmpty()){
             return null;
         }
@@ -57,8 +57,25 @@ public class Hospital implements Serializable {
         return null;
     }
 
+    public ArrayList<Section> getSections(){
+        return sections;
+    }
+
+    public boolean deleteSection(int id){
+        Section section = getSection(id);
+        if (section == null){
+            return false;
+        }
+
+        return sections.remove(section);
+    }
+
     public void setName(String name){
         this.name = name;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public int getId(){

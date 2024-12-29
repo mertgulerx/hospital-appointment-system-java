@@ -1,6 +1,7 @@
 package mertguler;
 
 import mertguler.Exceptions.DailyLimitException;
+import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Rendezvous;
@@ -58,29 +59,14 @@ public class CRS {
 
     // We can use multithreading here - No need for hashmaps as they are quite fast
     // For now won`t implement multithreading
-    public boolean makeRendezvous(long patientID, int hospitalID, int sectionID, int diplomaID, LocalDateTime desiredDate){
-        if (!((patients.containsKey(patientID)))){
-            throw new IDException("No patient found for National ID: " + patientID);
-        }
+    public boolean makeRendezvous(long patientID, int hospitalID, int sectionID, int diplomaID, LocalDateTime desiredDate) throws IDException{
+        checkPatientID(patientID);
 
-        if (!((hospitals.containsKey(hospitalID)))){
-            throw new IDException("No hospital found for ID: " + hospitalID);
-        }
+        checkHospitalID(hospitalID);
 
-        if (hospitals.get(hospitalID).getSection(sectionID) == null){
-            throw new IDException("No section found for ID: " + sectionID);
-        }
+        checkSectionID(hospitalID, sectionID);
 
-        if (hospitals.get(hospitalID).getSection(sectionID).getDoctor(diplomaID) == null){
-            throw new IDException("No doctor found with Diploma ID: " + diplomaID);
-        }
-
-        /*
-        We wont need this probably
-        if (hospitals.get(hospitalID).getSection(sectionID).getDoctor(diplomaID).getSchedule() == null){
-            hospitals.get(hospitalID).getSection(sectionID).getDoctor(diplomaID).createSchedule();
-        }
-         */
+        checkDoctorID(hospitalID,sectionID,diplomaID);
 
         Doctor doctor = hospitals.get(hospitalID).getSection(sectionID).getDoctor(diplomaID);
         if (!(doctor.getSchedule().addRendezvous(patients.get(patientID), desiredDate))){
@@ -90,26 +76,120 @@ public class CRS {
         return doctor.getSchedule().addRendezvous(patients.get(patientID), desiredDate);
     }
 
-    public void createPatient(String name, long national_id){
-        Patient patient = new Patient(name, national_id);
-        if (patients.containsKey(national_id)){
-            throw new IDException("Patient with this National ID is already exists");
-        }
-
-        patients.put(national_id, patient);
-    }
+    // Hospital Management //
 
     public void createHospital(String name, int id){
-        Hospital hospital = new Hospital(name, id);
         if (hospitals.containsKey(id)){
             throw new IDException("Hospital with this ID is already exists");
+        } else {
+            Hospital hospital = new Hospital(name, id);
+            hospitals.put(id, hospital);
         }
+    }
 
-        hospitals.put(id, hospital);
+    public void deleteHospital(int id){
+        if(!(hospitals.containsKey(id))){
+            throw new IDException("Hospital with ID: " + id + " is not found");
+        } else {
+            hospitals.remove(id);
+        }
+    }
+
+    public void renameHospital(int id, String name){
+        if(!(hospitals.containsKey(id))){
+            throw new IDException("Hospital with ID: " + id + " is not found");
+        } else {
+            hospitals.get(id).setName(name);
+        }
     }
 
     public HashMap<Integer, Hospital> getHospitals(){
         return hospitals;
+    }
+
+    public Hospital getHospitalWithID(int id) throws IDException{
+        if (!(hospitals.containsKey(id))){
+            throw new IDException("Hospital with id: " + id + " is not found");
+        }
+
+        return hospitals.get(id);
+    }
+
+    public Hospital getHospitalWithName(String name) throws IDException{
+        if (hospitals.isEmpty()){
+            throw new IDException("No hospital found!");
+        }
+
+        name = name.trim();
+        for (Hospital hospital: hospitals.values()){
+            if (hospital.getName().trim().equalsIgnoreCase(name)){
+                return hospital;
+            }
+        }
+
+        throw new IDException("Hospital with name: " + name + " is not found");
+    }
+
+    public void checkHospitalDuplication(int hospital_id) throws DuplicateInfoException{
+        if (hospitals.containsKey(hospital_id)){
+            throw new DuplicateInfoException("Hospital with Hospital ID: " + hospital_id + " is already exist");
+        }
+    }
+
+    public void checkHospitalID(int hospital_id) throws IDException {
+        if (!hospitals.containsKey(hospital_id)){
+            throw new DuplicateInfoException("No hospital found with Hospital ID: " + hospital_id);
+        }
+    }
+
+    // Patient Management //
+
+    public void checkPatientDuplication(long national_id) throws DuplicateInfoException{
+        if (patients.containsKey(national_id)){
+            throw new DuplicateInfoException("Patient with National ID: " + national_id + " is already exist");
+        }
+    }
+
+    public void checkPatientID(long national_id) throws IDException{
+        if (!(patients.containsKey(national_id))){
+            throw new IDException("No patient found with National ID: " + national_id);
+        }
+    }
+
+    public void patientAdder(String name, long national_id) throws DuplicateInfoException{
+        checkPatientDuplication(national_id);
+        Patient patient = new Patient(name, national_id);
+        patients.put(national_id, patient);
+    }
+
+    public void patientDeleter(long national_id) throws IDException{
+        checkPatientID(national_id);
+        patients.remove(national_id);
+    }
+
+    public void patientRenamer(long national_id, String name) throws IDException{
+        checkPatientID(national_id);
+        patients.get(national_id).setName(name);
+    }
+
+    public HashMap<Long, Patient> getPatients(){
+        return patients;
+    }
+
+    // Section Management //
+
+    public void checkSectionID(int hospital_id, int section_id) throws IDException{
+        if (hospitals.get(hospital_id).getSection(section_id) == null){
+            throw new IDException("No section found with Section ID: " + section_id);
+        }
+    }
+
+    // Doctor Management //
+
+    public void checkDoctorID(int hospital_id, int section_id, int diploma_id) throws IDException{
+        if (hospitals.get(hospital_id).getSection(section_id).getDoctor(diploma_id) == null){
+            throw new IDException("No doctor found with Diploma ID: " + diploma_id);
+        }
     }
 
 

@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
-    private final Long national_id;
+    private final long national_id;
 
 
     public Person(String name, long national_id){
@@ -17,8 +17,31 @@ public class Person implements Serializable {
         return name;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     public long getNational_id(){
         return national_id;
+    }
+
+    @Override
+    public boolean equals(Object object){
+        if (this == object){
+            return true;
+        }
+
+        if (!(object instanceof Person)){
+            return false;
+        }
+
+        Person comparedPerson = (Person) object;
+
+        if (this.national_id == comparedPerson.national_id){
+            return true;
+        }
+
+        return false;
     }
 
     @Override

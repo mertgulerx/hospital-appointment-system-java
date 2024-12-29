@@ -14,7 +14,7 @@ public class TextUI {
     public TextUI(Scanner scanner, CRS crs) {
         this.scanner = scanner;
         this.crs = crs;
-        adminMenu = new AdminMenu(scanner, new HospitalMenu(scanner, crs));
+        adminMenu = new AdminMenu(scanner, crs);
     }
 
     public void start() {
@@ -54,4 +54,5 @@ public class TextUI {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
 }

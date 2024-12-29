@@ -5,10 +5,17 @@ import mertguler.Hospital.Schedule;
 public class Doctor extends Person{
     private final int diploma_id;
     private Schedule schedule;
+    private int maxPatientPerDay;
 
     public Doctor(String name, long national_id, int diploma_id){
         super(name,national_id);
         this.diploma_id = diploma_id;
+        maxPatientPerDay = 10;
+        createSchedule(maxPatientPerDay);
+    }
+
+    public void changeMaxPatientPerDay(int maxPatientPerDay){
+        this.maxPatientPerDay = maxPatientPerDay;
     }
 
     public void createSchedule(int maxPatientPerDay){
@@ -45,6 +52,11 @@ public class Doctor extends Person{
         }
 
         return false;
+    }
+
+    @Override
+    public String toString(){
+        return super.getName() + ", " + diploma_id;
     }
 
 }

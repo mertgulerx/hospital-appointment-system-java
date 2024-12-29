@@ -35,8 +35,7 @@ public class HospitalMenu {
                 input = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers within range");
-                System.out.println("\nPress anything to return");
-                scanner.nextLine();
+                returner();
                 continue;
             }
 
@@ -64,8 +63,7 @@ public class HospitalMenu {
         String name = scanner.nextLine();
         if (name.isEmpty()){
             System.out.println("Please enter valid names only");
-            System.out.println("Press anything to return");
-            scanner.nextLine();
+            returner();
             return;
         }
         System.out.println("Enter ID");
@@ -74,8 +72,7 @@ public class HospitalMenu {
             id = Integer.valueOf(scanner.nextLine());
         } catch (NumberFormatException e){
             System.out.println("Please enter only valid numbers");
-            System.out.println("\nPress anything to return");
-            scanner.nextLine();
+            returner();
             return;
         }
 
@@ -86,8 +83,7 @@ public class HospitalMenu {
             System.out.println("Hospital with this id already exists");
         }
 
-        System.out.println("\nPress anything to return");
-        scanner.nextLine();
+        returner();
     }
 
     public void hospitalDeleter(){
@@ -100,22 +96,18 @@ public class HospitalMenu {
             id = Integer.valueOf(scanner.nextLine());
         } catch (NumberFormatException e){
             System.out.println("Please enter only valid numbers");
-            System.out.println("\nPress anything to return");
-            scanner.nextLine();
+            returner();
             return;
         }
 
-        if(!(crs.getHospitals().containsKey(id))){
-            System.out.println("Hospital with ID: " + id + " is not found.");
-            System.out.println("\nPress anything to return");
-            scanner.nextLine();
-            return;
+        try{
+            crs.deleteHospital(id);
+            System.out.println("Hospital is successfully deleted.");
+            returner();
+        } catch (IDException e){
+            System.out.println(e.getMessage());
+            returner();
         }
-
-        crs.getHospitals().remove(id);
-        System.out.println("Hospital successfully deleted.");
-        System.out.println("Press anything to return");
-        scanner.nextLine();
     }
 
     public void hospitalRenamer(){
@@ -128,15 +120,13 @@ public class HospitalMenu {
             id = Integer.valueOf(scanner.nextLine());
         } catch (NumberFormatException e){
             System.out.println("Please enter only valid numbers");
-            System.out.println("\nPress anything to return");
-            scanner.nextLine();
+            returner();
             return;
         }
 
         if(!(crs.getHospitals().containsKey(id))){
             System.out.println("Hospital with ID: " + id + " is not found.");
-            System.out.println("\nPress anything to return");
-            scanner.nextLine();
+            returner();
             return;
         }
 
@@ -145,27 +135,130 @@ public class HospitalMenu {
 
         crs.getHospitals().get(id).setName(name);
         System.out.println("Hospital successfully renamed to: " + name);
-        System.out.println("Press anything to return");
-        scanner.nextLine();
+        returner();
     }
 
-    public void hospitalLister(){
+    public Hospital hospitalSelector(){
+        if (crs.getHospitals().isEmpty()){
+            clear();
+            header();
+            System.out.println("\nHospital list is empty");
+            returner();
+            return null;
+        }
+
+        while (true){
+            clear();
+            header();
+            int input = 9;
+            System.out.println("\nSelect a Hospital to continue with next menu.\n");
+            System.out.println("Select hospital with id: 1");
+            System.out.println("Select hospital with name: 2");
+            System.out.println("List hospitals: 3");
+            System.out.println("Return to last menu: 0");
+            System.out.println("\nSelect operating mode (1-3):");
+
+
+            try {
+                input = Integer.valueOf(scanner.nextLine());
+            } catch (Exception e) {
+                System.out.println("Please enter only valid numbers within range");
+                returner();
+                continue;
+            }
+
+            if (input == 0) {
+                return null;
+            } else if (input == 1){
+                return getHospitalWithID();
+            } else if (input == 2){
+                return getHospitalWithName();
+            } else if (input == 3){
+                clear();
+                header();
+                hospitalLister();
+            }
+
+        }
+    }
+
+    public Hospital getHospitalWithID(){
+        while (true){
+            clear();
+            header();
+            int id = 9;
+            System.out.println("Enter Hospital ID: ");
+
+            try {
+                id = Integer.valueOf(scanner.nextLine());
+            } catch (Exception e) {
+                System.out.println("Please enter only valid numbers");
+                returner();
+                return null;
+            }
+
+            try{
+                return crs.getHospitalWithID(id);
+            } catch (IDException e){
+                System.out.println(e.getMessage());
+                returner();
+                return null;
+            }
+
+        }
+    }
+
+    public Hospital getHospitalWithName(){
+        while (true){
+            clear();
+            header();
+            String name = "";
+            System.out.println("Enter Hospital Name: ");
+
+            try {
+                name = scanner.nextLine();
+            } catch (Exception e) {
+                System.out.println("Please enter only valid numbers");
+                returner();
+                return null;
+            }
+
+            try {
+                return crs.getHospitalWithName(name);
+            } catch (IDException e){
+                System.out.println(e.getMessage());
+                returner();
+                return null;
+            }
+
+        }
+    }
+
+    public boolean hospitalLister(){
         clear();
         header();
         if (crs.getHospitals().isEmpty()){
             System.out.println("\nHospital list is empty.");
-            System.out.println("Press anything to return");
-            scanner.nextLine();
-            return;
+            returner();
+            return false;
         }
 
         Comparator<Hospital> comparator = Comparator
                 .comparing(Hospital::getId);
 
+        System.out.println();
+
         crs.getHospitals().values().stream()
                 .sorted(comparator)
                 .forEach(System.out::println);
 
+        returner();
+        return true;
+    }
+
+
+
+    public void returner(){
         System.out.println("Press anything to return");
         scanner.nextLine();
     }
