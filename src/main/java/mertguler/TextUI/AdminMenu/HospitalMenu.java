@@ -1,6 +1,7 @@
 package mertguler.TextUI.AdminMenu;
 
-import mertguler.CRS;
+import mertguler.CRS.CRS;
+import mertguler.CRS.HospitalManager;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 
@@ -13,10 +14,12 @@ import static mertguler.TextUI.TextUI.header;
 public class HospitalMenu {
     private CRS crs;
     private Scanner scanner;
+    private HospitalManager hospitalManager;
 
     public HospitalMenu(Scanner scanner, CRS crs){
         this.crs = crs;
         this.scanner = scanner;
+        hospitalManager = crs.getHospitalManager();
     }
 
     public void hospitalManager() {
@@ -77,7 +80,7 @@ public class HospitalMenu {
         }
 
         try {
-            crs.createHospital(name,id);
+            hospitalManager.createHospital(name,id);
             System.out.println("Hospital successfully added.");
         } catch (IDException e) {
             System.out.println("Hospital with this id already exists");
@@ -101,7 +104,7 @@ public class HospitalMenu {
         }
 
         try{
-            crs.deleteHospital(id);
+            hospitalManager.deleteHospital(id);
             System.out.println("Hospital is successfully deleted.");
             returner();
         } catch (IDException e){
@@ -124,7 +127,7 @@ public class HospitalMenu {
             return;
         }
 
-        if(!(crs.getHospitals().containsKey(id))){
+        if(!(hospitalManager.getHospitals().containsKey(id))){
             System.out.println("Hospital with ID: " + id + " is not found.");
             returner();
             return;
@@ -133,13 +136,13 @@ public class HospitalMenu {
         System.out.println("Enter new name: ");
         String name = scanner.nextLine();
 
-        crs.getHospitals().get(id).setName(name);
+        hospitalManager.getHospitals().get(id).setName(name);
         System.out.println("Hospital successfully renamed to: " + name);
         returner();
     }
 
     public Hospital hospitalSelector(){
-        if (crs.getHospitals().isEmpty()){
+        if (hospitalManager.getHospitals().isEmpty()){
             clear();
             header();
             System.out.println("\nHospital list is empty");
@@ -198,7 +201,7 @@ public class HospitalMenu {
             }
 
             try{
-                return crs.getHospitalWithID(id);
+                return hospitalManager.getHospitalWithID(id);
             } catch (IDException e){
                 System.out.println(e.getMessage());
                 returner();
@@ -224,7 +227,7 @@ public class HospitalMenu {
             }
 
             try {
-                return crs.getHospitalWithName(name);
+                return hospitalManager.getHospitalWithName(name);
             } catch (IDException e){
                 System.out.println(e.getMessage());
                 returner();
@@ -237,7 +240,7 @@ public class HospitalMenu {
     public boolean hospitalLister(){
         clear();
         header();
-        if (crs.getHospitals().isEmpty()){
+        if (hospitalManager.getHospitals().isEmpty()){
             System.out.println("\nHospital list is empty.");
             returner();
             return false;
@@ -248,7 +251,7 @@ public class HospitalMenu {
 
         System.out.println();
 
-        crs.getHospitals().values().stream()
+        hospitalManager.getHospitals().values().stream()
                 .sorted(comparator)
                 .forEach(System.out::println);
 

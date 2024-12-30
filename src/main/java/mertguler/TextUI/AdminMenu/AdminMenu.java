@@ -1,6 +1,6 @@
 package mertguler.TextUI.AdminMenu;
 
-import mertguler.CRS;
+import mertguler.CRS.CRS;
 
 import java.util.Scanner;
 

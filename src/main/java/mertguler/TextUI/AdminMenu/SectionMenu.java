@@ -1,6 +1,6 @@
 package mertguler.TextUI.AdminMenu;
 
-import mertguler.CRS;
+import mertguler.CRS.CRS;
 import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;

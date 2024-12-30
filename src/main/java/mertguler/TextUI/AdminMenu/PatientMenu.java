@@ -1,6 +1,7 @@
 package mertguler.TextUI.AdminMenu;
 
-import mertguler.CRS;
+import mertguler.CRS.CRS;
+import mertguler.CRS.PatientManager;
 import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Person.Patient;
@@ -14,10 +15,12 @@ import static mertguler.TextUI.TextUI.header;
 public class PatientMenu {
     private Scanner scanner;
     private CRS crs;
+    private PatientManager patientManager;
 
     public PatientMenu(Scanner scanner, CRS crs){
         this.scanner = scanner;
         this.crs = crs;
+        patientManager = crs.getPatientManager();
     }
 
     public void patientManager(){
@@ -73,7 +76,7 @@ public class PatientMenu {
             }
 
             try {
-                crs.checkPatientDuplication(national_id);
+                patientManager.checkPatientDuplication(national_id);
             } catch (DuplicateInfoException e){
                 System.out.println(e.getMessage());
                 returner();
@@ -91,7 +94,7 @@ public class PatientMenu {
             }
 
 
-            crs.patientAdder(name, national_id);
+            patientManager.patientAdder(name, national_id);
             System.out.println("Patient: " + name + " with National ID: " + national_id + " is successfully added");
             returner();
             return true;
@@ -115,7 +118,7 @@ public class PatientMenu {
             }
 
             try {
-                crs.checkPatientID(national_id);
+                patientManager.checkPatientID(national_id);
             } catch (IDException e){
                 System.out.println(e.getMessage());
                 returner();
@@ -123,7 +126,7 @@ public class PatientMenu {
             }
 
 
-            crs.patientDeleter(national_id);
+            patientManager.patientDeleter(national_id);
             System.out.println("Patient with National ID: " + national_id + " is successfully deleted");
             returner();
             return true;
@@ -149,7 +152,7 @@ public class PatientMenu {
 
 
             try {
-                crs.checkPatientID(national_id);
+                patientManager.checkPatientID(national_id);
             } catch (IDException e){
                 System.out.println(e.getMessage());
                 returner();
@@ -167,7 +170,7 @@ public class PatientMenu {
             }
 
 
-            crs.patientRenamer(national_id, name);
+            patientManager.patientRenamer(national_id, name);
             System.out.println("Patient with National ID: " + national_id + " is successfully renamed");
             returner();
             return true;
@@ -179,7 +182,7 @@ public class PatientMenu {
         header();
         System.out.println();
 
-        if (crs.getPatients().isEmpty()){
+        if (patientManager.getPatients().isEmpty()){
             System.out.println("No patient is found");
             return false;
         }
@@ -187,7 +190,7 @@ public class PatientMenu {
         Comparator<Patient> comparator = Comparator
                 .comparing(Patient::getName);
 
-        crs.getPatients().values().stream()
+        patientManager.getPatients().values().stream()
                 .sorted(comparator)
                 .forEach(System.out::println);
         return true;
