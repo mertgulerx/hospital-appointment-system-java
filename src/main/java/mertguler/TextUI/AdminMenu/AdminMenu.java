@@ -9,6 +9,7 @@ import static mertguler.TextUI.TextUI.header;
 
 public class AdminMenu {
     private Scanner scanner;
+    private CRS crs;
     private HospitalMenu hospitalMenu;
     private SectionMenu sectionMenu;
     private DoctorMenu doctorMenu;
@@ -17,6 +18,7 @@ public class AdminMenu {
 
     public AdminMenu(Scanner scanner, CRS crs){
         this.scanner = scanner;
+        this.crs = crs;
         hospitalMenu = new HospitalMenu(scanner, crs);
         sectionMenu = new SectionMenu(scanner, crs, hospitalMenu);
         doctorMenu = new DoctorMenu(scanner, crs, hospitalMenu, sectionMenu);
@@ -34,14 +36,15 @@ public class AdminMenu {
             System.out.println("Doctor Management: 3");
             System.out.println("Patient Management: 4");
             System.out.println("Rendezvous Management: 5");
+            System.out.println("Save Data: 6");
+            System.out.println("Load Data: 7");
             System.out.println("Return to last menu: 0");
             System.out.println("\nSelect operating mode (1-5):");
             try {
                 input = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers within range");
-                System.out.println("\nPress anything to return");
-                scanner.nextLine();
+                returner();
                 continue;
             }
 
@@ -57,7 +60,19 @@ public class AdminMenu {
                 patientMenu.patientManager();
             } else if (input == 5){
                 rendezvousMenu.rendezvousManager();
+            } else if (input == 6){
+                crs.saveTablesToDisk("data.ser");
+                returner();
+            } else if (input == 7){
+                crs.loadTablesFromDisk("data.ser");
+                returner();
             }
         }
+
+    }
+
+    public void returner(){
+        System.out.println("\nPress anything to return");
+        scanner.nextLine();
     }
 }

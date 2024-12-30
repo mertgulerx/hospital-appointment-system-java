@@ -3,56 +3,57 @@ package mertguler.CRS;
 import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
+import mertguler.Hospital.Section;
+import mertguler.Person.Doctor;
 
 import java.util.HashMap;
 
 public class HospitalManager {
     private HashMap<Integer, Hospital> hospitals;
     private SectionManager sectionManager;
+    private DoctorManager doctorManager;
+    public static int hospitalCount = 0;
 
     public HospitalManager(HashMap<Integer, Hospital> hospitals){
         this.hospitals = hospitals;
         sectionManager = new SectionManager();
+        doctorManager = new DoctorManager();
+        hospitalCount = hospitals.size();
     }
 
     public SectionManager getSectionManager(){
         return sectionManager;
     }
-
-    public void createHospital(String name, int id){
-        if (hospitals.containsKey(id)){
-            throw new IDException("Hospital with this ID is already exists");
-        } else {
-            Hospital hospital = new Hospital(name, id);
-            hospitals.put(id, hospital);
-        }
+    public DoctorManager getDoctorManager() {
+        return doctorManager;
     }
 
-    public void deleteHospital(int id){
-        if(!(hospitals.containsKey(id))){
-            throw new IDException("Hospital with ID: " + id + " is not found");
-        } else {
-            hospitals.remove(id);
-        }
+    public boolean updateHospitalMap(HashMap<Integer, Hospital> hospitals){
+        this.hospitals = hospitals;
+        hospitalCount = hospitals.size();
+        return true;
     }
 
-    public void renameHospital(int id, String name){
-        if(!(hospitals.containsKey(id))){
-            throw new IDException("Hospital with ID: " + id + " is not found");
-        } else {
-            hospitals.get(id).setName(name);
-        }
+
+    // Creates a hospital with id
+    public void createHospital(String name){
+        Hospital hospital = new Hospital(name);
+        hospitals.put(hospital.getId(), hospital);
     }
 
-    public HashMap<Integer, Hospital> getHospitals(){
-        return hospitals;
+    public void deleteHospital(int id) throws IDException{
+        checkHospitalID(id);
+        hospitals.remove(id);
+    }
+
+    public void renameHospital(int id, String newName) throws IDException{
+       checkHospitalID(id);
+       hospitals.get(id).setName(newName);
+
     }
 
     public Hospital getHospitalWithID(int id) throws IDException{
-        if (!(hospitals.containsKey(id))){
-            throw new IDException("Hospital with id: " + id + " is not found");
-        }
-
+        checkHospitalID(id);
         return hospitals.get(id);
     }
 
@@ -83,15 +84,49 @@ public class HospitalManager {
         }
     }
 
-    public class SectionManager{
+    public HashMap<Integer, Hospital> getHospitals(){
+        return hospitals;
+    }
 
+    public int countAllSections(){
+        int count = 0;
+
+        if (hospitals.isEmpty()){
+            return count;
+        }
+
+        for(Hospital hospital: hospitals.values()){
+            count += hospital.getSections().size();
+        }
+
+        return count;
+    }
+
+    public int countAllDoctors(){
+        int count = 0;
+
+        for (Hospital hospital: hospitals.values()){
+            for(Section section: hospital.getSections()){
+                count += section.getDoctors().size();
+            }
+        }
+        return count;
+    }
+
+    public class SectionManager{
         public void checkSectionID(int hospital_id, int section_id) throws IDException{
             if (hospitals.get(hospital_id).getSection(section_id) == null){
                 throw new IDException("No section found with Section ID: " + section_id);
             }
         }
+    }
 
-
+    public class DoctorManager{
+        public void checkDoctorID(int hospital_id, int section_id, int diploma_id) throws IDException{
+            if (hospitals.get(hospital_id).getSection(section_id).getDoctor(diploma_id) == null){
+                throw new IDException("No doctor found with Diploma ID: " + diploma_id);
+            }
+        }
     }
 
 }

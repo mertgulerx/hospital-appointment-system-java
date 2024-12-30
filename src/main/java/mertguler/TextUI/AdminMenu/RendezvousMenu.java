@@ -3,16 +3,20 @@ package mertguler.TextUI.AdminMenu;
 import mertguler.CRS.CRS;
 import mertguler.CRS.DateManager;
 import mertguler.Exceptions.DailyLimitException;
+import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
+import mertguler.Hospital.Rendezvous;
 import mertguler.Hospital.Section;
 import mertguler.Person.Doctor;
+import mertguler.Person.Patient;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
+import static mertguler.CRS.CRS.RENDEZVOUS_DAY_LIMIT;
 import static mertguler.TextUI.TextUI.clear;
 import static mertguler.TextUI.TextUI.header;
 
@@ -57,10 +61,31 @@ public class RendezvousMenu {
             } else if (input == 1){
                 rendezvousAdder();
             } else if (input == 2){
-                // rendezvousDeleter();
+                rendezvousDeleter();
             } else if (input == 3){
-                // rendezvousInfoChecker();
+                rendezvousInfoChecker();
             }
+        }
+    }
+
+    public long nationalIDSelector(){
+        while(true){
+            clear();
+            header();
+            long national_id = 0;
+
+            System.out.println("\nEnterNational ID: ");
+
+            try {
+                national_id = Long.valueOf(scanner.nextLine());
+            } catch (Exception e) {
+                System.out.println("\nPlease enter only valid numbers\n");
+                returner();
+                clear();
+                return 0;
+            }
+
+            return national_id;
         }
     }
 
@@ -68,7 +93,6 @@ public class RendezvousMenu {
         while (true){
             clear();
             header();
-            int input = 9;
             long patient_id = 0;
 
             System.out.println("Enter Patient National ID: ");
@@ -104,14 +128,14 @@ public class RendezvousMenu {
             }
 
             LocalDate currentDate = DateManager.getCurrentDate();
+            LocalDate lastRendezvousDate = DateManager.getLastDate();
 
             System.out.println("Hospital: " + hospital);
             System.out.println("Section: " + section);
             System.out.println("Doctor: " + doctor);
             System.out.println("Current Time: " + DateManager.getFormatedDate(currentDate));
 
-            System.out.println("\nYou can create rendezvous for next " + DateManager.rendezvousDayLimit + " days");
-            LocalDate lastRendezvousDate = DateManager.getLastDate();
+            System.out.println("\nYou can create rendezvous for next " + RENDEZVOUS_DAY_LIMIT + " days");
             System.out.println("Last Date: " + DateManager.getFormatedDate(lastRendezvousDate));
 
             System.out.println("\nPlease enter desired date as dd-mm-yyyy format");
@@ -150,7 +174,16 @@ public class RendezvousMenu {
 
             try {
                 crs.makeRendezvous(patient_id, hospital.getId(), section.getId(), doctor.getDiploma_id(), desiredDate);
+                clear();
+                header();
+                Patient patient = crs.getPatientManager().getPatient(patient_id);
                 System.out.println("\nRendezvous is successfully made");
+                System.out.println("Patient Name: " + patient.getName());
+                System.out.println("Patient National ID: " + patient.getNational_id());
+                System.out.println("Doctor Name: " + doctor.getName());
+                System.out.println("Section: " + section.getName());
+                System.out.println("Hospital: " + hospital.getName());
+                System.out.println("Date: " + desiredDateStr + "\n");
                 returner();
                 clear();
                 return true;
@@ -158,6 +191,70 @@ public class RendezvousMenu {
                 System.out.println(e.getMessage());
                 return false;
             }
+
+        }
+    }
+
+    public boolean rendezvousDeleter(){
+        while (true){
+            clear();
+            header();
+            long national_id = 0;
+
+            System.out.println("\nEnter Patient`s National ID: ");
+
+            try {
+                national_id = Long.valueOf(scanner.nextLine());
+            } catch (NumberFormatException e){
+                System.out.println("Enter valid numbers only");
+                returner();
+                clear();
+                return false;
+            }
+
+            Patient patient;
+
+            try {
+                patient = crs.getPatientManager().getPatient(national_id);
+            } catch (IDException e){
+                System.out.println(e.getMessage()) ;
+                returner();
+                clear();
+                return false;
+            }
+
+            ArrayList<Rendezvous> rendezvousList = patient.getRendezvouses();
+            if (rendezvousList.isEmpty()){
+                System.out.println("This patient doesnt have any rendezvous");
+                returner();
+                clear();
+                return false;
+            }
+
+            clear();
+            header();
+            System.out.println("\nRendezvous List for Patient: " + patient);
+
+            int index = 0;
+            for (Rendezvous rendezvous: rendezvousList){
+                index++;
+                System.out.println(rendezvous + ", ID: " + index);
+            }
+
+            System.out.println("\nWhich Rendezvous to delete? Enter Rendezvous ID from list above:");
+
+            Rendezvous rendezvous;
+            try {
+                index = Integer.valueOf(scanner.nextLine());
+                rendezvous = rendezvousList.get(index);
+            } catch (Exception e){
+                System.out.println("\nEnter valid numbers only\n");
+                returner();
+                clear();
+                return false;
+            }
+
+            crs.deleteRendezvous(rendezvous);
 
         }
     }

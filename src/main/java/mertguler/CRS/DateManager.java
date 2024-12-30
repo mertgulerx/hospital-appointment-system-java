@@ -5,10 +5,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import static mertguler.CRS.CRS.RENDEZVOUS_DAY_LIMIT;
+
 public class DateManager {
     public static String datePattern = "dd-MM-yyyy";
     public static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(datePattern);
-    public static int rendezvousDayLimit = 15;
 
 
     public DateManager(){
@@ -16,10 +17,6 @@ public class DateManager {
 
     public DateManager(String newDatePattern){
         datePattern = newDatePattern;
-    }
-    public DateManager(String newDatePattern, int newRendezvousDayLimit){
-        datePattern = newDatePattern;
-        rendezvousDayLimit = newRendezvousDayLimit;
     }
 
     public static LocalDate getCurrentDate(){
@@ -32,7 +29,7 @@ public class DateManager {
     }
 
     public static LocalDate getLastDate(){
-        LocalDate lastRendezvousDate = getCurrentDate().plusDays(rendezvousDayLimit);
+        LocalDate lastRendezvousDate = getCurrentDate().plusDays(RENDEZVOUS_DAY_LIMIT);
         return lastRendezvousDate;
     }
 
@@ -45,7 +42,7 @@ public class DateManager {
 
     public static void checkDateRange(LocalDate desiredDate) throws DateTimeException {
         if (desiredDate == null){
-            throw new DateTimeException("Enter valid date with specified date format");
+            throw new DateTimeException("Date is null");
         }
 
         if (desiredDate.isAfter(getLastDate())){

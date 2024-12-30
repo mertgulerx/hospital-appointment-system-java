@@ -1,14 +1,13 @@
 package mertguler.Hospital;
 
+import mertguler.CRS.HospitalManager;
 import mertguler.Exceptions.DuplicateInfoException;
-import mertguler.Exceptions.IDException;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Hospital implements Serializable {
     private static final long serialVersionUID = 1L;
-    private ArrayList<Section> sections;
+    private final ArrayList<Section> sections;
     private String name;
     private final int id;
 
@@ -19,22 +18,29 @@ public class Hospital implements Serializable {
         sections = new ArrayList<>();
     }
 
+    public Hospital(String name){
+        this.name = name;
+        HospitalManager.hospitalCount++;
+        id = HospitalManager.hospitalCount;
+        sections = new ArrayList<>();
+    }
+
     public void addSection(Section section) throws DuplicateInfoException {
         if (sections.contains(section)){
-            throw new DuplicateInfoException("This section already exists");
+            throw new DuplicateInfoException("Section with ID: " + section.getId() + ", already exist");
         }
 
         sections.add(section);
     }
 
-    // WHY FOR
     public Section getSection(String name){
         if (sections.isEmpty()){
             return null;
         }
 
+        name = name.trim();
         for (Section section: sections){
-            if (section.getName().equals(name)){
+            if (section.getName().trim().equalsIgnoreCase(name)){
                 return section;
             }
         }
@@ -42,7 +48,6 @@ public class Hospital implements Serializable {
         return null;
     }
 
-    // Used in CRS
     public Section getSection(int id) {
         if (sections.isEmpty()){
             return null;

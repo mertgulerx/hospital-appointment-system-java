@@ -1,13 +1,12 @@
 package mertguler.Hospital;
 
+import mertguler.CRS.HospitalManager;
 import mertguler.Exceptions.DuplicateInfoException;
-import mertguler.Exceptions.IDException;
 import mertguler.Person.Doctor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.LinkedList;
 
 import static mertguler.Main.gui_mode;
 
@@ -20,6 +19,12 @@ public class Section implements Serializable {
     public Section(String name, int id){
         this.name = name;
         this.id = id;
+        doctors = new ArrayList<>();
+    }
+
+    public Section(String name, Hospital hospital){
+        this.name = name;
+        this.id = hospital.getId() * 1000 + hospital.getSections().size() + 1;
         doctors = new ArrayList<>();
     }
 
@@ -103,6 +108,10 @@ public class Section implements Serializable {
 
     public String getName(){
         return name;
+    }
+
+    public ArrayList<Doctor> getDoctors(){
+        return doctors;
     }
 
     public void setName(String name){

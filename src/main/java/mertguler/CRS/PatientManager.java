@@ -14,6 +14,11 @@ public class PatientManager {
         this.patients = patients;
     }
 
+    public boolean updatePatientsMap(HashMap<Long, Patient> patients){
+        this.patients = patients;
+        return true;
+    }
+
     public void checkPatientDuplication(long national_id) throws DuplicateInfoException {
         if (patients.containsKey(national_id)){
             throw new DuplicateInfoException("Patient with National ID: " + national_id + " is already exist");
@@ -26,7 +31,7 @@ public class PatientManager {
         }
     }
 
-    public Patient getPatient(long national_id){
+    public Patient getPatient(long national_id) throws IDException{
         checkPatientID(national_id);
         return patients.get(national_id);
     }

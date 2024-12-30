@@ -69,6 +69,8 @@ public class HospitalMenu {
             returner();
             return;
         }
+
+        /*
         System.out.println("Enter ID");
 
         try {
@@ -79,8 +81,10 @@ public class HospitalMenu {
             return;
         }
 
+         */
+
         try {
-            hospitalManager.createHospital(name,id);
+            hospitalManager.createHospital(name);
             System.out.println("Hospital successfully added.");
         } catch (IDException e) {
             System.out.println("Hospital with this id already exists");

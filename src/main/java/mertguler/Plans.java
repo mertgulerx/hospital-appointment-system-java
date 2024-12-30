@@ -8,8 +8,9 @@ public class Plans {
 
 
     Next things to do
-   Serialization
    RendezvousMenu
+
+
 
 
 

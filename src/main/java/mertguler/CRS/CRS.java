@@ -1,33 +1,40 @@
 package mertguler.CRS;
 
 import mertguler.Exceptions.DailyLimitException;
+import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
+import mertguler.Exceptions.RendezvousLimitException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Rendezvous;
 import mertguler.Person.Doctor;
 import mertguler.Person.Patient;
 
 import java.io.*;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static mertguler.CRS.DateManager.checkDateRange;
 
 public class CRS {
     private HashMap<Long, Patient> patients;
     private ArrayList<Rendezvous> rendezvouses;
     private HashMap<Integer, Hospital> hospitals;
-    private HospitalManager hospitalManager;
-    private PatientManager patientManager;
 
-    // App Wide date manager
+    private PatientManager patientManager;
+    private HospitalManager hospitalManager;
+
+    // App wide date manager
     public static DateManager dateManager;
+    public static final int MAX_RENDEZVOUS_PER_PATIENT = 5;
+    public static final int RENDEZVOUS_DAY_LIMIT = 15;
 
 
     public CRS(){
         patients = new HashMap<>();
         rendezvouses = new ArrayList<>();
         hospitals = new HashMap<>();
-        dateManager = new DateManager();
         hospitalManager = new HospitalManager(hospitals);
         patientManager = new PatientManager(patients);
     }
@@ -38,63 +45,86 @@ public class CRS {
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(hospitals);
             out.writeObject(patients);
-            // Maybe save rendezvous too ?
+            out.writeObject(rendezvouses);
             out.close();
             fileOut.close();
             System.out.printf("Serialized data is saved to " + path + " file.");
-        } catch (IOException exception) {
-            exception.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
 
     public void loadTablesFromDisk(String path){
         try {
-            FileInputStream fileIn = new FileInputStream("employee.ser");
+            FileInputStream fileIn = new FileInputStream(path);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            patients = (HashMap) in.readObject();
+           // patients = (HashMap) in.readObject();
             hospitals = (HashMap<Integer, Hospital>) in.readObject();
+            patients = (HashMap<Long, Patient>) in.readObject();
+            rendezvouses = (ArrayList<Rendezvous>) in.readObject();
             in.close();
             fileIn.close();
+            System.out.printf("Serialized data is read from " + path + " file.");
+            hospitalManager.updateHospitalMap(hospitals);
+            patientManager.updatePatientsMap(patients);
         } catch (IOException i) {
             i.printStackTrace();
-            return;
         } catch (ClassNotFoundException c) {
             c.printStackTrace();
-            return;
         }
     }
 
     // We can use multithreading here - No need for hashmaps as they are quite fast
     // For now won`t implement multithreading
-    public boolean makeRendezvous(long patientID, int hospitalID, int sectionID, int diplomaID, LocalDate desiredDate) throws IDException, DailyLimitException{
+    public boolean makeRendezvous(long patientID, int hospitalID, int sectionID, int diplomaID, LocalDate desiredDate) throws IDException, DailyLimitException, RendezvousLimitException, DateTimeException {
+        // DateTimeException
+        checkDateRange(desiredDate);
+
+        // ID Exception
         patientManager.checkPatientID(patientID);
 
+        Patient patient = patientManager.getPatient(patientID);
+
+        // RendezvousLimitException
+        patient.checkValidity();
+
+        // ID Exceptions
         hospitalManager.checkHospitalID(hospitalID);
 
         hospitalManager.getSectionManager().checkSectionID(hospitalID, sectionID);
 
-        checkDoctorID(hospitalID,sectionID,diplomaID);
+        hospitalManager.getDoctorManager().checkDoctorID(hospitalID,sectionID,diplomaID);
 
         Doctor doctor = hospitals.get(hospitalID).getSection(sectionID).getDoctor(diplomaID);
 
-        if (!(doctor.getSchedule().addRendezvous(patients.get(patientID), desiredDate))){
-            throw new DailyLimitException("Daily limit is exceeded for doctor: " + doctor + ", at the date: " + desiredDate);
-        } else {
-            return true;
-        }
+        // DailyLimitException
+        doctor.getSchedule().checkDailyLimit(desiredDate);
 
+        Rendezvous rendezvous = new Rendezvous(desiredDate, doctor, patient);
+
+        // Duplicate Info Exception
+        doctor.getSchedule().addRendezvous(rendezvous);
+
+        patient.addRendezvous(rendezvous);
+        rendezvouses.add(rendezvous);
+        return true;
     }
 
-    // Doctor Management //
-
-    public void checkDoctorID(int hospital_id, int section_id, int diploma_id) throws IDException{
-        if (hospitals.get(hospital_id).getSection(section_id).getDoctor(diploma_id) == null){
-            throw new IDException("No doctor found with Diploma ID: " + diploma_id);
+    public void deleteRendezvous(Rendezvous rendezvous) throws IDException{
+        if (rendezvous == null) {
+            throw new IDException("Rendezvous is null");
         }
+
+        Doctor doctor = rendezvous.getDoctor();
+        Patient patient = rendezvous.getPatient();
+
+        doctor.getSchedule().deleteRendezvous(rendezvous);
+        patient.deleteRendezvous(rendezvous);
+        rendezvouses.remove(rendezvous);
     }
 
-    // Rendezvous Management //
+    // Getters
 
     public ArrayList<Rendezvous> getRendezvouses(){
         return rendezvouses;
@@ -106,6 +136,10 @@ public class CRS {
 
     public PatientManager getPatientManager(){
         return patientManager;
+    }
+
+    public int getRendezvousCount(){
+        return rendezvouses.size();
     }
 
 

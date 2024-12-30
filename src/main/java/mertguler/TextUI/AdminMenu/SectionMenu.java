@@ -142,6 +142,7 @@ public class SectionMenu {
                 continue;
             }
 
+            /*
             System.out.println("Enter Section ID: ");
 
             try {
@@ -152,8 +153,10 @@ public class SectionMenu {
                 continue;
             }
 
+             */
+
             try {
-                hospital.addSection(new Section(name, id));
+                hospital.addSection(new Section(name, hospital));
                 System.out.println("Selection is successfully added.");
                 returner();
                 return true;
