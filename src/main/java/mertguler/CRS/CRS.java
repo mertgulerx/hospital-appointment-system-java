@@ -6,6 +6,7 @@ import mertguler.Exceptions.IDException;
 import mertguler.Exceptions.RendezvousLimitException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Rendezvous;
+import mertguler.Hospital.Section;
 import mertguler.Person.Doctor;
 import mertguler.Person.Patient;
 
@@ -48,7 +49,7 @@ public class CRS {
             out.writeObject(rendezvouses);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved to " + path + " file.");
+            System.out.printf("\nSerialized data is saved to " + path + " file.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,7 +66,7 @@ public class CRS {
             rendezvouses = (ArrayList<Rendezvous>) in.readObject();
             in.close();
             fileIn.close();
-            System.out.printf("Serialized data is read from " + path + " file.");
+            System.out.printf("\nSerialized data is read from " + path + " file.");
             hospitalManager.updateHospitalMap(hospitals);
             patientManager.updatePatientsMap(patients);
         } catch (IOException i) {
@@ -96,12 +97,15 @@ public class CRS {
 
         hospitalManager.getDoctorManager().checkDoctorID(hospitalID,sectionID,diplomaID);
 
-        Doctor doctor = hospitals.get(hospitalID).getSection(sectionID).getDoctor(diplomaID);
+        Hospital hospital = hospitals.get(hospitalID);
+        Section section = hospital.getSection(sectionID);
+
+        Doctor doctor = section.getDoctor(diplomaID);
 
         // DailyLimitException
         doctor.getSchedule().checkDailyLimit(desiredDate);
 
-        Rendezvous rendezvous = new Rendezvous(desiredDate, doctor, patient);
+        Rendezvous rendezvous = new Rendezvous(desiredDate, doctor, patient, hospital, section);
 
         // Duplicate Info Exception
         doctor.getSchedule().addRendezvous(rendezvous);

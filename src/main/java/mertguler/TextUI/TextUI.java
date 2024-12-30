@@ -45,14 +45,37 @@ public class TextUI {
         }
     }
 
-    public static void header(){
+    public static void header() {
         System.out.println("Hospital Rendezvous System - Text UI V1.0");
     }
 
-    public static void clear(){
+    public static void clear() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
+    public static long nationalIDSelector(Scanner scanner) {
+        clear();
+        header();
+        long national_id = 0;
+
+        System.out.println("\nEnterNational ID: ");
+
+        try {
+            national_id = Long.valueOf(scanner.nextLine());
+        } catch (Exception e) {
+            System.out.println("\nPlease enter only valid numbers\n");
+            returner(scanner);
+            clear();
+            return 0;
+        }
+
+        return national_id;
+    }
+
+    public static void returner(Scanner scanner) {
+        System.out.println("Press anything to return");
+        scanner.nextLine();
+    }
 
 }

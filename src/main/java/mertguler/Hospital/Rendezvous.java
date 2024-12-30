@@ -15,11 +15,20 @@ public class Rendezvous implements Serializable {
     private final LocalDate date;
     private Doctor doctor;
     private Patient patient;
+    private Hospital hospital;
+    private Section section;
 
     public Rendezvous(LocalDate desiredDate, Doctor doctor, Patient patient){
         date = desiredDate;
         this.doctor = doctor;
         this.patient = patient;
+    }
+    public Rendezvous(LocalDate desiredDate, Doctor doctor, Patient patient, Hospital hospital, Section section){
+        date = desiredDate;
+        this.doctor = doctor;
+        this.patient = patient;
+        this.section = section;
+        this.hospital = hospital;
     }
 
     public LocalDate getDate(){
@@ -32,6 +41,14 @@ public class Rendezvous implements Serializable {
 
     public Patient getPatient(){
         return patient;
+    }
+
+    public Hospital getHospital(){
+        return hospital;
+    }
+
+    public Section getSection(){
+        return section;
     }
 
     @Override
@@ -51,6 +68,11 @@ public class Rendezvous implements Serializable {
         }
 
         return false;
+    }
+
+    @Override
+    public String toString(){
+        return patient.getName() + ", " + hospital.getName() + ", " + section.getName() + ", " + doctor.getName();
     }
 
 }

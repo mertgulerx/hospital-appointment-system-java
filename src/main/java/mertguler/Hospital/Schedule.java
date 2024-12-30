@@ -31,7 +31,7 @@ public class Schedule implements Serializable {
     }
 
     public void deleteRendezvous(Rendezvous rendezvous) throws IDException{
-        if (sessions.contains(rendezvous)){
+        if (!(sessions.contains(rendezvous))){
             throw new IDException("Rendezvous is not found");
         }
 
