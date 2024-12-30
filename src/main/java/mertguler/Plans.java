@@ -8,7 +8,7 @@ public class Plans {
 
 
     Next things to do
-   RendezvousMenu
+    Do UserMenu in TextUi
 
 
 
