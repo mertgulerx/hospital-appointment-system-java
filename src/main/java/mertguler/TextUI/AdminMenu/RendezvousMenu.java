@@ -1,16 +1,18 @@
 package mertguler.TextUI.AdminMenu;
 
-import mertguler.CRS;
+import mertguler.CRS.CRS;
+import mertguler.CRS.DateManager;
+import mertguler.Exceptions.DailyLimitException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;
 import mertguler.Person.Doctor;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-import static mertguler.CRS.isValidDate;
+
 import static mertguler.TextUI.TextUI.clear;
 import static mertguler.TextUI.TextUI.header;
 
@@ -95,22 +97,22 @@ public class RendezvousMenu {
                 return false;
             }
 
-            Doctor doctor = doctorMenu.selectDoctor(section);
+            Doctor doctor = doctorMenu.doctorSelector(section);
 
             if (doctor == null){
                 return false;
             }
 
-            LocalDateTime currentDate = crs.getCurrentDate();
+            LocalDate currentDate = DateManager.getCurrentDate();
 
             System.out.println("Hospital: " + hospital);
             System.out.println("Section: " + section);
             System.out.println("Doctor: " + doctor);
-            System.out.println("Current Time: " + crs.getFormatedDate(currentDate));
+            System.out.println("Current Time: " + DateManager.getFormatedDate(currentDate));
 
-            System.out.println("\nYou can create rendezvous for next " + crs.getRendezvousDayLimit() + " days");
-            LocalDateTime lastRendezvousDate = crs.getLastDate();
-            System.out.println("Last Date: " + crs.getFormatedDate(lastRendezvousDate));
+            System.out.println("\nYou can create rendezvous for next " + DateManager.rendezvousDayLimit + " days");
+            LocalDate lastRendezvousDate = DateManager.getLastDate();
+            System.out.println("Last Date: " + DateManager.getFormatedDate(lastRendezvousDate));
 
             System.out.println("\nPlease enter desired date as dd-mm-yyyy format");
             System.out.println("Enter date within the day limit");
@@ -126,35 +128,34 @@ public class RendezvousMenu {
                 return false;
             }
 
-            LocalDate desiredDate= isValidDate(desiredDateStr);
-            if (desiredDate == null){
-                System.out.println("Enter valid date with specified date format");
-                returner();
-                clear();
-                return false;
-            }
+            LocalDate desiredDate = null;
 
-            if (desiredDate.isAfter(lastRendezvousDate.toLocalDate())){
-                System.out.println("Entered date is after the last rendezvous date");
-                returner();
-                clear();
-                return false;
-            }
-
-            if (desiredDate.isBefore(currentDate.toLocalDate())){
-                System.out.println("Entered date is before current date");
+            try {
+                desiredDate = DateManager.isValidDate(desiredDateStr);
+            } catch (DateTimeParseException e){
+                System.out.println(e.getMessage());
                 returner();
                 clear();
                 return false;
             }
 
             try {
-                crs.makeRendezvous(patient_id, hospital.getId(), section.getId(), doctor.getDiploma_id(), desiredDate.atStartOfDay());
-                System.out.println("Rendezvous is successfully made");
-                returner();
-                return true;
+                DateManager.checkDateRange(desiredDate);
             } catch (Exception e){
-                e.printStackTrace();
+                System.out.println(e.getMessage());
+                returner();
+                clear();
+                return false;
+            }
+
+            try {
+                crs.makeRendezvous(patient_id, hospital.getId(), section.getId(), doctor.getDiploma_id(), desiredDate);
+                System.out.println("\nRendezvous is successfully made");
+                returner();
+                clear();
+                return true;
+            } catch (DailyLimitException e){
+                System.out.println(e.getMessage());
                 return false;
             }
 

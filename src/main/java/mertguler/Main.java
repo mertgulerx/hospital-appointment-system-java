@@ -1,13 +1,10 @@
 package mertguler;
 
 
+import mertguler.CRS.CRS;
 import mertguler.TextUI.TextUI;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Scanner;
-
-import static mertguler.CRS.isValidDate;
 
 
 public class Main {

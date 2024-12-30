@@ -1,8 +1,7 @@
 package mertguler.TextUI;
 
-import mertguler.CRS;
+import mertguler.CRS.CRS;
 import mertguler.TextUI.AdminMenu.AdminMenu;
-import mertguler.TextUI.AdminMenu.HospitalMenu;
 
 import java.util.Scanner;
 

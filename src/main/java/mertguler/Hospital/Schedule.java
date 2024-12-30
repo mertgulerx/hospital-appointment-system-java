@@ -4,6 +4,7 @@ import mertguler.Person.Doctor;
 import mertguler.Person.Patient;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
@@ -18,7 +19,7 @@ public class Schedule implements Serializable {
         sessions = new LinkedList<>();
     }
 
-    public boolean addRendezvous(Patient patient, LocalDateTime desiredDate){
+    public boolean addRendezvous(Patient patient, LocalDate desiredDate){
         if (!(checkDailyLimit(desiredDate))){
             return false;
         }
@@ -42,7 +43,7 @@ public class Schedule implements Serializable {
     }
 
     // Daily Patient Limit Checker
-    public boolean checkDailyLimit(LocalDateTime desiredDate){
+    public boolean checkDailyLimit(LocalDate desiredDate){
         int countForDay = 0;
 
         for (Rendezvous rendezvous: sessions){
