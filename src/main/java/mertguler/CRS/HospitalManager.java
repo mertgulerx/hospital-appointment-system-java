@@ -80,7 +80,7 @@ public class HospitalManager {
 
     public void checkHospitalID(int hospital_id) throws IDException {
         if (!hospitals.containsKey(hospital_id)){
-            throw new DuplicateInfoException("No hospital found with Hospital ID: " + hospital_id);
+            throw new IDException("No hospital found with Hospital ID: " + hospital_id);
         }
     }
 

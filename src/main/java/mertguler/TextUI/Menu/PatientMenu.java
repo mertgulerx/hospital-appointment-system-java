@@ -1,4 +1,4 @@
-package mertguler.TextUI.AdminMenu;
+package mertguler.TextUI.Menu;
 
 import mertguler.CRS.CRS;
 import mertguler.CRS.PatientManager;

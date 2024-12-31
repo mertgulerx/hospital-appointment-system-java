@@ -1,5 +1,6 @@
 package mertguler.Hospital;
 
+import mertguler.CRS.DateManager;
 import mertguler.Person.Doctor;
 import mertguler.Person.Patient;
 
@@ -17,18 +18,22 @@ public class Rendezvous implements Serializable {
     private Patient patient;
     private Hospital hospital;
     private Section section;
+    private boolean expired;
 
     public Rendezvous(LocalDate desiredDate, Doctor doctor, Patient patient){
         date = desiredDate;
         this.doctor = doctor;
         this.patient = patient;
+        expired = false;
     }
+
     public Rendezvous(LocalDate desiredDate, Doctor doctor, Patient patient, Hospital hospital, Section section){
         date = desiredDate;
         this.doctor = doctor;
         this.patient = patient;
         this.section = section;
         this.hospital = hospital;
+        expired = false;
     }
 
     public LocalDate getDate(){
@@ -49,6 +54,16 @@ public class Rendezvous implements Serializable {
 
     public Section getSection(){
         return section;
+    }
+
+    public boolean getExpired(){
+        return expired;
+    }
+
+    public void updateExpired(){
+        if (date.isBefore(DateManager.getCurrentDate())){
+            expired = true;
+        }
     }
 
     @Override

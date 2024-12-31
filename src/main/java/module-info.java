@@ -13,8 +13,8 @@ module mertguler.hospitalreservationsystemjava {
     opens mertguler.Person to javafx.fxml;
     exports mertguler.TextUI;
     opens mertguler.TextUI to javafx.fxml;
-    exports mertguler.TextUI.AdminMenu;
-    opens mertguler.TextUI.AdminMenu to javafx.fxml;
+    exports mertguler.TextUI.Menu;
+    opens mertguler.TextUI.Menu to javafx.fxml;
     exports mertguler.CRS;
     opens mertguler.CRS to javafx.fxml;
 }

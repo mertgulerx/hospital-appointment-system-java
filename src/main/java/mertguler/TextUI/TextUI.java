@@ -1,23 +1,100 @@
 package mertguler.TextUI;
 
 import mertguler.CRS.CRS;
-import mertguler.TextUI.AdminMenu.AdminMenu;
+import mertguler.TextUI.Menu.AdminMenu;
+import mertguler.TextUI.Menu.UserMenu;
 
 import java.util.Scanner;
+
+import static mertguler.CRS.CRS.*;
 
 public class TextUI {
     private Scanner scanner;
     private CRS crs;
-    private final AdminMenu adminMenu;
+    private AdminMenu adminMenu;
+    private UserMenu userMenu;
 
     public TextUI(Scanner scanner, CRS crs) {
         this.scanner = scanner;
         this.crs = crs;
-        adminMenu = new AdminMenu(scanner, crs);
     }
 
     public void start() {
+        adminMenu = new AdminMenu(scanner, crs);
+        userMenu = new UserMenu(scanner, crs);
+        defaultsMenu();
         mainMenu();
+    }
+
+    public void defaultsMenu(){
+        while (true) {
+            clear();
+            header();
+            int input = 9;
+            System.out.println("\nDefaults:");
+            System.out.println("Max Rendezvous Per Patient: " + MAX_RENDEZVOUS_PER_PATIENT);
+            System.out.println("Rendezvous Day Limit: " + RENDEZVOUS_DAY_LIMIT + " days");
+
+            System.out.println("\nChange Defaults: 0");
+            System.out.println("Continue with Defaults: 1");
+
+            try {
+                input = Integer.valueOf(scanner.nextLine());
+            } catch (Exception e) {
+                System.out.println("Please enter a valid number");
+                returner(scanner);
+                continue;
+            }
+
+            if (input == 0){
+                while (true){
+                    clear();
+                    header();
+                    System.out.println("\nEnter new value for `Max Rendezvous Per Patient`");
+
+                    try {
+                        input = Integer.valueOf(scanner.nextLine());
+                    } catch (Exception e) {
+                        System.out.println("Please enter a valid number");
+                        returner(scanner);
+                        continue;
+                    }
+
+                    if (input <= 0){
+                        System.out.println("Please enter a valid number higher than 0");
+                        returner(scanner);
+                        clear();
+                    }
+
+                    crs.setMaxRendezvousPerPatient(input);
+
+                    System.out.println("Max Rendezvous Per Patient is set to: " + input);
+                    System.out.println("\nEnter new value for `Rendezvous Day Limit`");
+
+                    try {
+                        input = Integer.valueOf(scanner.nextLine());
+                    } catch (Exception e) {
+                        System.out.println("Please enter a valid number");
+                        returner(scanner);
+                        continue;
+                    }
+
+                    if (input <= 0){
+                        System.out.println("Please enter a valid number higher than 0");
+                        returner(scanner);
+                        clear();
+                    }
+
+                    crs.setRendezvousDayLimit(input);
+
+                    System.out.println("Rendezvous Day Limit is set to: " + input);
+                    returner(scanner);
+                    break;
+                }
+            }
+
+            break;
+        }
     }
 
     public void mainMenu() {
@@ -27,20 +104,30 @@ public class TextUI {
             int input = 9;
             System.out.println("\nAdmin Mode: 0");
             System.out.println("User Mode: 1");
+            System.out.println("Save Default Settings: 2");
+            System.out.println("Load Default Settings: 3");
 
-            System.out.println("\nSelect operating mode (0/1):");
+
+            System.out.println("\nSelect operating mode (0-3):");
 
             try {
                 input = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only 0 or 1.");
-                System.out.println("\nPress anything to return");
-                scanner.nextLine();
+                returner(scanner);
                 continue;
             }
 
             if (input == 0) {
                 adminMenu.start();
+            } else if (input == 1){
+                userMenu.start();
+            } else if (input == 2){
+                crs.saveSettings();
+                returner(scanner);
+            } else if (input == 3){
+                crs.loadSettings();
+                returner(scanner);
             }
         }
     }
@@ -59,7 +146,7 @@ public class TextUI {
         header();
         long national_id = 0;
 
-        System.out.println("\nEnterNational ID: ");
+        System.out.println("\nEnter National ID: ");
 
         try {
             national_id = Long.valueOf(scanner.nextLine());

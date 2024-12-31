@@ -1,4 +1,4 @@
-package mertguler.TextUI.AdminMenu;
+package mertguler.TextUI.Menu;
 
 import mertguler.CRS.CRS;
 import mertguler.CRS.DateManager;
@@ -75,6 +75,8 @@ public class RendezvousMenu {
         long national_id = nationalIDSelector(scanner);
 
         if (national_id == 0){
+            System.out.println("\nNational ID can`t be 0");
+            returner(scanner);
             return false;
         }
 
@@ -119,6 +121,7 @@ public class RendezvousMenu {
         System.out.println("Section: " + rendezvous.getSection());
         System.out.println("Hospital: " + rendezvous.getHospital());
         System.out.println("Date: " + rendezvous.getDate());
+        System.out.println("Expired: " + rendezvous.getExpired());
         returner(scanner);
         clear();
         return true;
@@ -131,6 +134,18 @@ public class RendezvousMenu {
             long national_id = nationalIDSelector(scanner);
             
             if (national_id == 0){
+                System.out.println("\nNational ID can`t be 0");
+                returner(scanner);
+                return false;
+            }
+
+            Patient patient;
+
+            try {
+                patient = crs.getPatientManager().getPatient(national_id);
+            } catch (IDException e){
+                System.out.println("\n" + e.getMessage());
+                returner(scanner);
                 return false;
             }
 
@@ -159,7 +174,7 @@ public class RendezvousMenu {
             LocalDate currentDate = DateManager.getCurrentDate();
             LocalDate lastRendezvousDate = DateManager.getLastDate();
 
-            System.out.println("Hospital: " + hospital);
+            System.out.println("\nHospital: " + hospital);
             System.out.println("Section: " + section);
             System.out.println("Doctor: " + doctor);
             System.out.println("Current Time: " + DateManager.getFormatedDate(currentDate));
@@ -205,7 +220,6 @@ public class RendezvousMenu {
                 crs.makeRendezvous(national_id, hospital.getId(), section.getId(), doctor.getDiploma_id(), desiredDate);
                 clear();
                 header();
-                Patient patient = crs.getPatientManager().getPatient(national_id);
                 System.out.println("\nRendezvous is successfully made\n");
                 System.out.println("Patient Name: " + patient.getName());
                 System.out.println("Patient National ID: " + patient.getNational_id());
@@ -216,8 +230,9 @@ public class RendezvousMenu {
                 returner(scanner);;
                 clear();
                 return true;
-            } catch (DailyLimitException e){
-                System.out.println(e.getMessage());
+            } catch (DailyLimitException dle){
+                System.out.println("\n" + dle.getMessage());
+                returner(scanner);
                 return false;
             }
 
@@ -231,6 +246,8 @@ public class RendezvousMenu {
             long national_id = nationalIDSelector(scanner);
 
             if (national_id == 0){
+                System.out.println("\nNational ID can`t be 0");
+                returner(scanner);
                 return false;
             }
 

@@ -1,4 +1,4 @@
-package mertguler.TextUI.AdminMenu;
+package mertguler.TextUI.Menu;
 
 import mertguler.CRS.CRS;
 import mertguler.Exceptions.DuplicateInfoException;
@@ -96,6 +96,11 @@ public class DoctorMenu {
                 return searchDoctorWithId(section);
             } else if (input == 2){
                 return searchDoctorWithName(section);
+            } else if (input == 3){
+                clear();
+                header();
+                section.listDoctors();
+                returner();
             }
         }
     }
