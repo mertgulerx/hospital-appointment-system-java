@@ -33,6 +33,7 @@ public class CRS {
     public static DateManager dateManager;
     public static int MAX_RENDEZVOUS_PER_PATIENT = 5;
     public static int RENDEZVOUS_DAY_LIMIT = 15;
+    public static String dataPath = "data.ser";
 
 
     public CRS(){
@@ -146,44 +147,45 @@ public class CRS {
 
     // Serialization - Deserialization
 
-    public void saveTablesToDisk(String path){
+    public void saveTablesToDisk(){
         try {
-            FileOutputStream fileOut = new FileOutputStream(path);
+            FileOutputStream fileOut = new FileOutputStream(dataPath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(hospitals);
             out.writeObject(patients);
             out.writeObject(rendezvouses);
             out.close();
             fileOut.close();
-            System.out.printf("\nSerialized data is saved to " + path + " file.");
+            System.out.printf("\nSerialized data is saved to " + dataPath + " file.");
         } catch (IOException e) {
             System.out.println("\n" + e.getMessage());
         }
     }
 
 
-    public void loadTablesFromDisk(String path){
+    public boolean loadTablesFromDisk(){
         try {
-            FileInputStream fileIn = new FileInputStream(path);
+            FileInputStream fileIn = new FileInputStream(dataPath);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            // patients = (HashMap) in.readObject();
             hospitals = (HashMap<Integer, Hospital>) in.readObject();
             patients = (HashMap<Long, Patient>) in.readObject();
             rendezvouses = (ArrayList<Rendezvous>) in.readObject();
             in.close();
             fileIn.close();
-            System.out.printf("\nSerialized data is read from " + path + " file.");
+            System.out.printf("\nSerialized data is read from " + dataPath + " file.");
             hospitalManager.updateHospitalMap(hospitals);
             patientManager.updatePatientsMap(patients);
         } catch (IOException i) {
             System.out.println("\n" + i.getMessage());
-
+            return false;
         } catch (ClassNotFoundException c) {
             System.out.println("\n\n" + c.getMessage());
-
+            return false;
         }
         expiredUpdater();
+        return true;
     }
+
 
     public void saveSettings(){
         String path = "settings.txt";

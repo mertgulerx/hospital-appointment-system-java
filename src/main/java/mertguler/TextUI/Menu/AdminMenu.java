@@ -4,6 +4,7 @@ import mertguler.CRS.CRS;
 
 import java.util.Scanner;
 
+import static mertguler.CRS.CRS.dataPath;
 import static mertguler.TextUI.TextUI.clear;
 import static mertguler.TextUI.TextUI.header;
 
@@ -61,10 +62,10 @@ public class AdminMenu {
             } else if (input == 5){
                 rendezvousMenu.rendezvousManager();
             } else if (input == 6){
-                crs.saveTablesToDisk("data.ser");
+                crs.saveTablesToDisk();
                 returner();
             } else if (input == 7){
-                crs.loadTablesFromDisk("data.ser");
+                crs.loadTablesFromDisk();
                 returner();
             }
         }

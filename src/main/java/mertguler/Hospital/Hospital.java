@@ -1,6 +1,7 @@
 package mertguler.Hospital;
 
 import mertguler.CRS.HospitalManager;
+import mertguler.Enums.City;
 import mertguler.Exceptions.DuplicateInfoException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class Hospital implements Serializable {
     private final ArrayList<Section> sections;
     private String name;
     private final int id;
+    private City city;
 
 
     public Hospital(String name, int id){
@@ -18,11 +20,12 @@ public class Hospital implements Serializable {
         sections = new ArrayList<>();
     }
 
-    public Hospital(String name){
+    public Hospital(String name, City city){
         this.name = name;
         HospitalManager.hospitalCount++;
         id = HospitalManager.hospitalCount;
         sections = new ArrayList<>();
+        this.city = city;
     }
 
     public void addSection(Section section) throws DuplicateInfoException {
@@ -87,9 +90,13 @@ public class Hospital implements Serializable {
         return id;
     }
 
+    public City getCity(){
+        return city;
+    }
+
     @Override
     public String toString(){
-        return name + ", " + id;
+        return name + ", " + city + ", ID: " + id;
     }
 }
 

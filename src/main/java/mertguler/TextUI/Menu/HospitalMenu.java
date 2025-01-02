@@ -2,10 +2,12 @@ package mertguler.TextUI.Menu;
 
 import mertguler.CRS.CRS;
 import mertguler.CRS.HospitalManager;
+import mertguler.Enums.City;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 
 import java.util.Comparator;
+import java.util.Locale;
 import java.util.Scanner;
 
 import static mertguler.TextUI.TextUI.clear;
@@ -83,8 +85,18 @@ public class HospitalMenu {
 
          */
 
+        System.out.println("Enter city name (Turkey cities and English characters only): ");
+        City city;
         try {
-            hospitalManager.createHospital(name);
+            city = City.valueOf(scanner.nextLine().toUpperCase(Locale.ROOT));
+        } catch (Exception e){
+            System.out.println("please enter valid names only");
+            returner();
+            return;
+        }
+
+        try {
+            hospitalManager.createHospital(name, city);
             System.out.println("Hospital successfully added.");
         } catch (IDException e) {
             System.out.println("Hospital with this id already exists");
@@ -251,7 +263,8 @@ public class HospitalMenu {
         }
 
         Comparator<Hospital> comparator = Comparator
-                .comparing(Hospital::getId);
+                .comparing(Hospital::getCity)
+                        .thenComparing((Hospital::getId));
 
         System.out.println();
 

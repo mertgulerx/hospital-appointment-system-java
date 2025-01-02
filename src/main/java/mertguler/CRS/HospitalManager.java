@@ -1,5 +1,6 @@
 package mertguler.CRS;
 
+import mertguler.Enums.City;
 import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
@@ -36,8 +37,8 @@ public class HospitalManager {
 
 
     // Creates a hospital with id
-    public void createHospital(String name){
-        Hospital hospital = new Hospital(name);
+    public void createHospital(String name, City city){
+        Hospital hospital = new Hospital(name, city);
         hospitals.put(hospital.getId(), hospital);
     }
 
