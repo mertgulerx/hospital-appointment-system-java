@@ -1,5 +1,7 @@
 package mertguler.Person;
 
+import mertguler.Enums.Age;
+import mertguler.Enums.Gender;
 import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.RendezvousLimitException;
 import mertguler.Hospital.Rendezvous;
@@ -10,10 +12,21 @@ import static mertguler.CRS.CRS.MAX_RENDEZVOUS_PER_PATIENT;
 
 public class Patient extends Person {
     private ArrayList<Rendezvous> rendezvouses;
+    private Gender gender;
+    private Age age;
 
     public Patient(String name, long national_id) {
         super(name, national_id);
         rendezvouses = new ArrayList<>();
+        gender = Gender.UNDEFINED;
+        age = Age.UNDEFINED;
+    }
+
+    public Patient(String name, long national_id, Gender gender, Age age) {
+        super(name, national_id);
+        rendezvouses = new ArrayList<>();
+        this.gender = gender;
+        this.age = age;
     }
 
     public void addRendezvous(Rendezvous rendezvous){
@@ -44,6 +57,14 @@ public class Patient extends Person {
 
     public ArrayList<Rendezvous> getRendezvouses() {
         return rendezvouses;
+    }
+
+    public Gender getGender(){
+        return gender;
+    }
+
+    public Age getAge(){
+        return age;
     }
 
 }

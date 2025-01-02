@@ -28,6 +28,7 @@ public class Hospital implements Serializable {
         this.city = city;
     }
 
+
     public void addSection(Section section) throws DuplicateInfoException {
         if (sections.contains(section)){
             throw new DuplicateInfoException("Section with ID: " + section.getId() + ", already exist");
