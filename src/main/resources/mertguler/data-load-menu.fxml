@@ -21,7 +21,7 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="170.0" prefWidth="960.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="110.0" prefWidth="960.0" spacing="60.0">
+            <HBox alignment="CENTER" layoutX="3300.0" prefHeight="110.0" prefWidth="960.0" spacing="60.0">
                <children>
                   <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadData" prefHeight="110.0" prefWidth="190.0" text="Load Data">
                      <opaqueInsets>
@@ -31,10 +31,11 @@
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="110.0" prefWidth="190.0" text="Fresh Start">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#swtichModeSelectMenu" prefHeight="110.0" prefWidth="190.0" text="Fresh Start">
                      <font>
                         <Font name="Arial" size="14.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                </children>
                <VBox.margin>
                   <Insets />

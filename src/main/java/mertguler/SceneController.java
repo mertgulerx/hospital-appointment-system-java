@@ -41,10 +41,19 @@ public class SceneController {
         stage.show();
     }
 
-    public void loadData(ActionEvent event) {
+    public void swtichModeSelectMenu(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Gui.class.getResource("mode-select-menu.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = getScene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void loadData(ActionEvent event) throws IOException {
         if (crs.loadTablesFromDisk()){
             label.setText("Successfully loaded data from file: `" + dataPath + "`");
             label.setTextFill(Color.GREEN);
+            swtichModeSelectMenu(event);
         } else {
             label.setText("Failed to load data from file: `" + dataPath + "`");
             label.setTextFill(Color.RED);
