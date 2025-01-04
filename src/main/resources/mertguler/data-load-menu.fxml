@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.SceneController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.SceneController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="400.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);">
          <image>
             <Image url="@../images/iconhospi.png" />
          </image>
@@ -23,7 +23,7 @@
          <children>
             <HBox alignment="CENTER" layoutX="3300.0" prefHeight="110.0" prefWidth="960.0" spacing="60.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadData" prefHeight="110.0" prefWidth="190.0" text="Load Data">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadData" prefHeight="110.0" prefWidth="190.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);" text="Load Data">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -31,7 +31,7 @@
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#swtichModeSelectMenu" prefHeight="110.0" prefWidth="190.0" text="Fresh Start">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchModeSelectMenu" prefHeight="110.0" prefWidth="190.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);" text="Fresh Start">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>

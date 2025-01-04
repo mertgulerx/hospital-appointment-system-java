@@ -2,16 +2,17 @@ package mertguler;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import mertguler.CRS.CRS;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import static mertguler.GuiControllers.RatioController.getScene;
 
 public class Gui extends Application {
     public static CRS crs = new CRS();
@@ -30,10 +31,23 @@ public class Gui extends Application {
         Image image = new Image(is);
         stage.getIcons().add(image);
 
-        Scene scene = getScene(root);
+        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+
+        double x = 1280;
+        double y = 720;
+
+        if (screenBounds.getMaxX() < 1280 || screenBounds.getMaxY() < 720){
+            x = screenBounds.getMaxX() * 0.8;
+            y = screenBounds.getMaxY() * 0.8;
+        }
+
+        Scene scene =  new Scene(root, screenBounds.getMaxX() * 0.8, screenBounds.getMaxY() * 0.8);
+
         stage.setScene(scene);
         stage.show();
     }
+
+
 
     public static void main(String[] args) {
         launch();
