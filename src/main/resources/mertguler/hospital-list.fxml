@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.HospitalListGUI">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.HospitalListGUI">
    <children>
       <AnchorPane layoutX="37.0" layoutY="58.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0); -fx-background-color: #FFFFFF; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="58.0">
          <children>
@@ -53,7 +53,7 @@
       </AnchorPane>
       <HBox alignment="CENTER" layoutX="86.97802734375" layoutY="463.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="86.97802734375" AnchorPane.rightAnchor="69.0">
          <children>
-            <Text fill="#98a2b2" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="You can copy data with CTRL + C or with right click and copy" wrappingWidth="443.8262405395508">
+            <Text fill="#98a2b2" opacity="0.79" strokeType="OUTSIDE" strokeWidth="0.0" text="You can copy data with CTRL + C or with right click and copy" wrappingWidth="443.8262405395508">
                <font>
                   <Font name="SansSerif Bold" size="15.0" />
                </font>
