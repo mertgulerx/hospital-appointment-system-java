@@ -13,4 +13,12 @@ module mertguler.hospitalreservationsystemjava {
 
     opens mertguler to javafx.fxml;
     exports mertguler;
+    exports mertguler.GuiControllers;
+    opens mertguler.GuiControllers to javafx.fxml;
+    exports mertguler.GuiControllers.Admin;
+    opens mertguler.GuiControllers.Admin to javafx.fxml;
+    exports mertguler.GuiControllers.MainMenu;
+    opens mertguler.GuiControllers.MainMenu to javafx.fxml;
+    exports mertguler.GuiControllers.Universal;
+    opens mertguler.GuiControllers.Universal to javafx.fxml;
 }

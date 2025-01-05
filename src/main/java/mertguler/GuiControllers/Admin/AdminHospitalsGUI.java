@@ -1,11 +1,11 @@
-package mertguler;
+package mertguler.GuiControllers.Admin;
 
 
 import javafx.fxml.FXML;
 
 
 import java.io.IOException;
-import static mertguler.Gui.changeScene;
+import static mertguler.GuiControllers.Gui.changeScene;
 
 public class AdminHospitalsGUI {
 

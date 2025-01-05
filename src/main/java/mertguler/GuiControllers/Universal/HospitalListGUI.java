@@ -1,31 +1,24 @@
-package mertguler;
+package mertguler.GuiControllers.Universal;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.KeyCode;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import mertguler.Enums.City;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static mertguler.Gui.crs;
+import static mertguler.GuiControllers.Gui.crs;
 
 public class HospitalListGUI implements Initializable {
     @FXML

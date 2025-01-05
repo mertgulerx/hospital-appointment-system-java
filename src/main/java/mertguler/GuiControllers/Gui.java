@@ -1,4 +1,4 @@
-package mertguler;
+package mertguler.GuiControllers;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +11,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import mertguler.CRS.CRS;
 import mertguler.CRS.DateManager;
+import mertguler.Main;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,9 +28,9 @@ public class Gui extends Application {
         primaryStage = stage;
         // Can it improve text quality??
         System.setProperty("prism.lcdtext", "false");
-        Application.setUserAgentStylesheet(Gui.class.getResource("mac-light.css").toExternalForm());
+        Application.setUserAgentStylesheet(Main.class.getResource("mac-light.css").toExternalForm());
         //Application.setUserAgentStylesheet(Gui.class.getResource("win-light.css").toExternalForm());
-        Parent root = FXMLLoader.load(Gui.class.getResource("login-menu.fxml"));
+        Parent root = FXMLLoader.load(Main.class.getResource("login-menu.fxml"));
 
         stage.setTitle("Hospital Rendezvous System");
 
@@ -54,12 +55,12 @@ public class Gui extends Application {
     }
 
     public static void changeScene(String fxml) throws IOException {
-        Parent pane = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource(fxml)));
+        Parent pane = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(fxml)));
         primaryStage.getScene().setRoot(pane);
     }
 
     public static void showWindow(String fxml, String title, Modality modality, Image image) throws IOException{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource(fxml)));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(fxml)));
         Stage stage = new Stage();
         stage.setTitle(title);
         Scene scene =  new Scene(root);

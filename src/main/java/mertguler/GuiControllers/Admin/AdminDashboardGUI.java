@@ -1,15 +1,11 @@
-package mertguler;
+package mertguler.GuiControllers.Admin;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 
@@ -19,18 +15,14 @@ import mertguler.Hospital.Rendezvous;
 
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static mertguler.Gui.changeScene;
-import static mertguler.Gui.crs;
+import static mertguler.GuiControllers.Gui.changeScene;
+import static mertguler.GuiControllers.Gui.crs;
 
 
 public class AdminDashboardGUI implements Initializable {

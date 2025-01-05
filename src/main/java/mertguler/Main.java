@@ -1,7 +1,9 @@
 package mertguler;
 
 
+import javafx.application.Application;
 import mertguler.CRS.CRS;
+import mertguler.GuiControllers.Gui;
 import mertguler.TextUI.TextUI;
 
 import java.util.Scanner;
@@ -30,6 +32,8 @@ public class Main {
         if (!gui_mode) {
             TextUI textUI = new TextUI(scanner, crs);
             textUI.start();
+        } else {
+            Application.launch(Gui.class);
         }
 
 
