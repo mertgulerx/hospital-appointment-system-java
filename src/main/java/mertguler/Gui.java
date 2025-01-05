@@ -58,10 +58,10 @@ public class Gui extends Application {
         primaryStage.getScene().setRoot(pane);
     }
 
-    public static void showWindow(String fxml) throws IOException{
+    public static void showWindow(String fxml, String title) throws IOException{
         Parent root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource(fxml)));
         Stage stage = new Stage();
-        stage.setTitle("Hospital Creation");
+        stage.setTitle(title);
         Scene scene =  new Scene(root);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);

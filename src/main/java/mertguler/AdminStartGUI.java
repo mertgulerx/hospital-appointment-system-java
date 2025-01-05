@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static mertguler.Gui.changeScene;
+import static mertguler.Gui.showWindow;
 
 public class AdminStartGUI implements Initializable {
 
@@ -41,6 +42,11 @@ public class AdminStartGUI implements Initializable {
     @FXML
     public void switchAdminHospitals() throws IOException {
         changeScene("admin-hospitals.fxml");
+    }
+
+    @FXML
+    public void showHospitalListWindow() throws IOException {
+        showWindow("hospital-list.fxml", "Hospital List");
     }
 
 }

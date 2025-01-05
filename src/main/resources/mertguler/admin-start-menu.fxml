@@ -60,25 +60,6 @@
                <padding>
                   <Insets left="8.0" />
                </padding>
-               <children>
-                  <SplitMenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Hospitals" textFill="#98a2b2">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Add Hospital" />
-                      <MenuItem mnemonicParsing="false" text="Delete Hospital" />
-                        <MenuItem mnemonicParsing="false" text="List Hospitals" />
-                    </items>
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/hospital.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </SplitMenuButton>
-               </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="385.0" spacing="40.0">
                <padding>
@@ -135,18 +116,6 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="CENTER" layoutX="15.0" layoutY="265.0" mnemonicParsing="false" onAction="#switchAdminHospitals" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Hospitals" textFill="#98a2b2">
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/hospital.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                   <Button alignment="CENTER" layoutX="14.0" layoutY="415.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Doctors" textFill="#98a2b2">
                      <font>
                         <Font name="SansSerif Bold" size="15.0" />
@@ -196,6 +165,23 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <SplitMenuButton alignment="CENTER" layoutX="14.0" layoutY="265.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Hospitals" textFill="#98a2b2">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Add Hospital" />
+                      <MenuItem mnemonicParsing="false" text="Delete Hospital" />
+                        <MenuItem mnemonicParsing="false" onAction="#showHospitalListWindow" text="List Hospitals" />
+                    </items>
+                     <font>
+                        <Font name="SansSerif Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/hospital.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </SplitMenuButton>
                </children>
             </Pane>
          </children>
