@@ -48,4 +48,11 @@ public class AdminStartGUI implements Initializable {
         showWindow("hospital-list.fxml", "Hospital List", Modality.NONE, image);
     }
 
+    @FXML
+    public void showPatientListWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/patients.png");
+        Image image = new Image(is);
+        showWindow("patient-list.fxml", "Patient List", Modality.NONE, image);
+    }
+
 }

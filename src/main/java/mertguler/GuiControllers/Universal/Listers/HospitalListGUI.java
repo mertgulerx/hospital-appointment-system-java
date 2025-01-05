@@ -1,4 +1,4 @@
-package mertguler.GuiControllers.Universal;
+package mertguler.GuiControllers.Universal.Listers;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,6 +10,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.KeyCode;
 import mertguler.Enums.City;
+import mertguler.GuiControllers.Gui;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;
 
@@ -149,53 +150,7 @@ public class HospitalListGUI implements Initializable {
 
     @FXML
     public void copy(){
-        StringBuilder clipboardString = new StringBuilder();
-
-        ObservableList<TreeTablePosition<Object, ?>> positionList = hospitalsTable.getSelectionModel().getSelectedCells();
-
-        int prevRow = -1;
-
-        for (TreeTablePosition<Object, ?> position : positionList) {
-
-            int row = position.getRow();
-            int col = position.getColumn();
-
-
-            Object cell = (Object) hospitalsTable.getColumns().get(col).getCellData(row);
-
-            // null-check: provide empty string for nulls
-            if (cell == null) {
-                cell = "";
-            }
-
-            // determine whether we advance in a row (tab) or a column
-            // (newline).
-            if (prevRow == row) {
-
-                clipboardString.append('\t');
-
-            } else if (prevRow != -1) {
-
-                clipboardString.append('\n');
-
-            }
-
-            // create string from cell
-            String text = cell.toString();
-
-            // add new item to clipboard
-            clipboardString.append(text);
-
-            // remember previous
-            prevRow = row;
-        }
-
-        // create clipboard content
-        final ClipboardContent clipboardContent = new ClipboardContent();
-        clipboardContent.putString(clipboardString.toString());
-
-        // set clipboard content
-        Clipboard.getSystemClipboard().setContent(clipboardContent);
+        Gui.copy(hospitalsTable);
     }
 
 

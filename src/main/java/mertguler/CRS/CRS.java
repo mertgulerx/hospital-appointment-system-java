@@ -244,6 +244,10 @@ public class CRS {
         return hospitals;
     }
 
+    public HashMap<Long, Patient> getPatients(){
+        return patients;
+    }
+
     public HospitalManager getHospitalManager(){
         return hospitalManager;
     }
