@@ -14,10 +14,11 @@ public class Hospital implements Serializable {
     private City city;
 
 
-    public Hospital(String name, int id){
+    public Hospital(String name, int id, City city){
         this.name = name;
         this.id = id;
         sections = new ArrayList<>();
+        this.city = city;
     }
 
     public Hospital(String name, City city){

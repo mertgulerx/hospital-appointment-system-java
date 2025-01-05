@@ -1,8 +1,5 @@
 package mertguler.Hospital;
 
-import mertguler.CRS.HospitalManager;
-import mertguler.Enums.Age;
-import mertguler.Enums.Gender;
 import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Person.Doctor;
 
@@ -17,29 +14,23 @@ public class Section implements Serializable {
     private final int id;
     private String name;
     private ArrayList<Doctor> doctors;
-    private Gender gender;
-    private Age age;
+    private boolean isChildSection;
+    private boolean isFemaleSection;
 
     public Section(String name, int id){
         this.name = name;
         this.id = id;
         doctors = new ArrayList<>();
+        isChildSection = false;
+        isFemaleSection = false;
     }
 
-    public Section(String name, Hospital hospital){
+    public Section(String name, Hospital hospital, boolean isChildSection, boolean isFemaleSection){
         this.name = name;
         this.id = hospital.getId() * 1000 + hospital.getSections().size() + 1;
         doctors = new ArrayList<>();
-        gender = Gender.UNDEFINED;
-        age = Age.UNDEFINED;
-    }
-
-    public Section(String name, Hospital hospital, Gender gender, Age age){
-        this.name = name;
-        this.id = hospital.getId() * 1000 + hospital.getSections().size() + 1;
-        doctors = new ArrayList<>();
-        this.gender = gender;
-        this.age = age;
+        this.isChildSection = isChildSection;
+        this.isFemaleSection = isFemaleSection;
     }
 
     public void addDoctor (Doctor doctor) throws DuplicateInfoException{

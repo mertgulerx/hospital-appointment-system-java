@@ -156,7 +156,7 @@ public class SectionMenu {
              */
 
             try {
-                hospital.addSection(new Section(name, hospital));
+                hospital.addSection(new Section(name, hospital, false, false));
                 System.out.println("Selection is successfully added.");
                 returner();
                 return true;

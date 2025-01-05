@@ -1,32 +1,29 @@
 package mertguler.Person;
 
-import mertguler.Enums.Age;
-import mertguler.Enums.Gender;
-import mertguler.Exceptions.DuplicateInfoException;
+import mertguler.CRS.DateManager;
 import mertguler.Exceptions.RendezvousLimitException;
 import mertguler.Hospital.Rendezvous;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 
 import static mertguler.CRS.CRS.MAX_RENDEZVOUS_PER_PATIENT;
 
 public class Patient extends Person {
-    private ArrayList<Rendezvous> rendezvouses;
-    private Gender gender;
-    private Age age;
+    private final ArrayList<Rendezvous> rendezvouses;
+    private LocalDate birthDate;
 
     public Patient(String name, long national_id) {
         super(name, national_id);
         rendezvouses = new ArrayList<>();
-        gender = Gender.UNDEFINED;
-        age = Age.UNDEFINED;
+        birthDate = null;
     }
 
-    public Patient(String name, long national_id, Gender gender, Age age) {
+    public Patient(String name, long national_id, LocalDate birthDate) {
         super(name, national_id);
         rendezvouses = new ArrayList<>();
-        this.gender = gender;
-        this.age = age;
+        this.birthDate = birthDate;
     }
 
     public void addRendezvous(Rendezvous rendezvous){
@@ -46,7 +43,15 @@ public class Patient extends Person {
     }
 
     public void checkValidity(){
-        if (rendezvouses.size() >= MAX_RENDEZVOUS_PER_PATIENT) {
+        int nonExpiredCount = 0;
+
+        for (Rendezvous rendezvous: rendezvouses){
+            if (!(rendezvous.isExpired())){
+                nonExpiredCount++;
+            }
+        }
+
+        if (nonExpiredCount >= MAX_RENDEZVOUS_PER_PATIENT) {
             throw new RendezvousLimitException("Patient: " + this + " has more rendezvouses than limit: " + MAX_RENDEZVOUS_PER_PATIENT);
         }
     }
@@ -59,12 +64,16 @@ public class Patient extends Person {
         return rendezvouses;
     }
 
-    public Gender getGender(){
-        return gender;
+    public int getAge(){
+        if ((birthDate != null)) {
+            return Period.between(birthDate, DateManager.getCurrentDate()).getYears();
+        } else {
+            return 0;
+        }
     }
 
-    public Age getAge(){
-        return age;
+    public void setBirthDate(LocalDate newBirthDate){
+        birthDate = newBirthDate;
     }
 
 }

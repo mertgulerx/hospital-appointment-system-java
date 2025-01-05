@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import static mertguler.CRS.DateManager.checkDateRange;
 
@@ -26,13 +27,12 @@ public class CRS {
     private ArrayList<Rendezvous> rendezvouses;
     private HashMap<Integer, Hospital> hospitals;
 
-    private PatientManager patientManager;
-    private HospitalManager hospitalManager;
+    private final PatientManager patientManager;
+    private final HospitalManager hospitalManager;
 
-    // App wide date manager
-    public static DateManager dateManager;
+    // App wide settings
     public static int MAX_RENDEZVOUS_PER_PATIENT = 5;
-    public static int RENDEZVOUS_DAY_LIMIT = 15;
+    public static int RENDEZVOUS_DAY_LIMIT = 30;
     public static String dataPath = "data.ser";
 
 
@@ -56,6 +56,7 @@ public class CRS {
         Patient patient = patientManager.getPatient(patientID);
 
         // RendezvousLimitException
+        // Validates maximum rendezvous count for patient
         patient.checkValidity();
 
         // ID Exceptions
@@ -99,13 +100,12 @@ public class CRS {
     // Thread Work
 
     public boolean expiredUpdater(){
-        ExecutorService pool = Executors.newFixedThreadPool(4);
         int size = rendezvouses.size();
         int quarter = size / 4;
         int half = quarter * 2;
         int threeQuarter = quarter + half;
 
-        Runnable thread1 = () ->
+        Runnable task1 = () ->
         {
             //Thread.currentThread().setName("firstQuarter");
             for (int i = 0; i < quarter; i++){
@@ -113,7 +113,7 @@ public class CRS {
             }
         };
 
-        Runnable thread2 = () ->
+        Runnable task2 = () ->
         {
             //Thread.currentThread().setName("secondQuarter");
             for (int i = quarter; i < half; i++){
@@ -121,7 +121,7 @@ public class CRS {
             }
         };
 
-        Runnable thread3 = () ->
+        Runnable task3 = () ->
         {
             //Thread.currentThread().setName("thirdQuarter");
             for (int i = half; i < threeQuarter; i++){
@@ -129,7 +129,7 @@ public class CRS {
             }
         };
 
-        Runnable thread4 = () ->
+        Runnable task4 = () ->
         {
             //Thread.currentThread().setName("forthQuarter");
             for (int i = threeQuarter; i < size; i++){
@@ -137,11 +137,25 @@ public class CRS {
             }
         };
 
-        pool.execute(thread1);
-        pool.execute(thread2);
-        pool.execute(thread3);
-        pool.execute(thread4);
-        pool.shutdown();
+        Thread thread1 = new Thread(task1);
+        Thread thread2 = new Thread(task2);
+        Thread thread3 = new Thread(task3);
+        Thread thread4 = new Thread(task4);
+        thread1.start();
+        thread2.start();
+        thread3.start();
+        thread4.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+            thread3.join();
+            thread4.join();
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return true;
     }
 
@@ -226,6 +240,10 @@ public class CRS {
         return rendezvouses;
     }
 
+    public HashMap<Integer, Hospital> getHospitals(){
+        return hospitals;
+    }
+
     public HospitalManager getHospitalManager(){
         return hospitalManager;
     }
@@ -236,6 +254,14 @@ public class CRS {
 
     public int getRendezvousCount(){
         return rendezvouses.size();
+    }
+
+    public int getPatientCount(){
+        return patients.size();
+    }
+
+    public int getHospitalCount(){
+        return hospitals.size();
     }
 
     // Setters

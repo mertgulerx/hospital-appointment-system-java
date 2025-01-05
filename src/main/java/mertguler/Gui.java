@@ -6,19 +6,25 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import mertguler.CRS.CRS;
+import mertguler.CRS.DateManager;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 
 public class Gui extends Application {
     public static CRS crs = new CRS();
+    private static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws IOException {
+        primaryStage = stage;
         // Can it improve text quality??
         System.setProperty("prism.lcdtext", "false");
         Application.setUserAgentStylesheet(Gui.class.getResource("mac-light.css").toExternalForm());
@@ -47,7 +53,24 @@ public class Gui extends Application {
         stage.show();
     }
 
+    public static void changeScene(String fxml) throws IOException {
+        Parent pane = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource(fxml)));
+        primaryStage.getScene().setRoot(pane);
+    }
 
+    public static void showWindow(String fxml) throws IOException{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Gui.class.getResource(fxml)));
+        Stage stage = new Stage();
+        stage.setTitle("Hospital Creation");
+        Scene scene =  new Scene(root);
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    public static String getUiDate(){
+        return DateManager.getCurrentDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
 
     public static void main(String[] args) {
         launch();

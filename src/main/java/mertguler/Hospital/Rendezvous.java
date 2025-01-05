@@ -56,7 +56,7 @@ public class Rendezvous implements Serializable {
         return section;
     }
 
-    public boolean getExpired(){
+    public boolean isExpired(){
         return expired;
     }
 

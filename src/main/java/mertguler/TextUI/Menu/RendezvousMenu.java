@@ -121,7 +121,7 @@ public class RendezvousMenu {
         System.out.println("Section: " + rendezvous.getSection());
         System.out.println("Hospital: " + rendezvous.getHospital());
         System.out.println("Date: " + rendezvous.getDate());
-        System.out.println("Expired: " + rendezvous.getExpired());
+        System.out.println("Expired: " + rendezvous.isExpired());
         returner(scanner);
         clear();
         return true;
