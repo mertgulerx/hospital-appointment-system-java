@@ -1,4 +1,4 @@
-package mertguler.GuiControllers.Universal.Listers;
+package mertguler.GuiControllers.Universal.Lists;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;

@@ -93,6 +93,12 @@ public class PatientMenu {
                 return false;
             }
 
+            if (name.isBlank()){
+                System.out.println("Name cant be empty");
+                returner();
+                return false;
+            }
+
 
             patientManager.patientAdder(name, national_id);
             System.out.println("Patient: " + name + " with National ID: " + national_id + " is successfully added");

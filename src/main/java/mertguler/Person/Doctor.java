@@ -48,7 +48,7 @@ public class Doctor extends Person{
         Doctor comparedDoctor = (Doctor) object;
 
         // Should we check for national id, would be better for frauds of course.
-        if (this.diploma_id == comparedDoctor.getDiploma_id() && this.getNational_id() == (comparedDoctor.getNational_id())){
+        if (this.diploma_id == comparedDoctor.getDiploma_id() || this.getNational_id() == (comparedDoctor.getNational_id())){
             return true;
         }
 

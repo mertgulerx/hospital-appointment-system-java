@@ -109,7 +109,7 @@
                         <MenuItem mnemonicParsing="false" text="Make Appointment" />
                         <MenuItem mnemonicParsing="false" text="Cancel Appointment" />
                         <MenuItem mnemonicParsing="false" text="Check Appointment" />
-                        <MenuItem mnemonicParsing="false" text="List Appointments" />
+                        <MenuItem mnemonicParsing="false" onAction="#showRendezvousListWindow" text="List Appointments" />
                      </items>
                      <font>
                         <Font name="SansSerif Bold" size="15.0" />
@@ -145,7 +145,7 @@
                         <MenuItem mnemonicParsing="false" text="Add Section" />
                         <MenuItem mnemonicParsing="false" text="Delete Section" />
                         <MenuItem mnemonicParsing="false" text="Rename Section" />
-                        <MenuItem mnemonicParsing="false" text="List Sections" />
+                        <MenuItem mnemonicParsing="false" onAction="#showSectionListWindow" text="List Sections" />
                      </items>
                      <font>
                         <Font name="SansSerif Bold" size="15.0" />
@@ -163,7 +163,7 @@
                         <MenuItem mnemonicParsing="false" text="Add Doctor" />
                         <MenuItem mnemonicParsing="false" text="Delete Doctor" />
                         <MenuItem mnemonicParsing="false" text="Rename Doctor" />
-                        <MenuItem mnemonicParsing="false" text="List Doctors" />
+                        <MenuItem mnemonicParsing="false" onAction="#showDoctorListWindow" text="List Doctors" />
                      </items>
                      <font>
                         <Font name="SansSerif Bold" size="15.0" />

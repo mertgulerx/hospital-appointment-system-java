@@ -1,4 +1,4 @@
-package mertguler.GuiControllers.Universal.Listers;
+package mertguler.GuiControllers.Universal.Lists;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
@@ -11,23 +11,23 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.KeyCode;
 import mertguler.GuiControllers.Gui;
-import mertguler.Person.Patient;
+import mertguler.Hospital.Hospital;
+import mertguler.Hospital.Section;
+import mertguler.Person.Doctor;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import static mertguler.GuiControllers.Gui.crs;
 
-public class PatientListGUI implements Initializable {
-
+public class DoctorListGUI implements Initializable {
     @FXML
-    public TreeTableView<Object> patientsTable;
+    public TreeTableView<Object> doctorsTable;
 
     @FXML
     public TreeTableColumn<Object, String> nameColumn;
-    @FXML
-    public TreeTableColumn<Object, String> ageColumn;
 
     @FXML
     public TreeTableColumn<Object, Number> rendezvousColumn;
@@ -38,19 +38,27 @@ public class PatientListGUI implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        HashMap<Long, Patient> patients = crs.getPatients();
-        TreeItem<Object> patientRoot = new TreeItem<>(new Patient("tempPatient",0, null));
+        TreeItem<Object> doctorRoot = new TreeItem<>(new Doctor("tempDoctor",0, 0));
 
-        for (Patient patient: patients.values()){
-            TreeItem<Object> tempPatient = new TreeItem<>(patient);
-            patientRoot.getChildren().add(tempPatient);
+        HashMap<Integer, Hospital> hospitals = crs.getHospitals();
+        ArrayList<Doctor> doctors = new ArrayList<>();
+        for (Hospital hospital: hospitals.values()){
+            ArrayList<Section> sections = hospital.getSections();
+            for (Section section: sections){
+                for (Doctor doctor: section.getDoctors()){
+                    TreeItem<Object> tempDoctor = new TreeItem<>(doctor);
+                    doctorRoot.getChildren().add(tempDoctor);
+                }
+            }
         }
+        
+        //////////////////////////////////////////////////////////////////////////////
 
         nameColumn.setCellValueFactory(param -> {
             TreeItem<Object> cellData = param.getValue();
-            if (cellData != null && cellData.getValue() instanceof Patient) {
-                Patient patient = (Patient) cellData.getValue();
-                return new SimpleStringProperty(patient.getName());
+            if (cellData != null && cellData.getValue() instanceof Doctor) {
+                Doctor doctor = (Doctor) cellData.getValue();
+                return new SimpleStringProperty(doctor.getName());
             } else {
                 return null;
             }
@@ -58,49 +66,35 @@ public class PatientListGUI implements Initializable {
 
         idColumn.setCellValueFactory(param -> {
             TreeItem<Object> cellData = param.getValue();
-            if (cellData != null && cellData.getValue() instanceof Patient) {
-                Patient patient = (Patient) cellData.getValue();
-                return new SimpleLongProperty(patient.getNational_id());
+            if (cellData != null && cellData.getValue() instanceof Doctor) {
+                Doctor doctor = (Doctor) cellData.getValue();
+                return new SimpleLongProperty(doctor.getDiploma_id());
             } else {
                 return null;
             }
         });
 
-        ageColumn.setCellValueFactory(param -> {
-            TreeItem<Object> cellData = param.getValue();
-            if (cellData != null && cellData.getValue() instanceof Patient) {
-                Patient patient = (Patient) cellData.getValue();
-                int age = patient.getAge();
-                if (age == 0){
-                    return new SimpleStringProperty("Unknown");
-                } else {
-                    return new SimpleStringProperty(String.valueOf(age));
-                }
-            } else {
-                return null;
-            }
-        });
 
         rendezvousColumn.setCellValueFactory(param -> {
             TreeItem<Object> cellData = param.getValue();
-            if (cellData != null && cellData.getValue() instanceof Patient) {
-                Patient patient = (Patient) cellData.getValue();
-                return new SimpleIntegerProperty(patient.getRendezvousCount());
+            if (cellData != null && cellData.getValue() instanceof Doctor) {
+                Doctor doctor = (Doctor) cellData.getValue();
+                return new SimpleIntegerProperty(doctor.getSchedule().getRendezvousCount());
             } else {
                 return null;
             }
         });
 
-        patientsTable.setRoot(patientRoot);
-        patientsTable.setShowRoot(false);
-        patientsTable.getSelectionModel().setCellSelectionEnabled(true);
-        patientsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        doctorsTable.setRoot(doctorRoot);
+        doctorsTable.setShowRoot(false);
+        doctorsTable.getSelectionModel().setCellSelectionEnabled(true);
+        doctorsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        patientsTable.setOnKeyPressed(e -> {
+        doctorsTable.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.C && e.isControlDown()) {
                 StringBuilder clipboardString = new StringBuilder();
 
-                ObservableList<TreeTablePosition<Object, ?>> positionList = patientsTable.getSelectionModel().getSelectedCells();
+                ObservableList<TreeTablePosition<Object, ?>> positionList = doctorsTable.getSelectionModel().getSelectedCells();
 
                 int prevRow = -1;
 
@@ -110,7 +104,7 @@ public class PatientListGUI implements Initializable {
                     int col = position.getColumn();
 
 
-                    Object cell = (Object) patientsTable.getColumns().get(col).getCellData(row);
+                    Object cell = (Object) doctorsTable.getColumns().get(col).getCellData(row);
 
                     // null-check: provide empty string for nulls
                     if (cell == null) {
@@ -153,6 +147,6 @@ public class PatientListGUI implements Initializable {
 
     @FXML
     public void copy(){
-        Gui.copy(patientsTable);
+        Gui.copy(doctorsTable);
     }
 }

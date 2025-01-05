@@ -238,6 +238,12 @@ public class DoctorMenu {
                 return false;
             }
 
+            if (name.isBlank()){
+                System.out.println("Name cant be empty");
+                returner();
+                return false;
+            }
+
             try{
                 section.addDoctor(new Doctor(name, national_id, diploma_id));
                 System.out.println("Doctor is successfully added");

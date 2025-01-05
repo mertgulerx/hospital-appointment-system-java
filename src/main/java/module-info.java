@@ -21,6 +21,6 @@ module mertguler.hospitalreservationsystemjava {
     opens mertguler.GuiControllers.MainMenu to javafx.fxml;
     exports mertguler.GuiControllers.Universal;
     opens mertguler.GuiControllers.Universal to javafx.fxml;
-    exports mertguler.GuiControllers.Universal.Listers;
-    opens mertguler.GuiControllers.Universal.Listers to javafx.fxml;
+    exports mertguler.GuiControllers.Universal.Lists;
+    opens mertguler.GuiControllers.Universal.Lists to javafx.fxml;
 }

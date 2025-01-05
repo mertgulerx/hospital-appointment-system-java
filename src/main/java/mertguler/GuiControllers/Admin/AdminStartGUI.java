@@ -55,4 +55,25 @@ public class AdminStartGUI implements Initializable {
         showWindow("patient-list.fxml", "Patient List", Modality.NONE, image);
     }
 
+    @FXML
+    public void showDoctorListWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/doctor-menu.png");
+        Image image = new Image(is);
+        showWindow("doctor-list.fxml", "Doctor List", Modality.NONE, image);
+    }
+
+    @FXML
+    public void showSectionListWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/sections.png");
+        Image image = new Image(is);
+        showWindow("section-list.fxml", "Section List", Modality.NONE, image);
+    }
+
+    @FXML
+    public void showRendezvousListWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/appointment.png");
+        Image image = new Image(is);
+        showWindow("rendezvous-list.fxml", "Appointment List", Modality.NONE, image);
+    }
+
 }

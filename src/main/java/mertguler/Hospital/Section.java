@@ -107,6 +107,14 @@ public class Section implements Serializable {
 
     }
 
+    public boolean isChildSection(){
+        return isChildSection;
+    }
+
+    public boolean isFemaleSection(){
+        return isFemaleSection;
+    }
+
     public int getId(){
         return id;
     }

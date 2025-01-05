@@ -142,6 +142,12 @@ public class SectionMenu {
                 continue;
             }
 
+            if (name.isBlank()){
+                System.out.println("Name cant be empty");
+                returner();
+                return false;
+            }
+
             /*
             System.out.println("Enter Section ID: ");
 

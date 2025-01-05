@@ -65,9 +65,12 @@ public class HospitalMenu {
         header();
         int id = 0;
         System.out.println("\nEnter name: ");
-        String name = scanner.nextLine();
-        if (name.isEmpty()){
-            System.out.println("Please enter valid names only");
+        String name = "";
+
+        try{
+            name = scanner.nextLine();
+        } catch (Exception e){
+            System.out.println("Enter valid characters only");
             returner();
             return;
         }

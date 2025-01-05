@@ -78,6 +78,10 @@ public class Schedule implements Serializable {
         return true;
     }
 
+    public int getRendezvousCount(){
+        return sessions.size();
+    }
+
     public Doctor getDoctor(){
         return doctor;
     }
