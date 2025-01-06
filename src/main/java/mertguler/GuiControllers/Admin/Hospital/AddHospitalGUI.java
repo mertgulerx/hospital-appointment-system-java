@@ -75,7 +75,7 @@ public class AddHospitalGUI implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(image);
-        alert.setTitle("Success");
+        alert.setTitle("Confirmation");
         alert.setHeaderText(null);
         alert.setContentText("Hospital is available. Confirm or Cancel");
         ButtonType confirmButton = new ButtonType("Confirm", ButtonBar.ButtonData.OK_DONE);

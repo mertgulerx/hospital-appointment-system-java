@@ -29,11 +29,11 @@ public class Main {
             e.printStackTrace();
         }
 
-        if (!gui_mode) {
+        if (gui_mode) {
+            Application.launch(Gui.class);
+        } else {
             TextUI textUI = new TextUI(scanner, crs);
             textUI.start();
-        } else {
-            Application.launch(Gui.class);
         }
 
 

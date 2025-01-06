@@ -78,6 +78,7 @@ public class Section implements Serializable {
             throw new IDException("No doctor is found for Section: " + getName());
         }
 
+
         for (Doctor doctor: doctors){
             if (doctor.getDiploma_id() == diploma_id){
                 return doctor;
@@ -85,6 +86,19 @@ public class Section implements Serializable {
         }
 
         throw new IDException("Doctor with ID: " + diploma_id + " is not found");
+    }
+
+    public void checkDoctorExistence(int diploma_id){
+        if (doctors.isEmpty()){
+            return;
+        }
+
+        for (Doctor doctor: doctors){
+            if (doctor.getDiploma_id() == diploma_id){
+                throw new DuplicateInfoException("Doctor with ID: " + diploma_id + " is already exist");
+            }
+        }
+
     }
 
     public ArrayList<Doctor> getDoctor(String name){
@@ -153,6 +167,6 @@ public class Section implements Serializable {
 
     @Override
     public String toString(){
-        return name + ", " + id;
+        return name + ", ID: " + id + ", Female Only: " + isFemaleSection + ", Child Only: " + isChildSection;
     }
 }

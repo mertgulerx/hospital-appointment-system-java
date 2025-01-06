@@ -15,7 +15,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.GuiControllers.Admin.Section.AddSectionGUI">
    <children>
       <AnchorPane layoutX="66.0" layoutY="62.0" prefHeight="397.0" prefWidth="465.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0); -fx-background-color: #FFFFFF; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="62.0">
@@ -51,7 +50,7 @@
                         <Insets bottom="30.0" left="5.0" right="5.0" top="20.0" />
                      </VBox.margin>
                   </TextField>
-                  <ComboBox fx:id="hospitalBox" prefHeight="49.0" prefWidth="242.0" promptText="Hospital" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0);">
+                  <ComboBox fx:id="hospitalBox" focusTraversable="false" prefHeight="49.0" prefWidth="242.0" promptText="Hospital" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0);">
                      <VBox.margin>
                         <Insets bottom="30.0" left="5.0" right="5.0" />
                      </VBox.margin>

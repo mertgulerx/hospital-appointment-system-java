@@ -48,7 +48,7 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <ComboBox fx:id="cityBox" editable="true" prefHeight="39.0" prefWidth="252.0" promptText="City" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0);">
+                        <ComboBox fx:id="cityBox" editable="true" focusTraversable="false" prefHeight="39.0" prefWidth="252.0" promptText="City" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0);">
                            <VBox.margin>
                               <Insets top="30.0" />
                            </VBox.margin>
