@@ -1,0 +1,99 @@
+package mertguler.GuiControllers.Admin.Hospital;
+
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+import mertguler.Enums.City;
+import mertguler.Exceptions.DuplicateInfoException;
+import mertguler.Main;
+
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
+import static mertguler.GuiControllers.Gui.crs;
+
+
+public class AddHospitalGUI implements Initializable {
+    private String name;
+    private City city;
+    private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
+    private Image image = new Image(is);
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private ComboBox<City> cityBox;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        cityBox.setItems(FXCollections.observableArrayList(City.values()));
+    }
+
+    public void check() {
+        name = nameField.getText();
+
+        if (name.isBlank()) {
+            showError("Name cant be empty");
+            return;
+        }
+
+        try{
+            city = City.valueOf(String.valueOf(cityBox.getValue()).toUpperCase());
+        } catch (IllegalArgumentException e){
+            showError("Please enter a valid city name");
+            return;
+        }
+
+        try {
+            crs.getHospitalManager().checkHospitalDuplication(name, city);
+            System.out.println("Hospital Name: " + name + ", " + city + " is available");
+            showSuccess();
+        } catch (DuplicateInfoException e) {
+            System.out.println(e.getMessage());
+            showError(e.getMessage());
+        }
+
+    }
+
+    public void showError(String text) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(image);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        alert.show();
+    }
+
+    public void showSuccess() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(image);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText("Hospital is available. Confirm or Cancel");
+        ButtonType confirmButton = new ButtonType("Confirm", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == confirmButton) {
+            crs.getHospitalManager().createHospital(name, city);
+            System.out.println("Hospital: " + name + ", " + city + " is created");
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Success");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Hospital is successfully created!\nHospital Name: " + name + ", City: " + city);
+            Stage stage2 = (Stage) successAlert.getDialogPane().getScene().getWindow();
+            stage2.getIcons().add(image);
+            successAlert.show();
+        }
+    }
+
+}

@@ -76,4 +76,25 @@ public class AdminStartGUI implements Initializable {
         showWindow("rendezvous-list.fxml", "Appointment List", Modality.NONE, image);
     }
 
+    @FXML
+    public void showAddHospitalWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/add.png");
+        Image image = new Image(is);
+        showWindow("add-hospital.fxml", "Add Hospital", Modality.APPLICATION_MODAL, image);
+    }
+
+    @FXML
+    public void showDeleteHospitalWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/delete.png");
+        Image image = new Image(is);
+        showWindow("delete-hospital.fxml", "Delete Hospital", Modality.APPLICATION_MODAL, image);
+    }
+
+    @FXML
+    public void showRenameHospitalWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/rename.png");
+        Image image = new Image(is);
+        showWindow("rename-hospital.fxml", "Rename Hospital", Modality.APPLICATION_MODAL, image);
+    }
+
 }

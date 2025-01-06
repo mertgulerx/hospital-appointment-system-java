@@ -121,7 +121,7 @@ public class Hospital implements Serializable {
 
         Hospital comparedHospital = (Hospital) object;
 
-        if (this.getId() == (comparedHospital.getId())){
+        if (getName().equalsIgnoreCase(comparedHospital.name) && getCity() == comparedHospital.getCity()){
             return true;
         }
 

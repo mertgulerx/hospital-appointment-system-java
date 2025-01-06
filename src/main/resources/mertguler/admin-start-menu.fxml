@@ -124,9 +124,9 @@
                   </SplitMenuButton>
                   <SplitMenuButton alignment="CENTER" layoutX="14.0" layoutY="265.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Hospitals" textAlignment="CENTER" textFill="#98a2b2">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Add Hospital" />
-                      <MenuItem mnemonicParsing="false" text="Delete Hospital" />
-                        <MenuItem mnemonicParsing="false" text="Rename Hospital" />
+                      <MenuItem mnemonicParsing="false" onAction="#showAddHospitalWindow" text="Add Hospital" />
+                      <MenuItem mnemonicParsing="false" onAction="#showDeleteHospitalWindow" text="Delete Hospital" />
+                        <MenuItem mnemonicParsing="false" onAction="#showRenameHospitalWindow" text="Rename Hospital" />
                         <MenuItem mnemonicParsing="false" onAction="#showHospitalListWindow" text="List Hospitals" />
                     </items>
                      <font>

@@ -3,6 +3,7 @@ package mertguler.TextUI.Menu;
 import mertguler.CRS.CRS;
 import mertguler.CRS.HospitalManager;
 import mertguler.Enums.City;
+import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 
@@ -107,8 +108,8 @@ public class HospitalMenu {
         try {
             hospitalManager.createHospital(name, city);
             System.out.println("Hospital successfully added.");
-        } catch (IDException e) {
-            System.out.println("Hospital with this id already exists");
+        } catch (DuplicateInfoException e) {
+            System.out.println(e.getMessage());
         }
 
         returner();

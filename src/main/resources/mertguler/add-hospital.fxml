@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.GuiControllers.Admin.Hospital.AddHospitalGUI">
+   <children>
+      <AnchorPane layoutX="125.0" layoutY="89.0" prefHeight="323.0" prefWidth="350.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0); -fx-background-color: #FFFFFF; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="89.0">
+         <children>
+            <Separator layoutY="24.0" prefHeight="25.0" prefWidth="531.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="528.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Pane>
+                     <children>
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="7.0" text="Add Hospital">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/add.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <Pane layoutX="52.0" layoutY="52.0" prefHeight="219.0" prefWidth="245.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="53.0">
+               <children>
+                  <VBox alignment="CENTER" layoutX="-3.0" layoutY="14.0" prefHeight="208.0" prefWidth="252.0">
+                     <children>
+                        <TextField fx:id="nameField" focusTraversable="false" onAction="#check" prefHeight="39.0" prefWidth="252.0" promptText="Name" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0);">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <ComboBox fx:id="cityBox" editable="true" prefHeight="39.0" prefWidth="252.0" promptText="City" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0);">
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <Button mnemonicParsing="false" onAction="#check" prefHeight="38.0" prefWidth="153.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0);" text="Check Availability" textFill="#363636">
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

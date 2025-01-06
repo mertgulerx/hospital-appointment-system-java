@@ -34,9 +34,9 @@ public class HospitalManager {
         return true;
     }
 
-    // Creates a hospital with id
-    public void createHospital(String name, City city) {
+    public void createHospital(String name, City city) throws DuplicateInfoException {
         Hospital hospital = new Hospital(name, city);
+        checkHospitalDuplication(name, city);
         hospitals.put(hospital.getId(), hospital);
     }
 
@@ -72,9 +72,10 @@ public class HospitalManager {
         throw new IDException("Hospital with name: " + name + " is not found");
     }
 
-    public void checkHospitalDuplication(int hospital_id) throws DuplicateInfoException {
-        if (hospitals.containsKey(hospital_id)) {
-            throw new DuplicateInfoException("Hospital with Hospital ID: " + hospital_id + " is already exist");
+    public void checkHospitalDuplication(String name, City city) throws DuplicateInfoException {
+        Hospital hospital = new Hospital(name, city);
+        if (hospitals.containsValue(hospital)) {
+            throw new DuplicateInfoException(name + ", " + city + " is already exist");
         }
     }
 
