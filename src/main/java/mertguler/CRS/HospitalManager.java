@@ -4,68 +4,67 @@ import mertguler.Enums.City;
 import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
+import mertguler.Hospital.Rendezvous;
 import mertguler.Hospital.Section;
 import mertguler.Person.Doctor;
 
-import java.util.HashMap;
+import javax.print.Doc;
+import java.util.*;
 
 public class HospitalManager {
     private HashMap<Integer, Hospital> hospitals;
+    private CRS crs;
     private SectionManager sectionManager;
-    private DoctorManager doctorManager;
     public static int hospitalCount = 0;
 
-    public HospitalManager(HashMap<Integer, Hospital> hospitals){
+    public HospitalManager(HashMap<Integer, Hospital> hospitals, CRS crs) {
         this.hospitals = hospitals;
         sectionManager = new SectionManager();
-        doctorManager = new DoctorManager();
         hospitalCount = hospitals.size();
+        this.crs = crs;
     }
 
-    public SectionManager getSectionManager(){
+    public SectionManager getSectionManager() {
         return sectionManager;
     }
-    public DoctorManager getDoctorManager() {
-        return doctorManager;
-    }
 
-    public boolean updateHospitalMap(HashMap<Integer, Hospital> hospitals){
+    public boolean updateHospitalMap(HashMap<Integer, Hospital> hospitals) {
         this.hospitals = hospitals;
         hospitalCount = hospitals.size();
         return true;
     }
 
-
     // Creates a hospital with id
-    public void createHospital(String name, City city){
+    public void createHospital(String name, City city) {
         Hospital hospital = new Hospital(name, city);
         hospitals.put(hospital.getId(), hospital);
     }
 
-    public void deleteHospital(int id) throws IDException{
+    public void deleteHospital(int id) throws IDException {
         checkHospitalID(id);
+        crs.getRendezvouses().removeIf(rendezvous -> (rendezvous.getHospital().getId() == id));
         hospitals.remove(id);
     }
 
-    public void renameHospital(int id, String newName) throws IDException{
-       checkHospitalID(id);
-       hospitals.get(id).setName(newName);
+    public void renameHospital(int id, String newName) throws IDException {
+        checkHospitalID(id);
+        hospitals.get(id).setName(newName);
 
     }
 
-    public Hospital getHospitalWithID(int id) throws IDException{
+    public Hospital getHospitalWithID(int id) throws IDException {
         checkHospitalID(id);
         return hospitals.get(id);
     }
 
-    public Hospital getHospitalWithName(String name) throws IDException{
-        if (hospitals.isEmpty()){
+    public Hospital getHospitalWithName(String name) throws IDException {
+        if (hospitals.isEmpty()) {
             throw new IDException("No hospital found!");
         }
 
         name = name.trim();
-        for (Hospital hospital: hospitals.values()){
-            if (hospital.getName().trim().equalsIgnoreCase(name)){
+        for (Hospital hospital : hospitals.values()) {
+            if (hospital.getName().trim().equalsIgnoreCase(name)) {
                 return hospital;
             }
         }
@@ -74,58 +73,77 @@ public class HospitalManager {
     }
 
     public void checkHospitalDuplication(int hospital_id) throws DuplicateInfoException {
-        if (hospitals.containsKey(hospital_id)){
+        if (hospitals.containsKey(hospital_id)) {
             throw new DuplicateInfoException("Hospital with Hospital ID: " + hospital_id + " is already exist");
         }
     }
 
     public void checkHospitalID(int hospital_id) throws IDException {
-        if (!hospitals.containsKey(hospital_id)){
+        if (!hospitals.containsKey(hospital_id)) {
             throw new IDException("No hospital found with Hospital ID: " + hospital_id);
         }
     }
 
-    public HashMap<Integer, Hospital> getHospitals(){
+    public HashMap<Integer, Hospital> getHospitals() {
         return hospitals;
     }
 
-    public int countAllSections(){
+    public int countAllSections() {
         int count = 0;
 
-        if (hospitals.isEmpty()){
+        if (hospitals.isEmpty()) {
             return count;
         }
 
-        for(Hospital hospital: hospitals.values()){
+        for (Hospital hospital : hospitals.values()) {
             count += hospital.getSections().size();
         }
 
         return count;
     }
 
-    public int countAllDoctors(){
+    public int countAllDoctors() {
         int count = 0;
 
-        for (Hospital hospital: hospitals.values()){
-            for(Section section: hospital.getSections()){
+        for (Hospital hospital : hospitals.values()) {
+            for (Section section : hospital.getSections()) {
                 count += section.getDoctors().size();
             }
         }
         return count;
     }
 
-    public class SectionManager{
-        public void checkSectionID(int hospital_id, int section_id) throws IDException{
-            if (hospitals.get(hospital_id).getSection(section_id) == null){
+    public class SectionManager {
+        private DoctorManager doctorManager = new DoctorManager();
+
+        public DoctorManager getDoctorManager() {
+            return doctorManager;
+        }
+
+        public void checkSectionID(int hospital_id, int section_id) throws IDException {
+            if (hospitals.get(hospital_id).getSection(section_id) == null) {
                 throw new IDException("No section found with Section ID: " + section_id);
             }
         }
-    }
 
-    public class DoctorManager{
-        public void checkDoctorID(int hospital_id, int section_id, int diploma_id) throws IDException{
-            if (hospitals.get(hospital_id).getSection(section_id).getDoctor(diploma_id) == null){
-                throw new IDException("No doctor found with Diploma ID: " + diploma_id);
+        public void deleteSection(int hospital_id, int section_id) throws IDException {
+            Hospital hospital = getHospitalWithID(hospital_id);
+            crs.getRendezvouses().removeIf(rendezvous -> (rendezvous.getSection().getId() == section_id));
+            hospital.deleteSection(section_id);
+        }
+
+        public class DoctorManager {
+            public void checkDoctorID(int hospital_id, int section_id, int diploma_id) throws IDException {
+                if (hospitals.get(hospital_id).getSection(section_id).getDoctor(diploma_id) == null) {
+                    throw new IDException("No doctor found with Diploma ID: " + diploma_id);
+                }
+            }
+
+            public void deleteDoctor(int hospital_id, int section_id, int diploma_id) throws IDException {
+                Hospital hospital = getHospitalWithID(hospital_id);
+                Section section = hospital.getSection(section_id);
+                crs.getRendezvouses().removeIf(rendezvous -> (rendezvous.getDoctor().getDiploma_id() == diploma_id));
+                section.deleteDoctor(diploma_id);
             }
         }
     }

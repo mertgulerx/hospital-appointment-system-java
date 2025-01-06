@@ -1,7 +1,9 @@
 package mertguler.TextUI.Menu;
 
 import mertguler.CRS.CRS;
+import mertguler.CRS.HospitalManager;
 import mertguler.Exceptions.DuplicateInfoException;
+import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;
 import mertguler.Person.Doctor;
@@ -18,16 +20,19 @@ public class DoctorMenu {
     private Section section;
     private HospitalMenu hospitalMenu;
     private SectionMenu sectionMenu;
+    private HospitalManager hospitalManager;
+    private Hospital hospital;
 
     public DoctorMenu(Scanner scanner, CRS crs, HospitalMenu hospitalMenu, SectionMenu sectionMenu){
         this.scanner = scanner;
         this.crs = crs;
         this.hospitalMenu = hospitalMenu;
         this.sectionMenu = sectionMenu;
+        this.hospitalManager = crs.getHospitalManager();
     }
 
     public void doctorManager(){
-        Hospital hospital = hospitalMenu.hospitalSelector();
+        hospital = hospitalMenu.hospitalSelector();
         sectionMenu.setHospital(hospital);
         section = sectionMenu.sectionSelector();
 
@@ -273,12 +278,13 @@ public class DoctorMenu {
                 return false;
             }
 
-            if (section.deleteDoctor(diploma_id)){
+            try {
+                hospitalManager.getSectionManager().getDoctorManager().deleteDoctor(hospital.getId(), section.getId(), diploma_id);
                 System.out.println("Doctor is successfully deleted");
                 returner();
                 return true;
-            } else {
-                System.out.println("Doctor with Diploma ID: " + diploma_id + " is not found");
+            } catch (IDException e){
+                System.out.println(e.getMessage());
                 returner();
                 return false;
             }

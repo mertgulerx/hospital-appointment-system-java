@@ -2,6 +2,7 @@ package mertguler.TextUI.Menu;
 
 import mertguler.CRS.CRS;
 import mertguler.Exceptions.DuplicateInfoException;
+import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;
 
@@ -178,26 +179,26 @@ public class SectionMenu {
         while (true) {
             clear();
             header();
-            int id = 9;
+            int sectionId = 9;
             System.out.println("Enter Section ID: ");
 
             try {
-                id = Integer.valueOf(scanner.nextLine());
+                sectionId = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers within range");
                 returner();
                 return false;
             }
 
-            // False if searched section is null.
-            if (!hospital.deleteSection(id)){
-                System.out.println("Section with id: " + id + " is not found.");
-                returner();
-                return false;
-            } else {
+            try {
+                crs.getHospitalManager().getSectionManager().deleteSection(hospital.getId(), sectionId);
                 System.out.println("Section is successfully deleted.");
                 returner();
                 return true;
+            } catch (IDException e){
+                System.out.println(e.getMessage());
+                returner();
+                return false;
             }
         }
     }

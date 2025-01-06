@@ -76,4 +76,23 @@ public class Patient extends Person {
         birthDate = newBirthDate;
     }
 
+    @Override
+    public boolean equals(Object object){
+        if (this == object){
+            return true;
+        }
+
+        if (!(object instanceof Patient)){
+            return false;
+        }
+
+        Patient comparedPatient = (Patient) object;
+
+        if (this.getNational_id() == (comparedPatient.getNational_id())){
+            return true;
+        }
+
+        return false;
+    }
+
 }

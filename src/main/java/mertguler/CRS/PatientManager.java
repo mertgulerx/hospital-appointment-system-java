@@ -2,16 +2,19 @@ package mertguler.CRS;
 
 import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
+import mertguler.Hospital.Rendezvous;
 import mertguler.Person.Patient;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class PatientManager {
     private HashMap<Long, Patient> patients;
+    private CRS crs;
 
 
-    public PatientManager(HashMap<Long, Patient> patients){
+    public PatientManager(HashMap<Long, Patient> patients, CRS crs){
         this.patients = patients;
+        this.crs = crs;
     }
 
     public boolean updatePatientsMap(HashMap<Long, Patient> patients){
@@ -43,7 +46,8 @@ public class PatientManager {
     }
 
     public void patientDeleter(long national_id) throws IDException{
-        checkPatientID(national_id);
+        Patient patient = getPatient(national_id);
+        crs.getRendezvouses().removeIf(rendezvous -> (rendezvous.getPatient().getNational_id() == national_id));
         patients.remove(national_id);
     }
 

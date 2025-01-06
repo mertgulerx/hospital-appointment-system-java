@@ -3,6 +3,9 @@ package mertguler.Hospital;
 import mertguler.CRS.HospitalManager;
 import mertguler.Enums.City;
 import mertguler.Exceptions.DuplicateInfoException;
+import mertguler.Exceptions.IDException;
+import mertguler.Person.Patient;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -12,6 +15,7 @@ public class Hospital implements Serializable {
     private String name;
     private final int id;
     private City city;
+    private int allTimeSectionCount;
 
 
     public Hospital(String name, int id, City city){
@@ -27,6 +31,7 @@ public class Hospital implements Serializable {
         id = HospitalManager.hospitalCount;
         sections = new ArrayList<>();
         this.city = city;
+        allTimeSectionCount = 0;
     }
 
 
@@ -38,9 +43,9 @@ public class Hospital implements Serializable {
         sections.add(section);
     }
 
-    public Section getSection(String name){
+    public Section getSection(String name) throws IDException {
         if (sections.isEmpty()){
-            return null;
+            throw new IDException("No section is found for Hospital: " + getName());
         }
 
         name = name.trim();
@@ -50,12 +55,12 @@ public class Hospital implements Serializable {
             }
         }
 
-        return null;
+        throw new IDException("Section with name: " + name + " is not found");
     }
 
-    public Section getSection(int id) {
+    public Section getSection(int id) throws IDException {
         if (sections.isEmpty()){
-            return null;
+            throw new IDException("No section is found for Hospital: " + getName());
         }
 
         for (Section section: sections){
@@ -64,7 +69,7 @@ public class Hospital implements Serializable {
             }
         }
 
-        return null;
+        throw new IDException("Section with ID: " + id + " is not found");
     }
 
     public ArrayList<Section> getSections(){
@@ -94,6 +99,33 @@ public class Hospital implements Serializable {
 
     public City getCity(){
         return city;
+    }
+
+    public int getAllTimeSectionCount(){
+        return allTimeSectionCount;
+    }
+
+    public void increaseAllTimeSectionCount(){
+        allTimeSectionCount++;
+    }
+
+    @Override
+    public boolean equals(Object object){
+        if (this == object){
+            return true;
+        }
+
+        if (!(object instanceof Hospital)){
+            return false;
+        }
+
+        Hospital comparedHospital = (Hospital) object;
+
+        if (this.getId() == (comparedHospital.getId())){
+            return true;
+        }
+
+        return false;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package mertguler.Hospital;
 
 import mertguler.Exceptions.DuplicateInfoException;
+import mertguler.Exceptions.IDException;
 import mertguler.Person.Doctor;
 
 import java.io.Serializable;
@@ -27,7 +28,8 @@ public class Section implements Serializable {
 
     public Section(String name, Hospital hospital, boolean isChildSection, boolean isFemaleSection){
         this.name = name;
-        this.id = hospital.getId() * 1000 + hospital.getSections().size() + 1;
+        this.id = hospital.getId() * 1000 + hospital.getAllTimeSectionCount() + 1;
+        hospital.increaseAllTimeSectionCount();
         doctors = new ArrayList<>();
         this.isChildSection = isChildSection;
         this.isFemaleSection = isFemaleSection;
@@ -71,9 +73,9 @@ public class Section implements Serializable {
         }
     }
 
-    public Doctor getDoctor(int diploma_id){
+    public Doctor getDoctor(int diploma_id) throws IDException {
         if (doctors.isEmpty()){
-            return null;
+            throw new IDException("No doctor is found for Section: " + getName());
         }
 
         for (Doctor doctor: doctors){
@@ -82,7 +84,7 @@ public class Section implements Serializable {
             }
         }
 
-        return null;
+        throw new IDException("Doctor with ID: " + diploma_id + " is not found");
     }
 
     public ArrayList<Doctor> getDoctor(String name){
@@ -104,7 +106,6 @@ public class Section implements Serializable {
         } else {
             return null;
         }
-
     }
 
     public boolean isChildSection(){

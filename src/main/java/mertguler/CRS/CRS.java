@@ -40,8 +40,8 @@ public class CRS {
         patients = new HashMap<>();
         rendezvouses = new ArrayList<>();
         hospitals = new HashMap<>();
-        hospitalManager = new HospitalManager(hospitals);
-        patientManager = new PatientManager(patients);
+        hospitalManager = new HospitalManager(hospitals, this);
+        patientManager = new PatientManager(patients, this);
     }
 
     // Rendezvous
@@ -64,7 +64,7 @@ public class CRS {
 
         hospitalManager.getSectionManager().checkSectionID(hospitalID, sectionID);
 
-        hospitalManager.getDoctorManager().checkDoctorID(hospitalID,sectionID,diplomaID);
+        hospitalManager.getSectionManager().getDoctorManager().checkDoctorID(hospitalID,sectionID,diplomaID);
 
         Hospital hospital = hospitals.get(hospitalID);
         Section section = hospital.getSection(sectionID);

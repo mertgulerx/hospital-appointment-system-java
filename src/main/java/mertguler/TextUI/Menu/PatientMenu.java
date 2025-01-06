@@ -132,10 +132,16 @@ public class PatientMenu {
             }
 
 
-            patientManager.patientDeleter(national_id);
-            System.out.println("Patient with National ID: " + national_id + " is successfully deleted");
-            returner();
-            return true;
+            try {
+                patientManager.patientDeleter(national_id);
+                System.out.println("Patient with National ID: " + national_id + " is successfully deleted");
+                returner();
+                return true;
+            } catch (IDException e){
+                System.out.println(e.getMessage());
+                returner();
+                return false;
+            }
         }
     }
 

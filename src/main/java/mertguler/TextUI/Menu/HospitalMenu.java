@@ -75,6 +75,12 @@ public class HospitalMenu {
             return;
         }
 
+        if (name.isBlank()){
+            System.out.println("Name cant be empty");
+            returner();
+            return;
+        }
+
         /*
         System.out.println("Enter ID");
 

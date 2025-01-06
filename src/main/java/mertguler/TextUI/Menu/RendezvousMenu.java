@@ -46,8 +46,9 @@ public class RendezvousMenu {
             System.out.println("\nAdd Rendezvous: 1");
             System.out.println("Delete Rendezvous: 2");
             System.out.println("Check Rendezvous Info: 3");
+            System.out.println("List All Rendezvouses: 4");
             System.out.println("Return to last menu: 0");
-            System.out.println("\nSelect operating mode (1-3):");
+            System.out.println("\nSelect operating mode (1-4):");
 
             try {
                 input = Integer.valueOf(scanner.nextLine());
@@ -65,6 +66,8 @@ public class RendezvousMenu {
                 rendezvousDeleter();
             } else if (input == 3){
                 rendezvousInfoChecker();
+            } else if (input == 4){
+                rendezvousLister();
             }
         }
     }
@@ -285,6 +288,29 @@ public class RendezvousMenu {
             returner(scanner);
             return true;
         }
+    }
+
+
+
+    public boolean rendezvousLister(){
+        ArrayList<Rendezvous> rendezvouses = crs.getRendezvouses();
+        if (rendezvouses.isEmpty()){
+            System.out.println("No rendezvous is found in system");
+            returner(scanner);
+            clear();
+            return false;
+        }
+
+
+        int index = 0;
+        for (Rendezvous rendezvous: rendezvouses){
+            index++;
+            System.out.println(rendezvous.getPatient().getName() + ", " + rendezvous.getDoctor().getName() + ", " + rendezvous.getHospital().getName() + ", " + rendezvous.getSection().getName() + ", ID: " + index);
+        }
+
+        returner(scanner);
+        clear();
+        return true;
     }
 
     public boolean rendezvousLister(ArrayList<Rendezvous> rendezvousList, Patient patient) throws NoSuchElementException {
