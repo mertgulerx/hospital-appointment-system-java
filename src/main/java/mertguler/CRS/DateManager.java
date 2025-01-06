@@ -2,6 +2,7 @@ package mertguler.CRS;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -38,6 +39,14 @@ public class DateManager {
 
         checkedDate = LocalDate.parse(date, dateFormatter);
         return checkedDate;
+    }
+
+    public static int getYearDifference(LocalDate localDate){
+        if ((localDate != null)) {
+            return Period.between(localDate, DateManager.getCurrentDate()).getYears();
+        } else {
+            return 0;
+        }
     }
 
     public static void checkDateRange(LocalDate desiredDate) throws DateTimeException {

@@ -178,9 +178,9 @@
                   </SplitMenuButton>
                   <SplitMenuButton alignment="CENTER" layoutX="15.0" layoutY="490.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Patients" textAlignment="CENTER" textFill="#98a2b2">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Add Patient" />
-                        <MenuItem mnemonicParsing="false" text="Delete Patient" />
-                        <MenuItem mnemonicParsing="false" text="Rename Patient" />
+                        <MenuItem mnemonicParsing="false" onAction="#showAddPatientWindow" text="Add Patient" />
+                        <MenuItem mnemonicParsing="false" onAction="#showDeletePatientWindow" text="Delete Patient" />
+                        <MenuItem mnemonicParsing="false" onAction="#showRenamePatientWindow" text="Rename Patient" />
                         <MenuItem mnemonicParsing="false" onAction="#showPatientListWindow" text="List Patients" />
                      </items>
                      <font>

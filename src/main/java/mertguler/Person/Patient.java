@@ -95,4 +95,9 @@ public class Patient extends Person {
         return false;
     }
 
+    @Override
+    public String toString(){
+        return getName() + ", National ID: " + getNational_id() + ", Age: " + getAge();
+    }
+
 }

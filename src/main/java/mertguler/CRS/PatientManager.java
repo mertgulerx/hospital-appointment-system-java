@@ -5,6 +5,7 @@ import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Rendezvous;
 import mertguler.Person.Patient;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class PatientManager {
@@ -42,6 +43,12 @@ public class PatientManager {
     public void patientAdder(String name, long national_id) throws DuplicateInfoException{
         checkPatientDuplication(national_id);
         Patient patient = new Patient(name, national_id);
+        patients.put(national_id, patient);
+    }
+
+    public void patientAdder(String name, long national_id, LocalDate birthdate) throws DuplicateInfoException{
+        checkPatientDuplication(national_id);
+        Patient patient = new Patient(name, national_id, birthdate);
         patients.put(national_id, patient);
     }
 

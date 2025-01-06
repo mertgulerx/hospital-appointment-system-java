@@ -45,35 +45,35 @@ public class AdminStartGUI implements Initializable {
     public void showHospitalListWindow() throws IOException {
         InputStream is = Main.class.getResourceAsStream("/images/hospital.png");
         Image image = new Image(is);
-        showWindow("hospital-list.fxml", "Hospital List", Modality.NONE, image);
+        showWindow("hospital-list.fxml", "Hospital List", Modality.APPLICATION_MODAL, image);
     }
 
     @FXML
     public void showPatientListWindow() throws IOException {
         InputStream is = Main.class.getResourceAsStream("/images/patients.png");
         Image image = new Image(is);
-        showWindow("patient-list.fxml", "Patient List", Modality.NONE, image);
+        showWindow("patient-list.fxml", "Patient List", Modality.APPLICATION_MODAL, image);
     }
 
     @FXML
     public void showDoctorListWindow() throws IOException {
         InputStream is = Main.class.getResourceAsStream("/images/doctor-menu.png");
         Image image = new Image(is);
-        showWindow("doctor-list.fxml", "Doctor List", Modality.NONE, image);
+        showWindow("doctor-list.fxml", "Doctor List", Modality.APPLICATION_MODAL, image);
     }
 
     @FXML
     public void showSectionListWindow() throws IOException {
         InputStream is = Main.class.getResourceAsStream("/images/sections.png");
         Image image = new Image(is);
-        showWindow("section-list.fxml", "Section List", Modality.NONE, image);
+        showWindow("section-list.fxml", "Section List", Modality.APPLICATION_MODAL, image);
     }
 
     @FXML
     public void showRendezvousListWindow() throws IOException {
         InputStream is = Main.class.getResourceAsStream("/images/appointment.png");
         Image image = new Image(is);
-        showWindow("rendezvous-list.fxml", "Appointment List", Modality.NONE, image);
+        showWindow("rendezvous-list.fxml", "Appointment List", Modality.APPLICATION_MODAL, image);
     }
 
     @FXML
@@ -137,6 +137,27 @@ public class AdminStartGUI implements Initializable {
         InputStream is = Main.class.getResourceAsStream("/images/rename.png");
         Image image = new Image(is);
         showWindow("rename-doctor.fxml", "Rename Doctor", Modality.APPLICATION_MODAL, image);
+    }
+
+    @FXML
+    public void showAddPatientWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/add.png");
+        Image image = new Image(is);
+        showWindow("add-patient.fxml", "Add Patient", Modality.APPLICATION_MODAL, image);
+    }
+
+    @FXML
+    public void showDeletePatientWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/delete.png");
+        Image image = new Image(is);
+        showWindow("delete-patient.fxml", "Delete Patient", Modality.APPLICATION_MODAL, image);
+    }
+
+    @FXML
+    public void showRenamePatientWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/rename.png");
+        Image image = new Image(is);
+        showWindow("rename-patient.fxml", "Rename Patient", Modality.APPLICATION_MODAL, image);
     }
 
 

@@ -1,25 +1,24 @@
-package mertguler.GuiControllers.Admin.Hospital;
+package mertguler.GuiControllers.Universal.Patient;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import mertguler.Enums.City;
-import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 import mertguler.Main;
+import mertguler.Person.Patient;
 
 import java.io.InputStream;
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 import static mertguler.GuiControllers.Gui.crs;
 
-public class DeleteHospitalGUI {
-    private int hospitalID;
+public class DeletePatientGUI {
+    private int nationalID;
     private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
     private Image image = new Image(is);
 
@@ -28,20 +27,20 @@ public class DeleteHospitalGUI {
 
     public void check() {
         try {
-            hospitalID = Integer.valueOf(idField.getText());
+            nationalID = Integer.valueOf(idField.getText());
         } catch (NumberFormatException e) {
             showError("Invalid ID! Please enter a valid number");
             return;
         }
 
-        if (hospitalID <= 0){
+        if (nationalID <= 0){
             showError("National ID, must be greater than 0");
             return;
         }
 
         try {
-            crs.getHospitalManager().checkHospitalID(hospitalID);
-            System.out.println("Hospital with ID: " + hospitalID + ", is found");
+            crs.getPatientManager().checkPatientID(nationalID);
+            System.out.println("Patient with National ID: " + nationalID + ", is found");
             showSuccess();
         } catch (IDException e) {
             System.out.println(e.getMessage());
@@ -61,14 +60,21 @@ public class DeleteHospitalGUI {
     }
 
     public void showSuccess() {
-        Hospital hospital = crs.getHospitalManager().getHospitalWithID(hospitalID);
+        Patient patient = crs.getPatientManager().getPatient(nationalID);
+        // Printing purposes only
+        // No change in logic. Does not change anything in Patient class.
+        String age = "Unknown";
+        int checkedAge = patient.getAge();
+        if (checkedAge > 0){
+            age = String.valueOf(checkedAge);
+        }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(image);
         alert.setTitle("Confirmation");
-        alert.setHeaderText("Hospital: " + hospital.getName() + ", " + hospital.getCity() + ", ID: " + hospital.getId()
-                        + " is found.");
+        alert.setHeaderText("Patient: " + patient.getName() + ", National ID: " + patient.getNational_id()
+               + ", Age: " + age + " is found.");
         alert.setContentText("Please confirm deletion. This action cannot be undone.");
         ButtonType confirmButton = new ButtonType("Delete", ButtonBar.ButtonData.OK_DONE);
         ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -76,12 +82,15 @@ public class DeleteHospitalGUI {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == confirmButton) {
-            crs.getHospitalManager().deleteHospital(hospitalID);
-            System.out.println("Hospital with ID: " + hospitalID + " is successfully deleted");
+            crs.getPatientManager().patientDeleter(nationalID);
+            System.out.println("Patient with ID: " + nationalID + " is successfully deleted");
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Success");
             successAlert.setHeaderText(null);
-            successAlert.setContentText("Hospital is permanently deleted!\nHospital ID: " + hospitalID);
+            successAlert.setContentText("Patient is permanently deleted!\n" +
+                    "Patient Name: " + patient.getName() +
+                    "\nID: " + nationalID +
+                    "\nAge: " + age);
             Stage stage2 = (Stage) successAlert.getDialogPane().getScene().getWindow();
             stage2.getIcons().add(image);
             successAlert.show();
