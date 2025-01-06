@@ -8,7 +8,6 @@ module mertguler.hospitalreservationsystemjava {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
-    requires org.kordamp.ikonli.materialdesign2;
     requires java.desktop;
 
     opens mertguler to javafx.fxml;
