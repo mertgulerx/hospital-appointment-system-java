@@ -144,7 +144,7 @@ public class Section implements Serializable {
 
         Section comparedSection = (Section) object;
 
-        if (this.getId() == comparedSection.getId()){
+        if (this.getName().trim().equalsIgnoreCase(comparedSection.name.trim())){
             return true;
         }
 

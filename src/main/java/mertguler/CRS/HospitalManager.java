@@ -46,12 +46,6 @@ public class HospitalManager {
         hospitals.remove(id);
     }
 
-    public void renameHospital(int id, String newName) throws IDException {
-        checkHospitalID(id);
-        hospitals.get(id).setName(newName);
-
-    }
-
     public Hospital getHospitalWithID(int id) throws IDException {
         checkHospitalID(id);
         return hospitals.get(id);

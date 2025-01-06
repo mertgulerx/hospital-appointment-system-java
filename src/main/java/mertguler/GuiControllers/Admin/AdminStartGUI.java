@@ -97,4 +97,26 @@ public class AdminStartGUI implements Initializable {
         showWindow("rename-hospital.fxml", "Rename Hospital", Modality.APPLICATION_MODAL, image);
     }
 
+    @FXML
+    public void showAddSectionWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/add.png");
+        Image image = new Image(is);
+        showWindow("add-section.fxml", "Add Section", Modality.APPLICATION_MODAL, image);
+    }
+
+    @FXML
+    public void showDeleteSectionWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/delete.png");
+        Image image = new Image(is);
+        showWindow("delete-section.fxml", "Delete Section", Modality.APPLICATION_MODAL, image);
+    }
+
+    @FXML
+    public void showRenameSectionWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/rename.png");
+        Image image = new Image(is);
+        showWindow("rename-section.fxml", "Rename Section", Modality.APPLICATION_MODAL, image);
+    }
+
+
 }

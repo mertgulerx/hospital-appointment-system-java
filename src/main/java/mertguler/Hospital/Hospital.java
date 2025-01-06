@@ -37,7 +37,7 @@ public class Hospital implements Serializable {
 
     public void addSection(Section section) throws DuplicateInfoException {
         if (sections.contains(section)){
-            throw new DuplicateInfoException("Section with ID: " + section.getId() + ", already exist");
+            throw new DuplicateInfoException("Section with Name: " + section.getName() + ", is already exist");
         }
 
         sections.add(section);
@@ -76,7 +76,7 @@ public class Hospital implements Serializable {
         return sections;
     }
 
-    public boolean deleteSection(int id){
+    public boolean deleteSection(int id) throws IDException{
         Section section = getSection(id);
         if (section == null){
             return false;
@@ -121,7 +121,7 @@ public class Hospital implements Serializable {
 
         Hospital comparedHospital = (Hospital) object;
 
-        if (getName().equalsIgnoreCase(comparedHospital.name) && getCity() == comparedHospital.getCity()){
+        if (getName().trim().equalsIgnoreCase(comparedHospital.name.trim()) && getCity() == comparedHospital.getCity()){
             return true;
         }
 

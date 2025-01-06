@@ -142,9 +142,9 @@
                   </SplitMenuButton>
                   <SplitMenuButton alignment="CENTER" layoutX="13.0" layoutY="340.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Sections" textAlignment="CENTER" textFill="#98a2b2">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Add Section" />
-                        <MenuItem mnemonicParsing="false" text="Delete Section" />
-                        <MenuItem mnemonicParsing="false" text="Rename Section" />
+                        <MenuItem mnemonicParsing="false" onAction="#showAddSectionWindow" text="Add Section" />
+                        <MenuItem mnemonicParsing="false" onAction="#showDeleteSectionWindow" text="Delete Section" />
+                        <MenuItem mnemonicParsing="false" onAction="#showRenameSectionWindow" text="Rename Section" />
                         <MenuItem mnemonicParsing="false" onAction="#showSectionListWindow" text="List Sections" />
                      </items>
                      <font>
