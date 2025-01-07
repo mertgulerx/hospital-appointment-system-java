@@ -1,6 +1,7 @@
 package mertguler.CRS;
 
 import mertguler.Exceptions.DailyLimitException;
+import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Exceptions.RendezvousLimitException;
 import mertguler.Hospital.Hospital;
@@ -46,7 +47,8 @@ public class CRS {
 
     // Rendezvous
 
-    public boolean makeRendezvous(long patientID, int hospitalID, int sectionID, int diplomaID, LocalDate desiredDate) throws IDException, DailyLimitException, RendezvousLimitException, DateTimeException {
+    public boolean makeRendezvous(long patientID, int hospitalID, int sectionID, int diplomaID,
+                                  LocalDate desiredDate) throws IDException, DailyLimitException, RendezvousLimitException, DateTimeException {
         // DateTimeException
         checkDateRange(desiredDate);
 
@@ -82,6 +84,35 @@ public class CRS {
         patient.addRendezvous(rendezvous);
         rendezvouses.add(rendezvous);
         return true;
+    }
+
+    // GUI
+    public void addRendezvous(Doctor doctor, Rendezvous rendezvous, Patient patient)
+            throws DateTimeException, IDException, DailyLimitException, DuplicateInfoException {
+
+        doctor.getSchedule().addRendezvous(rendezvous);
+        patient.addRendezvous(rendezvous);
+        rendezvouses.add(rendezvous);
+    }
+
+    public void checkValidity(long patientID, Doctor doctor, LocalDate desiredDate)
+            throws IDException, RendezvousLimitException, DuplicateInfoException{
+
+        // ID Exception
+        patientManager.checkPatientID(patientID);
+
+        Patient patient = patientManager.getPatient(patientID);
+
+        // RendezvousLimitException
+        // Validates maximum rendezvous count for patient
+        patient.checkValidity();
+        // DailyLimitException
+        doctor.getSchedule().checkDailyLimit(desiredDate);
+    }
+
+    public void checkDuplication(Doctor doctor, Rendezvous rendezvous) throws DuplicateInfoException{
+        // Duplicate Info Exception
+        doctor.getSchedule().checkRendezvousDuplication(rendezvous);
     }
 
     public void deleteRendezvous(Rendezvous rendezvous) throws IDException{
@@ -216,6 +247,21 @@ public class CRS {
         }
     }
 
+    public void saveSettingsGUI() throws IOException{
+        String path = "settings.txt";
+        try {
+            FileWriter fileWriter = new FileWriter(path);
+            fileWriter.write(String.valueOf(MAX_RENDEZVOUS_PER_PATIENT));
+            fileWriter.write(",");
+            fileWriter.write(String.valueOf(RENDEZVOUS_DAY_LIMIT));
+
+            fileWriter.close();
+            System.out.println("\nSettings are saved to " + path + "\n");
+        } catch (IOException e) {
+            throw new IOException(e.getMessage());
+        }
+    }
+
     public void loadSettings(){
         String path = "settings.txt";
         try {
@@ -231,6 +277,24 @@ public class CRS {
             System.out.println("\n" + e.getMessage());
         } catch (ArrayIndexOutOfBoundsException indexE){
             System.out.println("\nSettings file is corrupted");
+        }
+    }
+
+    public void loadSettingsGUI() throws IOException, ArrayIndexOutOfBoundsException{
+        String path = "settings.txt";
+        try {
+            Scanner fileScanner = new Scanner(Paths.get(path));
+            String settingsText = fileScanner.nextLine();
+            String[] settings = settingsText.split(",");
+
+            MAX_RENDEZVOUS_PER_PATIENT = Integer.valueOf(settings[0]);
+            RENDEZVOUS_DAY_LIMIT = Integer.valueOf(settings[1]);
+
+            System.out.println("\nSettings are loaded from: " + path + "\n");
+        } catch (IOException e) {
+            throw new IOException(e.getMessage());
+        } catch (ArrayIndexOutOfBoundsException indexE){
+            throw new ArrayIndexOutOfBoundsException("\nSettings file is corrupted");
         }
     }
 

@@ -15,7 +15,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.GuiControllers.Universal.Patient.AddPatientGUI">
    <children>
       <AnchorPane layoutX="40.0" layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="445.0" prefWidth="568.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0); -fx-background-color: #FFFFFF; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="32.0">
@@ -53,7 +52,7 @@
                         <Insets bottom="5.0" left="80.0" right="80.0" top="20.0" />
                      </VBox.margin>
                   </TextField>
-                  <DatePicker fx:id="datePicker" focusTraversable="false" prefHeight="52.0" prefWidth="358.0" promptText="Birthdate" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);">
+                  <DatePicker fx:id="datePicker" editable="false" focusTraversable="false" prefHeight="52.0" prefWidth="358.0" promptText="Birthdate" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>

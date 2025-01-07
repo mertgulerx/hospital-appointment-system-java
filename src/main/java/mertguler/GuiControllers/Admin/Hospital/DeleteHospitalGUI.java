@@ -35,7 +35,7 @@ public class DeleteHospitalGUI {
         }
 
         if (hospitalID <= 0){
-            showError("National ID, must be greater than 0");
+            showError("Hospital ID, must be greater than 0");
             return;
         }
 

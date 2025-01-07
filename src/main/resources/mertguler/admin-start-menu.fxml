@@ -12,204 +12,188 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.GuiControllers.Admin.AdminStartGUI">
-   <center>
-      <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1280.0">
-         <children>
-            <AnchorPane prefWidth="1294.0">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.GuiControllers.Admin.AdminStartGUI">
+   <children>
+      <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="720.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <AnchorPane prefHeight="720.0" prefWidth="1039.0">
                <children>
-                  <AnchorPane prefHeight="67.0" prefWidth="1300.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0); -fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="78.0" prefWidth="1039.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0); -fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="30.0">
+                        <Text fill="#98a2b2" layoutX="33.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Hospital Rendezvous System!" wrappingWidth="462.378173828125" AnchorPane.topAnchor="30.0">
+                           <font>
+                              <Font name="SansSerif Bold" size="20.0" />
+                           </font>
+                        </Text>
+                        <Pane layoutX="879.0" layoutY="2.0" prefHeight="78.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Text fill="#98a2b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Hospital Rendezvous System!" wrappingWidth="462.378173828125" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font name="SansSerif Bold" size="20.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </AnchorPane>
-                        <Pane prefHeight="78.0" prefWidth="1260.0" AnchorPane.rightAnchor="40.0">
-                           <children>
-                              <Line endX="175.6666259765625" endY="579.2929077148438" layoutX="1083.0" layoutY="-542.0" startX="51.0" startY="579.2929077148438" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
-                              <Label fx:id="uiDate" alignment="CENTER" layoutX="1133.0" layoutY="39.0" prefHeight="38.0" prefWidth="125.0" text="dd/mm/yyyy" textAlignment="CENTER" textFill="#3b414a">
+                              <Label fx:id="uiDate" alignment="CENTER" layoutX="9.0" layoutY="39.0" prefHeight="38.0" prefWidth="125.0" text="dd/mm/yyyy" textAlignment="CENTER" textFill="#3b414a">
                                  <font>
                                     <Font name="SansSerif Bold" size="19.0" />
                                  </font>
                               </Label>
-                              <Text fill="#98a2b2" layoutX="1137.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Date" wrappingWidth="121.378173828125">
+                              <Text fill="#98a2b2" layoutX="13.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Date" wrappingWidth="121.378173828125">
                                  <font>
                                     <Font name="SansSerif Bold" size="19.0" />
                                  </font>
                               </Text>
+                              <Line endX="175.6666259765625" endY="579.2929077148438" layoutX="-42.0" layoutY="-539.0" startX="51.0" startY="579.2929077148438" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
                            </children>
                         </Pane>
                      </children>
                   </AnchorPane>
+                  <HBox alignment="CENTER" layoutX="-3.0" layoutY="82.0" prefHeight="638.0" prefWidth="1039.0" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="82.0">
+                     <padding>
+                        <Insets left="8.0" />
+                     </padding>
+                     <children>
+                        <ImageView blendMode="SRC_ATOP" fitHeight="178.0" fitWidth="731.0" opacity="0.08" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,30), 15, 0, 0, 0);">
+                           <image>
+                              <Image url="@../images/iconhospi.png" />
+                           </image>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </ImageView>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
-            <HBox alignment="CENTER_LEFT" prefHeight="186.0" prefWidth="1280.0" spacing="40.0">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets left="8.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="385.0" spacing="40.0">
-               <padding>
-                  <Insets left="8.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
+         </center>
+         <left>
+            <AnchorPane prefHeight="720.0" prefWidth="169.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView blendMode="SRC_ATOP" fitHeight="178.0" fitWidth="731.0" opacity="0.08" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,30), 15, 0, 0, 0);">
-                     <image>
-                        <Image url="@../images/iconhospi.png" />
-                     </image>
-                     <effect>
-                        <Glow />
-                     </effect>
-                  </ImageView>
+                  <Pane prefHeight="187.0" prefWidth="241.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="199.0" layoutX="19.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
+                           <image>
+                              <Image url="@../images/iconhospi.png" />
+                           </image>
+                        </ImageView>
+                        <Button alignment="CENTER" layoutX="15.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchAdminDashboard" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Dashboard" textFill="#98a2b2">
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/dashboard.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <SplitMenuButton alignment="CENTER" layoutX="16.0" layoutY="190.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Appointment" textAlignment="CENTER" textFill="#98a2b2">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#showMakeRendezvousWindow" text="Make Appointment" />
+                              <MenuItem mnemonicParsing="false" onAction="#showCancelRendezvousWindow" text="Cancel Appointment" />
+                              <MenuItem mnemonicParsing="false" onAction="#showCheckRendezvousWindow" text="Check Appointment" />
+                              <MenuItem mnemonicParsing="false" onAction="#showRendezvousListWindow" text="List Appointments" />
+                           </items>
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/appointment.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </SplitMenuButton>
+                        <SplitMenuButton alignment="CENTER" layoutX="14.0" layoutY="265.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Hospitals" textAlignment="CENTER" textFill="#98a2b2">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#showAddHospitalWindow" text="Add Hospital" />
+                            <MenuItem mnemonicParsing="false" onAction="#showDeleteHospitalWindow" text="Delete Hospital" />
+                              <MenuItem mnemonicParsing="false" onAction="#showRenameHospitalWindow" text="Rename Hospital" />
+                              <MenuItem mnemonicParsing="false" onAction="#showHospitalListWindow" text="List Hospitals" />
+                          </items>
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/hospital.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </SplitMenuButton>
+                        <SplitMenuButton alignment="CENTER" layoutX="13.0" layoutY="340.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Sections" textAlignment="CENTER" textFill="#98a2b2">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#showAddSectionWindow" text="Add Section" />
+                              <MenuItem mnemonicParsing="false" onAction="#showDeleteSectionWindow" text="Delete Section" />
+                              <MenuItem mnemonicParsing="false" onAction="#showRenameSectionWindow" text="Rename Section" />
+                              <MenuItem mnemonicParsing="false" onAction="#showSectionListWindow" text="List Sections" />
+                           </items>
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/sections.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </SplitMenuButton>
+                        <SplitMenuButton alignment="CENTER" layoutX="13.0" layoutY="415.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Doctors" textAlignment="CENTER" textFill="#98a2b2">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#showAddDoctorWindow" text="Add Doctor" />
+                              <MenuItem mnemonicParsing="false" onAction="#showDeleteDoctorWindow" text="Delete Doctor" />
+                              <MenuItem mnemonicParsing="false" onAction="#showRenameDoctorWindow" text="Rename Doctor" />
+                              <MenuItem mnemonicParsing="false" onAction="#showDoctorListWindow" text="List Doctors" />
+                           </items>
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/doctor-menu.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </SplitMenuButton>
+                        <SplitMenuButton alignment="CENTER" layoutX="15.0" layoutY="490.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Patients" textAlignment="CENTER" textFill="#98a2b2">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#showAddPatientWindow" text="Add Patient" />
+                              <MenuItem mnemonicParsing="false" onAction="#showDeletePatientWindow" text="Delete Patient" />
+                              <MenuItem mnemonicParsing="false" onAction="#showRenamePatientWindow" text="Rename Patient" />
+                              <MenuItem mnemonicParsing="false" onAction="#showPatientListWindow" text="List Patients" />
+                           </items>
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/patients.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </SplitMenuButton>
+                        <Line endX="223.50001525878906" endY="579.2929077148438" layoutX="-1.0" layoutY="-5.0" startX="19.500015258789062" startY="579.2929077148438" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
+                        <Button alignment="CENTER" layoutX="13.0" layoutY="605.0" mnemonicParsing="false" onAction="#showAdminSettingsWindow" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Settings" textFill="#98a2b2">
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/settings.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </Pane>
                </children>
-            </HBox>
-         </children>
-      </VBox>
-   </center>
-   <left>
-      <AnchorPane prefHeight="720.0" prefWidth="169.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane prefHeight="187.0" prefWidth="241.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <ImageView fitHeight="49.0" fitWidth="199.0" layoutX="19.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
-                     <image>
-                        <Image url="@../images/iconhospi.png" />
-                     </image>
-                  </ImageView>
-                  <Button alignment="CENTER" layoutX="15.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchAdminDashboard" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Dashboard" textFill="#98a2b2">
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/dashboard.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <SplitMenuButton alignment="CENTER" layoutX="16.0" layoutY="190.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Appointment" textAlignment="CENTER" textFill="#98a2b2">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Make Appointment" />
-                        <MenuItem mnemonicParsing="false" text="Cancel Appointment" />
-                        <MenuItem mnemonicParsing="false" text="Check Appointment" />
-                        <MenuItem mnemonicParsing="false" onAction="#showRendezvousListWindow" text="List Appointments" />
-                     </items>
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/appointment.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </SplitMenuButton>
-                  <SplitMenuButton alignment="CENTER" layoutX="14.0" layoutY="265.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Hospitals" textAlignment="CENTER" textFill="#98a2b2">
-                    <items>
-                      <MenuItem mnemonicParsing="false" onAction="#showAddHospitalWindow" text="Add Hospital" />
-                      <MenuItem mnemonicParsing="false" onAction="#showDeleteHospitalWindow" text="Delete Hospital" />
-                        <MenuItem mnemonicParsing="false" onAction="#showRenameHospitalWindow" text="Rename Hospital" />
-                        <MenuItem mnemonicParsing="false" onAction="#showHospitalListWindow" text="List Hospitals" />
-                    </items>
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/hospital.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </SplitMenuButton>
-                  <SplitMenuButton alignment="CENTER" layoutX="13.0" layoutY="340.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Sections" textAlignment="CENTER" textFill="#98a2b2">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#showAddSectionWindow" text="Add Section" />
-                        <MenuItem mnemonicParsing="false" onAction="#showDeleteSectionWindow" text="Delete Section" />
-                        <MenuItem mnemonicParsing="false" onAction="#showRenameSectionWindow" text="Rename Section" />
-                        <MenuItem mnemonicParsing="false" onAction="#showSectionListWindow" text="List Sections" />
-                     </items>
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/sections.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </SplitMenuButton>
-                  <SplitMenuButton alignment="CENTER" layoutX="13.0" layoutY="415.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Doctors" textAlignment="CENTER" textFill="#98a2b2">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#showAddDoctorWindow" text="Add Doctor" />
-                        <MenuItem mnemonicParsing="false" onAction="#showDeleteDoctorWindow" text="Delete Doctor" />
-                        <MenuItem mnemonicParsing="false" onAction="#showRenameDoctorWindow" text="Rename Doctor" />
-                        <MenuItem mnemonicParsing="false" onAction="#showDoctorListWindow" text="List Doctors" />
-                     </items>
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/doctor-menu.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </SplitMenuButton>
-                  <SplitMenuButton alignment="CENTER" layoutX="15.0" layoutY="490.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Patients" textAlignment="CENTER" textFill="#98a2b2">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#showAddPatientWindow" text="Add Patient" />
-                        <MenuItem mnemonicParsing="false" onAction="#showDeletePatientWindow" text="Delete Patient" />
-                        <MenuItem mnemonicParsing="false" onAction="#showRenamePatientWindow" text="Rename Patient" />
-                        <MenuItem mnemonicParsing="false" onAction="#showPatientListWindow" text="List Patients" />
-                     </items>
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/patients.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </SplitMenuButton>
-                  <Line endX="223.50001525878906" endY="579.2929077148438" layoutX="-1.0" layoutY="-5.0" startX="19.500015258789062" startY="579.2929077148438" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
-                  <Button alignment="CENTER" layoutX="13.0" layoutY="605.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Settings" textFill="#98a2b2">
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/settings.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </Pane>
-         </children>
-      </AnchorPane>
-   </left>
-</BorderPane>
+            </AnchorPane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

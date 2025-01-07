@@ -23,10 +23,7 @@ public class Schedule implements Serializable {
     }
 
     public void addRendezvous(Rendezvous rendezvous) throws DuplicateInfoException {
-        if (sessions.contains(rendezvous)){
-            throw new DuplicateInfoException("Rendezvous: " + rendezvous + " is already exist");
-        }
-
+        checkRendezvousDuplication(rendezvous);
         sessions.add(rendezvous);
     }
 
@@ -36,6 +33,12 @@ public class Schedule implements Serializable {
         }
 
         sessions.remove(rendezvous);
+    }
+
+    public void checkRendezvousDuplication(Rendezvous rendezvous) throws DuplicateInfoException{
+        if (sessions.contains(rendezvous)){
+            throw new DuplicateInfoException("Rendezvous: " + rendezvous + " is already exist");
+        }
     }
 
     // Get rendezvouses in that day as a list

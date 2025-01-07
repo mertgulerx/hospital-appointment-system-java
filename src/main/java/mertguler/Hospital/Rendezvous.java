@@ -88,7 +88,7 @@ public class Rendezvous implements Serializable {
 
     @Override
     public String toString(){
-        return patient.getName() + ", " + hospital.getName() + ", " + section.getName() + ", " + doctor.getName();
+        return patient.getName() + ", " + hospital.getName() + ", " + section.getName() + ", " + doctor.getName() + ", " + date;
     }
 
 }
