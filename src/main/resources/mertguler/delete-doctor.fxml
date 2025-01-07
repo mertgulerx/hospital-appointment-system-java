@@ -16,9 +16,9 @@
 
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.GuiControllers.Admin.Doctor.DeleteDoctorGUI">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #fafafa;">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: -color-bg-default;">
          <children>
-            <AnchorPane layoutX="26.0" layoutY="23.0" prefHeight="462.0" prefWidth="557.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0); -fx-background-color: #FFFFFF; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="23.0">
+            <AnchorPane layoutX="26.0" layoutY="23.0" prefHeight="462.0" prefWidth="557.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0); -fx-background-color:  -color-bg-default; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="23.0">
                <children>
                   <Separator layoutY="24.0" prefHeight="25.0" prefWidth="531.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                   <HBox alignment="CENTER" prefHeight="39.0" prefWidth="357.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">

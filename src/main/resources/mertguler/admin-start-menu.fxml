@@ -22,7 +22,7 @@
          <center>
             <AnchorPane prefHeight="720.0" prefWidth="1039.0">
                <children>
-                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="78.0" prefWidth="1039.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0); -fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="78.0" prefWidth="1039.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0); -fx-background-color: -color-bg-default;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Text fill="#98a2b2" layoutX="33.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin, Welcome to Hospital Rendezvous System!" wrappingWidth="497.378173828125" AnchorPane.topAnchor="30.0">
                            <font>
@@ -67,7 +67,7 @@
          <left>
             <AnchorPane prefHeight="720.0" prefWidth="169.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="187.0" prefWidth="241.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Pane prefHeight="187.0" prefWidth="241.0" style="-fx-background-color: -color-bg-default; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="49.0" fitWidth="199.0" layoutX="19.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
                            <image>
@@ -105,12 +105,12 @@
                            </graphic>
                         </SplitMenuButton>
                         <SplitMenuButton alignment="CENTER" layoutX="14.0" layoutY="265.0" mnemonicParsing="false" onAction="#showHospitalListWindow" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Hospitals" textAlignment="CENTER" textFill="#98a2b2">
-                          <items>
-                            <MenuItem mnemonicParsing="false" onAction="#showAddHospitalWindow" text="Add Hospital" />
-                            <MenuItem mnemonicParsing="false" onAction="#showDeleteHospitalWindow" text="Delete Hospital" />
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#showAddHospitalWindow" text="Add Hospital" />
+                              <MenuItem mnemonicParsing="false" onAction="#showDeleteHospitalWindow" text="Delete Hospital" />
                               <MenuItem mnemonicParsing="false" onAction="#showRenameHospitalWindow" text="Rename Hospital" />
                               <MenuItem mnemonicParsing="false" onAction="#showHospitalListWindow" text="List Hospitals" />
-                          </items>
+                           </items>
                            <font>
                               <Font name="SansSerif Bold" size="15.0" />
                            </font>
@@ -176,8 +176,8 @@
                               </ImageView>
                            </graphic>
                         </SplitMenuButton>
-                        <Line endX="223.50001525878906" endY="579.2929077148438" layoutX="-1.0" layoutY="-5.0" startX="19.500015258789062" startY="579.2929077148438" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
-                        <Button alignment="CENTER" layoutX="13.0" layoutY="605.0" mnemonicParsing="false" onAction="#showAdminSettingsWindow" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Settings" textFill="#98a2b2">
+                        <Line endX="223.50001525878906" endY="579.2929077148438" layoutX="-1.0" layoutY="-17.0" startX="19.500015258789062" startY="579.2929077148438" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
+                        <Button alignment="CENTER" layoutX="13.0" layoutY="581.0" mnemonicParsing="false" onAction="#showAdminSettingsWindow" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Settings" textFill="#98a2b2">
                            <font>
                               <Font name="SansSerif Bold" size="15.0" />
                            </font>
@@ -185,6 +185,18 @@
                               <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/settings.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="CENTER" layoutX="13.0" layoutY="651.0" mnemonicParsing="false" onAction="#turnOffTheLights" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Dark Mode" textFill="#98a2b2">
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/darkmode.png" />
                                  </image>
                               </ImageView>
                            </graphic>

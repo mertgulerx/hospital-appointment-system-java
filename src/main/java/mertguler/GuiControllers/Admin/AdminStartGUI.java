@@ -1,5 +1,6 @@
 package mertguler.GuiControllers.Admin;
 
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -183,6 +184,14 @@ public class AdminStartGUI implements Initializable {
         showWindow("admin-settings.fxml", "Settings", Modality.APPLICATION_MODAL, image);
     }
 
+    @FXML
+    public void turnOffTheLights(){
+        if (Application.getUserAgentStylesheet().equals(Main.class.getResource("mac-light.css").toExternalForm())){
+            Application.setUserAgentStylesheet(Main.class.getResource("mac-dark.css").toExternalForm());
+        } else {
+            Application.setUserAgentStylesheet(Main.class.getResource("mac-light.css").toExternalForm());
+        }
+    }
 
 
 

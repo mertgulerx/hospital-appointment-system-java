@@ -1,5 +1,6 @@
 package mertguler.GuiControllers.Admin;
 
+import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -497,6 +498,15 @@ public class AdminDashboardGUI implements Initializable {
         InputStream is = Main.class.getResourceAsStream("/images/settings.png");
         Image image = new Image(is);
         showWindow("admin-settings.fxml", "Settings", Modality.APPLICATION_MODAL, image);
+    }
+
+    @FXML
+    public void turnOffTheLights(){
+        if (Application.getUserAgentStylesheet().equals(Main.class.getResource("mac-light.css").toExternalForm())){
+            Application.setUserAgentStylesheet(Main.class.getResource("mac-dark.css").toExternalForm());
+        } else {
+            Application.setUserAgentStylesheet(Main.class.getResource("mac-light.css").toExternalForm());
+        }
     }
 
 
