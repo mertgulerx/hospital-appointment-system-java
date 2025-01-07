@@ -1,20 +1,30 @@
 package mertguler.GuiControllers.Admin;
 
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mertguler.CRS.DateManager;
+import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Rendezvous;
+import mertguler.Hospital.Section;
 import mertguler.Main;
+import mertguler.Person.Doctor;
 
 
 import java.io.IOException;
@@ -22,6 +32,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -34,7 +45,7 @@ public class AdminDashboardGUI implements Initializable {
     private Scene scene;
     private Parent root;
     private int[] monthlyRendezvouses = new int[12];
-    private AdminStartGUI startGUI = new AdminStartGUI();
+    private Hospital hospital;
 
     @FXML
     private Label currentYear;
@@ -57,9 +68,32 @@ public class AdminDashboardGUI implements Initializable {
     @FXML
     private Label activeRendezvousCount;
 
+    @FXML
+    private ComboBox<Hospital> hospitalBox;
+
+    @FXML
+    private PieChart pieChart;
 
     @FXML
     private Label uiDate;
+
+    @FXML
+    private Label activeHospital;
+
+    @FXML
+    private Label activeSection;
+
+    @FXML
+    private Label activeDoctor;
+
+    @FXML
+    private ImageView activeIconHospital;
+
+    @FXML
+    private ImageView activeIconSection;
+
+    @FXML
+    private ImageView activeIconDoctor;
 
     @FXML
     private LineChart<String, Number> patientVisitsChart;
@@ -87,12 +121,105 @@ public class AdminDashboardGUI implements Initializable {
         series.getData().add(new XYChart.Data("Nov", monthlyRendezvouses[10]));
         series.getData().add(new XYChart.Data("Dec", monthlyRendezvouses[11]));
         patientVisitsChart.getData().add(series);
+
         currentYear.setText(String.valueOf(DateManager.getCurrentDate().getYear()));
+
+        hospitalBox.setItems(FXCollections.observableArrayList(crs.getHospitals().values()));
+
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("Hospitals", crs.getHospitalManager().getHospitals().size()),
+                        new PieChart.Data ("Sections", crs.getHospitalManager().countAllSections()),
+                        new PieChart.Data("Doctors", crs.getHospitalManager().countAllDoctors()));
+        pieChartData.forEach(data ->
+                data.nameProperty().bind(
+                        Bindings.concat(
+                                data.getName(), ": ", data.pieValueProperty()
+                        )
+                )
+        );
+        pieChart.getData().addAll(pieChartData);
+        HashMap<Integer, Hospital> hospitals = crs.getHospitals();
+        Hospital mostActiveHospital = null;
+        int maxRendezvousCount = 0;
+        int rendezvousCount;
+        for (Hospital hospital: hospitals.values()){
+            rendezvousCount = hospital.countAllRendezvouses();
+            if (rendezvousCount >= maxRendezvousCount){
+                mostActiveHospital = hospital;
+                maxRendezvousCount  = rendezvousCount;
+            }
+        }
+
+        InputStream is = Main.class.getResourceAsStream("/images/activated.png");
+        Image activatedIcon = new Image(is);
+
+        if (mostActiveHospital != null){
+            activeHospital.setText(mostActiveHospital.getName() + ": " + maxRendezvousCount + " Appointments");
+            activeIconHospital.setImage(activatedIcon);
+        }
+
+        Section mostActiveSection = null;
+        maxRendezvousCount = 0;
+        rendezvousCount = 0;
+        for (Hospital hospital: hospitals.values()){
+            for (Section section: hospital.getSections()){
+                rendezvousCount = section.countAllRendezvouses();
+                if (rendezvousCount >= maxRendezvousCount){
+                    mostActiveSection = section;
+                    maxRendezvousCount  = rendezvousCount;
+                }
+            }
+        }
+
+        if (mostActiveSection != null){
+            activeSection.setText(mostActiveSection.getName() + ", ID: " + mostActiveSection.getId() + ": " + maxRendezvousCount + " Appointments");
+            activeIconSection.setImage(activatedIcon);
+        }
+
+        Doctor mostActiveDoctor = null;
+        maxRendezvousCount = 0;
+        rendezvousCount = 0;
+        for (Hospital hospital: hospitals.values()){
+            for (Section section: hospital.getSections()){
+                for (Doctor doctor: section.getDoctors()){
+                    rendezvousCount = doctor.getSchedule().getRendezvousCount();
+                    if (rendezvousCount >= maxRendezvousCount){
+                        mostActiveDoctor = doctor;
+                        maxRendezvousCount  = rendezvousCount;
+                    }
+                }
+            }
+        }
+
+        if (mostActiveDoctor != null){
+            activeDoctor.setText(mostActiveDoctor.getName() + ": " + maxRendezvousCount + " Appointments");
+            activeIconDoctor.setImage(activatedIcon);
+        }
+
     }
 
     public void setCurrentDate() {
         String date = DateManager.getCurrentDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         uiDate.setText(date);
+    }
+
+    public void initializePieChart(){
+        Hospital hospital = hospitalBox.getValue();
+        pieChart.getData().clear();
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("Appt", hospital.countAllRendezvouses()),
+                        new PieChart.Data ("Sections", hospital.getSections().size()),
+                        new PieChart.Data("Doctors", hospital.countAllDoctors()));
+        pieChartData.forEach(data ->
+                data.nameProperty().bind(
+                        Bindings.concat(
+                                data.getName(), ": ", data.pieValueProperty()
+                        )
+                )
+        );
+        pieChart.getData().addAll(pieChartData);
     }
 
     public void updatePatientVisitsChart(){
@@ -104,6 +231,7 @@ public class AdminDashboardGUI implements Initializable {
         setTotalRendezvousCount();
         setActiveRendezvousCount();
     }
+
     public void setPatientCount() {
         patientCount.setText(String.valueOf(crs.getPatientCount()));
     }

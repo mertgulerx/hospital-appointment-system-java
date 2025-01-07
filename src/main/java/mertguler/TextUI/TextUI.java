@@ -31,7 +31,7 @@ public class TextUI {
             clear();
             header();
             int input = 9;
-            System.out.println("\nDefaults:");
+            System.out.println("\n\nWARNING! TextUI is outdated!\n\nDefaults:");
             System.out.println("Max Rendezvous Per Patient: " + MAX_RENDEZVOUS_PER_PATIENT);
             System.out.println("Rendezvous Day Limit: " + RENDEZVOUS_DAY_LIMIT + " days");
 
@@ -102,7 +102,7 @@ public class TextUI {
             clear();
             header();
             int input = 9;
-            System.out.println("\nAdmin Mode: 0");
+            System.out.println("\n\nWARNING! TextUI is outdated!\n\nAdmin Mode: 0");
             System.out.println("User Mode: 1");
             System.out.println("Save Default Settings: 2");
             System.out.println("Load Default Settings: 3");

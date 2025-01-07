@@ -24,7 +24,7 @@
                <children>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="78.0" prefWidth="1039.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0); -fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Text fill="#98a2b2" layoutX="33.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Hospital Rendezvous System!" wrappingWidth="462.378173828125" AnchorPane.topAnchor="30.0">
+                        <Text fill="#98a2b2" layoutX="33.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin, Welcome to Hospital Rendezvous System!" wrappingWidth="497.378173828125" AnchorPane.topAnchor="30.0">
                            <font>
                               <Font name="SansSerif Bold" size="20.0" />
                            </font>
@@ -86,7 +86,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <SplitMenuButton alignment="CENTER" layoutX="16.0" layoutY="190.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Appointment" textAlignment="CENTER" textFill="#98a2b2">
+                        <SplitMenuButton alignment="CENTER" layoutX="16.0" layoutY="190.0" mnemonicParsing="false" onAction="#showMakeRendezvousWindow" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Appointment" textAlignment="CENTER" textFill="#98a2b2">
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#showMakeRendezvousWindow" text="Make Appointment" />
                               <MenuItem mnemonicParsing="false" onAction="#showCancelRendezvousWindow" text="Cancel Appointment" />
@@ -104,7 +104,7 @@
                               </ImageView>
                            </graphic>
                         </SplitMenuButton>
-                        <SplitMenuButton alignment="CENTER" layoutX="14.0" layoutY="265.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Hospitals" textAlignment="CENTER" textFill="#98a2b2">
+                        <SplitMenuButton alignment="CENTER" layoutX="14.0" layoutY="265.0" mnemonicParsing="false" onAction="#showHospitalListWindow" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Hospitals" textAlignment="CENTER" textFill="#98a2b2">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#showAddHospitalWindow" text="Add Hospital" />
                             <MenuItem mnemonicParsing="false" onAction="#showDeleteHospitalWindow" text="Delete Hospital" />
@@ -122,7 +122,7 @@
                               </ImageView>
                            </graphic>
                         </SplitMenuButton>
-                        <SplitMenuButton alignment="CENTER" layoutX="13.0" layoutY="340.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Sections" textAlignment="CENTER" textFill="#98a2b2">
+                        <SplitMenuButton alignment="CENTER" layoutX="13.0" layoutY="340.0" mnemonicParsing="false" onAction="#showSectionListWindow" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Sections" textAlignment="CENTER" textFill="#98a2b2">
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#showAddSectionWindow" text="Add Section" />
                               <MenuItem mnemonicParsing="false" onAction="#showDeleteSectionWindow" text="Delete Section" />
@@ -140,7 +140,7 @@
                               </ImageView>
                            </graphic>
                         </SplitMenuButton>
-                        <SplitMenuButton alignment="CENTER" layoutX="13.0" layoutY="415.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Doctors" textAlignment="CENTER" textFill="#98a2b2">
+                        <SplitMenuButton alignment="CENTER" layoutX="13.0" layoutY="415.0" mnemonicParsing="false" onAction="#showDoctorListWindow" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Doctors" textAlignment="CENTER" textFill="#98a2b2">
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#showAddDoctorWindow" text="Add Doctor" />
                               <MenuItem mnemonicParsing="false" onAction="#showDeleteDoctorWindow" text="Delete Doctor" />
@@ -158,7 +158,7 @@
                               </ImageView>
                            </graphic>
                         </SplitMenuButton>
-                        <SplitMenuButton alignment="CENTER" layoutX="15.0" layoutY="490.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Patients" textAlignment="CENTER" textFill="#98a2b2">
+                        <SplitMenuButton alignment="CENTER" layoutX="15.0" layoutY="490.0" mnemonicParsing="false" onAction="#showPatientListWindow" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Patients" textAlignment="CENTER" textFill="#98a2b2">
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#showAddPatientWindow" text="Add Patient" />
                               <MenuItem mnemonicParsing="false" onAction="#showDeletePatientWindow" text="Delete Patient" />

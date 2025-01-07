@@ -116,7 +116,7 @@ public class AddPatientGUI implements Initializable{
         // Printing purposes only
         // Doesn't change the logic
         if (age.equals(String.valueOf(0))){
-            age = "Unknown";
+            age = "0 or Unknown";
         }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

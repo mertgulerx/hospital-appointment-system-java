@@ -16,23 +16,20 @@ public class Section implements Serializable {
     private String name;
     private ArrayList<Doctor> doctors;
     private boolean isChildSection;
-    private boolean isFemaleSection;
 
     public Section(String name, int id){
         this.name = name;
         this.id = id;
         doctors = new ArrayList<>();
         isChildSection = false;
-        isFemaleSection = false;
     }
 
-    public Section(String name, Hospital hospital, boolean isChildSection, boolean isFemaleSection){
+    public Section(String name, Hospital hospital, boolean isChildSection){
         this.name = name;
         this.id = hospital.getId() * 1000 + hospital.getAllTimeSectionCount() + 1;
         hospital.increaseAllTimeSectionCount();
         doctors = new ArrayList<>();
         this.isChildSection = isChildSection;
-        this.isFemaleSection = isFemaleSection;
     }
 
     public void addDoctor (Doctor doctor) throws DuplicateInfoException{
@@ -126,8 +123,13 @@ public class Section implements Serializable {
         return isChildSection;
     }
 
-    public boolean isFemaleSection(){
-        return isFemaleSection;
+    public int countAllRendezvouses(){
+        int count = 0;
+        for (Doctor doctor: doctors){
+            count += doctor.getSchedule().getRendezvousCount();
+        }
+
+        return count;
     }
 
     public int getId(){
@@ -167,6 +169,6 @@ public class Section implements Serializable {
 
     @Override
     public String toString(){
-        return name + ", ID: " + id + ", Female Only: " + isFemaleSection + ", Child Only: " + isChildSection;
+        return name + ", ID: " + id + ", Child Only: " + isChildSection;
     }
 }

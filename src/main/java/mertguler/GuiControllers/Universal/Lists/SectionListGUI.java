@@ -33,9 +33,6 @@ public class SectionListGUI implements Initializable {
     public TreeTableColumn<Object, Number> idColumn;
 
     @FXML
-    public TreeTableColumn<Object, String> genderColumn;
-
-    @FXML
     public TreeTableColumn<Object, String> childColumn;
 
 
@@ -76,20 +73,6 @@ public class SectionListGUI implements Initializable {
                 } else if (cellData.getValue() instanceof Section) {
                     Section section = (Section) cellData.getValue();
                     return new SimpleIntegerProperty(section.getId());
-                }
-            }
-            return null;
-        });
-
-        genderColumn.setCellValueFactory(param -> {
-            TreeItem<Object> cellData = param.getValue();
-            if (cellData != null) {
-                if (cellData.getValue() instanceof Hospital) {
-                    Hospital hospital = (Hospital) cellData.getValue();
-                    return new SimpleStringProperty("");
-                } else if (cellData.getValue() instanceof Section) {
-                    Section section = (Section) cellData.getValue();
-                    return new SimpleStringProperty(String.valueOf(section.isFemaleSection()));
                 }
             }
             return null;

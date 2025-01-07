@@ -37,11 +37,6 @@ public class AdminStartGUI implements Initializable {
     }
 
     @FXML
-    public void switchAdminHospitals() throws IOException {
-        changeScene("admin-hospitals.fxml");
-    }
-
-    @FXML
     public void showHospitalListWindow() throws IOException {
         InputStream is = Main.class.getResourceAsStream("/images/hospital.png");
         Image image = new Image(is);

@@ -97,6 +97,7 @@ public class HospitalManager {
         return count;
     }
 
+
     public int countAllDoctors() {
         int count = 0;
 

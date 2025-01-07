@@ -55,19 +55,11 @@
                         <Insets bottom="30.0" left="5.0" right="5.0" />
                      </VBox.margin>
                   </ComboBox>
-                  <HBox prefHeight="72.0" prefWidth="252.0">
-                     <children>
-                        <ToggleButton fx:id="genderSwitch" mnemonicParsing="false" onAction="#changeGender" prefHeight="48.0" prefWidth="107.0" text="Female Only" />
-                        <ToggleButton fx:id="childSwitch" mnemonicParsing="false" onAction="#changeChild" prefHeight="48.0" prefWidth="107.0" text="Child Only">
-                           <HBox.margin>
-                              <Insets left="40.0" />
-                           </HBox.margin>
-                        </ToggleButton>
-                     </children>
+                  <ToggleButton fx:id="childSwitch" mnemonicParsing="false" onAction="#changeChild" prefHeight="48.0" prefWidth="107.0" text="Child Only">
                      <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
+                        <Insets bottom="30.0" />
                      </VBox.margin>
-                  </HBox>
+                  </ToggleButton>
                   <Button mnemonicParsing="false" onAction="#check" prefHeight="38.0" prefWidth="87.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0);" text="Add" textFill="#363636">
                      <font>
                         <Font name="SansSerif Bold" size="15.0" />

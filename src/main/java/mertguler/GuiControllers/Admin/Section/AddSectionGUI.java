@@ -24,7 +24,6 @@ import static mertguler.GuiControllers.Gui.crs;
 public class AddSectionGUI implements Initializable {
     private String name;
     private Hospital hospital;
-    private boolean isFemaleOnly = false;
     private boolean isChildOnly = false;
     private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
     private Image image = new Image(is);
@@ -34,9 +33,6 @@ public class AddSectionGUI implements Initializable {
 
     @FXML
     private ComboBox<Hospital> hospitalBox;
-
-    @FXML
-    private ToggleButton genderSwitch;
 
     @FXML
     private ToggleButton childSwitch;
@@ -55,15 +51,6 @@ public class AddSectionGUI implements Initializable {
         }
     }
 
-    public void changeGender(){
-        if (isFemaleOnly){
-            isFemaleOnly = false;
-        } else {
-            isFemaleOnly = true;
-        }
-    }
-
-
     public void check() {
         name = nameField.getText();
         hospital = hospitalBox.getValue();
@@ -78,11 +65,11 @@ public class AddSectionGUI implements Initializable {
         }
 
         try {
-            Section section = new Section(name, hospital, isChildOnly, isFemaleOnly);
+            Section section = new Section(name, hospital, isChildOnly);
             hospital.addSection(section);
             System.out.println("Section is added to Hospital: " + hospital + ": with name: " + name + ", ID: " + section.getId()
-                    + ", Female Only: " + isFemaleOnly + ", Child Only: " + isChildOnly);
-            showSuccess("Section is added to Hospital: " + hospital,"Section Name: " + name + "\nSection ID: "+ section.getId() + "\nFemale Only: " + isFemaleOnly + "\nChild Only: " + isChildOnly);
+                    + ", Child Only: " + isChildOnly);
+            showSuccess("Section is added to Hospital: " + hospital,"Section Name: " + name + "\nSection ID: "+ section.getId() +  "\nChild Only: " + isChildOnly);
         } catch (DuplicateInfoException e) {
             System.out.println(e.getMessage());
             showError(e.getMessage());

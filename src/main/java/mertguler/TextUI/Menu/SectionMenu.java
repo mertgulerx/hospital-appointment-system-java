@@ -163,7 +163,7 @@ public class SectionMenu {
              */
 
             try {
-                hospital.addSection(new Section(name, hospital, false, false));
+                hospital.addSection(new Section(name, hospital, false));
                 System.out.println("Selection is successfully added.");
                 returner();
                 return true;

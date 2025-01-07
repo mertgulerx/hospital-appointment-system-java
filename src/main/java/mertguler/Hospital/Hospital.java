@@ -105,6 +105,25 @@ public class Hospital implements Serializable {
         return allTimeSectionCount;
     }
 
+    public int countAllRendezvouses(){
+        int count = 0;
+
+        for (Section section: sections){
+            count += section.countAllRendezvouses();
+        }
+
+        return count;
+    }
+
+    public int countAllDoctors(){
+        int count = 0;
+
+        for (Section section: sections){
+            count += section.getDoctors().size();
+        }
+
+        return  count;
+    }
     public void increaseAllTimeSectionCount(){
         allTimeSectionCount++;
     }

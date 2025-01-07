@@ -104,19 +104,19 @@
                   </HBox>
                </children>
             </VBox>
-            <Label fx:id="dataLabel" alignment="CENTER" layoutX="63.0" layoutY="383.0" prefHeight="20.0" prefWidth="327.0" text="Data load info">
+            <Label fx:id="dataLabel" alignment="CENTER" layoutX="63.0" layoutY="383.0" prefHeight="20.0" prefWidth="327.0">
                <font>
                   <Font name="SansSerif Regular" size="15.0" />
                </font>
             </Label>
             <Text fill="#ee4040" layoutX="26.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 2, 0, 0, 0);" text="These settings are experimental. Only for test purposes." wrappingWidth="398.7562901490471" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="6.173317982302706">
                <font>
-                  <Font name="SansSerif Italic" size="16.0" />
+                  <Font name="SansSerif Regular" size="16.0" />
                </font>
             </Text>
             <Text fill="#ee4040" layoutX="21.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 2, 0, 0, 0);" text="Changes might broke the serialized data. Not recommended." wrappingWidth="415.8266820176973" AnchorPane.bottomAnchor="337.2421875" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="6.173317982302706" AnchorPane.topAnchor="73.0">
                <font>
-                  <Font name="SansSerif Italic" size="15.0" />
+                  <Font name="SansSerif Regular" size="15.0" />
                </font>
             </Text>
          </children>

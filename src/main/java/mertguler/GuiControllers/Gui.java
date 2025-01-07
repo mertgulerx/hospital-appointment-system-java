@@ -35,7 +35,6 @@ public class Gui extends Application {
         // Can it improve text quality??
         System.setProperty("prism.lcdtext", "false");
         Application.setUserAgentStylesheet(Main.class.getResource("mac-light.css").toExternalForm());
-        //Application.setUserAgentStylesheet(Gui.class.getResource("win-light.css").toExternalForm());
         Parent root = FXMLLoader.load(Main.class.getResource("login-menu.fxml"));
 
         stage.setTitle("Hospital Rendezvous System");
@@ -54,7 +53,7 @@ public class Gui extends Application {
             y = screenBounds.getMaxY() * 0.8;
         }
 
-        Scene scene =  new Scene(root, screenBounds.getMaxX() * 0.8, screenBounds.getMaxY() * 0.8);
+        Scene scene =  new Scene(root, x, y);
 
         stage.setScene(scene);
         stage.show();

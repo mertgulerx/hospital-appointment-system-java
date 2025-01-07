@@ -8,10 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import mertguler.CRS.DateManager;
 import mertguler.CRS.PatientManager;
-import mertguler.Exceptions.DailyLimitException;
-import mertguler.Exceptions.DuplicateInfoException;
-import mertguler.Exceptions.IDException;
-import mertguler.Exceptions.RendezvousLimitException;
+import mertguler.Exceptions.*;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Rendezvous;
 import mertguler.Hospital.Section;
@@ -118,6 +115,7 @@ public class AddRendezvousGUI implements Initializable {
         try {
             crs.checkValidity(nationalID, doctor, desiredDate);
             patient = crs.getPatientManager().getPatient(nationalID);
+            crs.checkChildSection(patient, section);
             rendezvous = new Rendezvous(desiredDate, doctor, patient, hospital, section);
             crs.checkDuplication(doctor, rendezvous);
             showSuccess();
@@ -135,6 +133,9 @@ public class AddRendezvousGUI implements Initializable {
         } catch (DuplicateInfoException die){
             System.out.println(die.getMessage());
             showError(die.getMessage());
+        } catch (ChildOnlyException coe){
+            System.out.println(coe.getMessage());
+            showError(coe.getMessage());
         }
 
     }

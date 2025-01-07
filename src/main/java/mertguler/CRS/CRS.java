@@ -1,9 +1,6 @@
 package mertguler.CRS;
 
-import mertguler.Exceptions.DailyLimitException;
-import mertguler.Exceptions.DuplicateInfoException;
-import mertguler.Exceptions.IDException;
-import mertguler.Exceptions.RendezvousLimitException;
+import mertguler.Exceptions.*;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Rendezvous;
 import mertguler.Hospital.Section;
@@ -48,7 +45,8 @@ public class CRS {
     // Rendezvous
 
     public boolean makeRendezvous(long patientID, int hospitalID, int sectionID, int diplomaID,
-                                  LocalDate desiredDate) throws IDException, DailyLimitException, RendezvousLimitException, DateTimeException {
+                                  LocalDate desiredDate) throws IDException, DailyLimitException,
+            RendezvousLimitException, DateTimeException, ChildOnlyException{
         // DateTimeException
         checkDateRange(desiredDate);
 
@@ -70,6 +68,12 @@ public class CRS {
 
         Hospital hospital = hospitals.get(hospitalID);
         Section section = hospital.getSection(sectionID);
+
+        if (section.isChildSection()){
+            if (patient.getAge() > 18){
+                throw new ChildOnlyException("This section is only for children! Patient: " + patient + " is over Age 18");
+            }
+        }
 
         Doctor doctor = section.getDoctor(diplomaID);
 
@@ -108,6 +112,14 @@ public class CRS {
         patient.checkValidity();
         // DailyLimitException
         doctor.getSchedule().checkDailyLimit(desiredDate);
+    }
+
+    public void checkChildSection(Patient patient, Section section) throws ChildOnlyException {
+        if (section.isChildSection()){
+            if (patient.getAge() > 18){
+                throw new ChildOnlyException("This section is only for children! Patient: " + patient + " is over Age 18");
+            }
+        }
     }
 
     public void checkDuplication(Doctor doctor, Rendezvous rendezvous) throws DuplicateInfoException{

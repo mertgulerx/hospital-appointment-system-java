@@ -72,7 +72,7 @@ public class PatientListGUI implements Initializable {
                 Patient patient = (Patient) cellData.getValue();
                 int age = patient.getAge();
                 if (age == 0){
-                    return new SimpleStringProperty("Unknown");
+                    return new SimpleStringProperty("0 or Unknown");
                 } else {
                     return new SimpleStringProperty(String.valueOf(age));
                 }
