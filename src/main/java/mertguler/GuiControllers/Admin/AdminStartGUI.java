@@ -160,5 +160,35 @@ public class AdminStartGUI implements Initializable {
         showWindow("rename-patient.fxml", "Rename Patient", Modality.APPLICATION_MODAL, image);
     }
 
+    @FXML
+    public void showMakeRendezvousWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/appointment.png");
+        Image image = new Image(is);
+        showWindow("add-rendezvous.fxml", "Make Appointment", Modality.APPLICATION_MODAL, image);
+    }
+
+    @FXML
+    public void showCancelRendezvousWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/delete.png");
+        Image image = new Image(is);
+        showWindow("delete-rendezvous.fxml", "Cancel Appointment", Modality.APPLICATION_MODAL, image);
+    }
+
+    @FXML
+    public void showCheckRendezvousWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/search.png");
+        Image image = new Image(is);
+        showWindow("check-rendezvous.fxml", "Check Appointment", Modality.APPLICATION_MODAL, image);
+    }
+
+    @FXML
+    public void showAdminSettingsWindow() throws IOException {
+        InputStream is = Main.class.getResourceAsStream("/images/settings.png");
+        Image image = new Image(is);
+        showWindow("admin-settings.fxml", "Settings", Modality.APPLICATION_MODAL, image);
+    }
+
+
+
 
 }

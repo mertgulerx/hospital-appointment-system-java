@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import mertguler.CRS.CRS;
 import mertguler.CRS.DateManager;
 import mertguler.Main;
+import mertguler.Person.Patient;
 
 import java.io.IOException;
 import java.io.InputStream;

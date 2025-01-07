@@ -6,6 +6,9 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,304 +20,343 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.GuiControllers.Admin.AdminDashboardGUI">
-   <center>
-      <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #fbfcfd;">
-         <children>
-            <AnchorPane prefWidth="1294.0">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.GuiControllers.Admin.AdminDashboardGUI">
+   <children>
+      <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="720.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <AnchorPane prefHeight="720.0" prefWidth="1039.0">
                <children>
-                  <AnchorPane prefHeight="67.0" prefWidth="1300.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0); -fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="78.0" prefWidth="1039.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0); -fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="30.0">
+                        <Text fill="#98a2b2" layoutX="33.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin, Welcome to Hospital Rendezvous System!" wrappingWidth="494.23553466796875" AnchorPane.topAnchor="30.0">
+                           <font>
+                              <Font name="SansSerif Bold" size="20.0" />
+                           </font>
+                        </Text>
+                        <Pane layoutX="879.0" layoutY="2.0" prefHeight="78.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Text fill="#98a2b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Hospital Rendezvous System!" wrappingWidth="462.378173828125" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font name="SansSerif Bold" size="20.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </AnchorPane>
-                        <Pane prefHeight="78.0" prefWidth="1260.0" AnchorPane.rightAnchor="40.0">
-                           <children>
-                              <Line endX="175.6666259765625" endY="579.2929077148438" layoutX="1083.0" layoutY="-542.0" startX="51.0" startY="579.2929077148438" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
-                              <Label fx:id="uiDate" alignment="CENTER" layoutX="1133.0" layoutY="39.0" prefHeight="38.0" prefWidth="125.0" text="dd/mm/yyyy" textAlignment="CENTER" textFill="#3b414a">
+                              <Label fx:id="uiDate" alignment="CENTER" layoutX="9.0" layoutY="39.0" prefHeight="38.0" prefWidth="125.0" text="dd/mm/yyyy" textAlignment="CENTER" textFill="#3b414a">
                                  <font>
                                     <Font name="SansSerif Bold" size="19.0" />
                                  </font>
                               </Label>
-                              <Text fill="#98a2b2" layoutX="1137.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Date" wrappingWidth="121.378173828125">
+                              <Text fill="#98a2b2" layoutX="13.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Date" wrappingWidth="121.378173828125">
                                  <font>
                                     <Font name="SansSerif Bold" size="19.0" />
                                  </font>
                               </Text>
+                              <Line endX="175.6666259765625" endY="579.2929077148438" layoutX="-42.0" layoutY="-539.0" startX="51.0" startY="579.2929077148438" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
                            </children>
                         </Pane>
                      </children>
                   </AnchorPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="149.0" prefWidth="1300.0">
-               <children>
-                  <AnchorPane layoutX="39.0" layoutY="35.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0); -fx-background-color: #FFFFFF; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="37.0">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="79.0" prefWidth="1215.0" spacing="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Pane prefHeight="79.0" prefWidth="163.0">
-                                 <children>
-                                    <Label fx:id="patientCount" layoutX="64.0" layoutY="34.0" prefHeight="20.0" prefWidth="98.0" text="2.400">
-                                       <font>
-                                          <Font name="SansSerif Bold" size="21.0" />
-                                       </font>
-                                    </Label>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="9.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
-                                       <image>
-                                          <Image url="@../images/people.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fill="#98a2b2" layoutX="62.0" layoutY="24.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Patients">
-                                       <font>
-                                          <Font name="SansSerif Bold" size="15.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </Pane>
-                              <Pane prefHeight="79.0" prefWidth="123.0">
-                                 <children>
-                                    <Label fx:id="doctorCount" layoutX="64.0" layoutY="34.0" prefHeight="20.0" prefWidth="98.0" text="60">
-                                       <font>
-                                          <Font name="SansSerif Bold" size="21.0" />
-                                       </font>
-                                    </Label>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="9.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
-                                       <image>
-                                          <Image url="@../images/doctorthumbnail.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fill="#98a2b2" layoutX="62.0" layoutY="24.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctors">
-                                       <font>
-                                          <Font name="SansSerif Bold" size="15.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </Pane>
-                              <Pane prefHeight="79.0" prefWidth="133.0">
-                                 <children>
-                                    <Label fx:id="hospitalCount" layoutX="64.0" layoutY="34.0" prefHeight="20.0" prefWidth="98.0" text="8">
-                                       <font>
-                                          <Font name="SansSerif Bold" size="21.0" />
-                                       </font>
-                                    </Label>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="9.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
-                                       <image>
-                                          <Image url="@../images/hospitalthumbnail.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fill="#98a2b2" layoutX="62.0" layoutY="24.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Hospitals">
-                                       <font>
-                                          <Font name="SansSerif Bold" size="15.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </Pane>
-                              <Pane prefHeight="79.0" prefWidth="169.0">
-                                 <children>
-                                    <Label fx:id="sectionCount" layoutX="64.0" layoutY="34.0" prefHeight="20.0" prefWidth="98.0" text="30">
-                                       <font>
-                                          <Font name="SansSerif Bold" size="21.0" />
-                                       </font>
-                                    </Label>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="9.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
-                                       <image>
-                                          <Image url="@../images/sectionthumbnail.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fill="#98a2b2" layoutX="62.0" layoutY="24.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Sections">
-                                       <font>
-                                          <Font name="SansSerif Bold" size="15.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </Pane>
-                              <Pane prefHeight="79.0" prefWidth="205.0">
-                                 <children>
-                                    <Label fx:id="totalRendezvousCount" layoutX="64.0" layoutY="34.0" prefHeight="20.0" prefWidth="98.0" text="210">
-                                       <font>
-                                          <Font name="SansSerif Bold" size="21.0" />
-                                       </font>
-                                    </Label>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="9.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
-                                       <image>
-                                          <Image url="@../images/appointmentthumbnail.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fill="#98a2b2" layoutX="62.0" layoutY="24.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Appointments">
-                                       <font>
-                                          <Font name="SansSerif Bold" size="15.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </Pane>
-                              <Pane prefHeight="79.0" prefWidth="216.0">
-                                 <children>
-                                    <Label fx:id="activeRendezvousCount" layoutX="64.0" layoutY="34.0" prefHeight="20.0" prefWidth="98.0" text="65">
-                                       <font>
-                                          <Font name="SansSerif Bold" size="21.0" />
-                                       </font>
-                                    </Label>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="9.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
-                                       <image>
-                                          <Image url="@../images/active-appointment.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fill="#98a2b2" layoutX="62.0" layoutY="24.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Active Appointments">
-                                       <font>
-                                          <Font name="SansSerif Bold" size="15.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </Pane>
-                           </children>
-                           <padding>
-                              <Insets top="6.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="10.0" layoutY="88.0" prefHeight="371.0" prefWidth="1300.0">
-               <children>
-                  <AnchorPane layoutX="39.0" layoutY="11.0" prefHeight="345.0" prefWidth="527.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0); -fx-background-color: #FFFFFF; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" AnchorPane.leftAnchor="39.0" AnchorPane.topAnchor="11.0">
-                     <children>
-                        <Text layoutX="27.0" layoutY="36.484375" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="22.0">
-                           <font>
-                              <Font name="SansSerif Bold" size="16.0" />
-                           </font>
-                        </Text>
-                        <LineChart fx:id="patientVisitsChart" layoutX="-3.0" layoutY="48.0" prefHeight="285.0" prefWidth="519.0" titleSide="LEFT">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis side="LEFT" />
-                          </yAxis>
-                        </LineChart>
-                        <Text fill="#98a2b2" layoutX="414.0" layoutY="38.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Year:">
-                           <font>
-                              <Font name="SansSerif Bold" size="16.0" />
-                           </font>
-                        </Text>
-                        <Label fx:id="currentYear" layoutX="461.0" layoutY="19.0" prefHeight="25.0" prefWidth="38.0" text="2025">
-                           <font>
-                              <Font name="SansSerif Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Line endX="65.5" endY="597.0" layoutX="434.0" layoutY="-551.0" opacity="0.68" startX="-23.0" startY="597.0" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-         </children>
-      </VBox>
-   </center>
-   <left>
-      <AnchorPane prefHeight="720.0" prefWidth="169.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane prefHeight="187.0" prefWidth="241.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <ImageView fitHeight="49.0" fitWidth="199.0" layoutX="19.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
+                  <ImageView blendMode="SRC_ATOP" fitHeight="178.0" fitWidth="731.0" layoutX="155.0" layoutY="328.0" opacity="0.04" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,30), 15, 0, 0, 0);">
                      <image>
                         <Image url="@../images/iconhospi.png" />
                      </image>
+                     <effect>
+                        <Glow />
+                     </effect>
                   </ImageView>
-                  <Button fx:id="dashboardButton" alignment="CENTER" layoutX="15.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchAdminDashboard" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Dashboard" textFill="#98a2b2">
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/dashboard.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="CENTER" layoutX="16.0" layoutY="190.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Appointment" textFill="#98a2b2">
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/appointment.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="CENTER" layoutX="15.0" layoutY="265.0" mnemonicParsing="false" onAction="#switchAdminHospitals" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Hospitals" textFill="#98a2b2">
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/hospital.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="CENTER" layoutX="14.0" layoutY="415.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Doctors" textFill="#98a2b2">
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/doctor-menu.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="CENTER" layoutX="15.0" layoutY="490.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Patients" textFill="#98a2b2">
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/patients.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="CENTER" layoutX="13.0" layoutY="340.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Sections" textFill="#98a2b2">
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/sections.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Line endX="223.50001525878906" endY="579.2929077148438" layoutX="-1.0" layoutY="-5.0" startX="19.500015258789062" startY="579.2929077148438" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
-                  <Button alignment="CENTER" layoutX="13.0" layoutY="605.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Settings" textFill="#98a2b2">
-                     <font>
-                        <Font name="SansSerif Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/settings.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="77.0" prefHeight="642.0" prefWidth="1039.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="77.0">
+                     <children>
+                        <AnchorPane prefHeight="149.0" prefWidth="1300.0">
+                           <children>
+                              <AnchorPane layoutX="21.0" layoutY="35.0" prefHeight="79.0" prefWidth="1006.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0); -fx-background-color: #FFFFFF; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="37.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="79.0" prefWidth="986.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Pane prefHeight="73.0" prefWidth="173.0">
+                                             <children>
+                                                <Label fx:id="patientCount" layoutX="56.0" layoutY="34.0" prefHeight="20.0" prefWidth="98.0" text="2.400">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="21.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="9.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
+                                                   <image>
+                                                      <Image url="@../images/people.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fill="#98a2b2" layoutX="55.0" layoutY="24.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Patients">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="15.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="73.0" prefWidth="131.0">
+                                             <children>
+                                                <Label fx:id="doctorCount" layoutX="55.0" layoutY="34.0" prefHeight="20.0" prefWidth="98.0" text="60">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="21.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="9.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
+                                                   <image>
+                                                      <Image url="@../images/doctorthumbnail.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fill="#98a2b2" layoutX="54.0" layoutY="24.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctors">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="15.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="73.0" prefWidth="138.0">
+                                             <children>
+                                                <Label fx:id="hospitalCount" layoutX="57.0" layoutY="34.0" prefHeight="20.0" prefWidth="98.0" text="8">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="21.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="7.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
+                                                   <image>
+                                                      <Image url="@../images/hospitalthumbnail.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fill="#98a2b2" layoutX="57.0" layoutY="24.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Hospitals">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="15.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="73.0" prefWidth="164.0">
+                                             <children>
+                                                <Label fx:id="sectionCount" layoutX="55.0" layoutY="34.0" prefHeight="20.0" prefWidth="98.0" text="30">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="21.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="9.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
+                                                   <image>
+                                                      <Image url="@../images/sectionthumbnail.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fill="#98a2b2" layoutX="54.0" layoutY="24.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Sections">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="15.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="73.0" prefWidth="207.0">
+                                             <children>
+                                                <Label fx:id="totalRendezvousCount" layoutX="55.0" layoutY="34.0" prefHeight="20.0" prefWidth="98.0" text="210">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="21.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="4.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
+                                                   <image>
+                                                      <Image url="@../images/appointmentthumbnail.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fill="#98a2b2" layoutX="54.0" layoutY="24.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Appointments">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="15.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="73.0" prefWidth="163.0">
+                                             <children>
+                                                <Label fx:id="activeRendezvousCount" layoutX="56.0" layoutY="34.0" prefHeight="20.0" prefWidth="98.0" text="65">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="21.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="9.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
+                                                   <image>
+                                                      <Image url="@../images/active-appointment.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fill="#98a2b2" layoutX="56.0" layoutY="24.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Active Appt.">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="15.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                       <padding>
+                                          <Insets top="6.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="88.0" prefHeight="371.0" prefWidth="1300.0">
+                           <children>
+                              <AnchorPane layoutX="25.0" layoutY="22.0" prefHeight="345.0" prefWidth="527.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0); -fx-background-color: #FFFFFF; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="22.0">
+                                 <children>
+                                    <Text layoutX="27.0" layoutY="36.484375" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="22.0">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <LineChart fx:id="patientVisitsChart" layoutX="-3.0" layoutY="48.0" prefHeight="285.0" prefWidth="519.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" titleSide="LEFT">
+                                      <xAxis>
+                                        <CategoryAxis side="BOTTOM" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                      </yAxis>
+                                    </LineChart>
+                                    <Text fill="#98a2b2" layoutX="414.0" layoutY="38.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Year:">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Label fx:id="currentYear" layoutX="461.0" layoutY="19.0" prefHeight="25.0" prefWidth="38.0" text="2025">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="65.5" endY="597.0" layoutX="434.0" layoutY="-551.0" opacity="0.68" startX="-23.0" startY="597.0" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="653.0" layoutY="24.0" opacity="0.0" prefHeight="342.0" prefWidth="344.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0); -fx-background-color: #FFFFFF; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
                </children>
-            </Pane>
-         </children>
-      </AnchorPane>
-   </left>
-</BorderPane>
+            </AnchorPane>
+         </center>
+         <left>
+            <AnchorPane prefHeight="720.0" prefWidth="169.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="187.0" prefWidth="241.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 15, 0, 0, 0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="49.0" fitWidth="199.0" layoutX="19.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);">
+                           <image>
+                              <Image url="@../images/iconhospi.png" />
+                           </image>
+                        </ImageView>
+                        <Button alignment="CENTER" layoutX="15.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchAdminDashboard" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Dashboard" textFill="#98a2b2">
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/dashboard.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <SplitMenuButton alignment="CENTER" layoutX="16.0" layoutY="190.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Appointment" textAlignment="CENTER" textFill="#98a2b2">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#showMakeRendezvousWindow" text="Make Appointment" />
+                              <MenuItem mnemonicParsing="false" onAction="#showCancelRendezvousWindow" text="Cancel Appointment" />
+                              <MenuItem mnemonicParsing="false" onAction="#showCheckRendezvousWindow" text="Check Appointment" />
+                              <MenuItem mnemonicParsing="false" onAction="#showRendezvousListWindow" text="List Appointments" />
+                           </items>
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/appointment.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </SplitMenuButton>
+                        <SplitMenuButton alignment="CENTER" layoutX="14.0" layoutY="265.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Hospitals" textAlignment="CENTER" textFill="#98a2b2">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#showAddHospitalWindow" text="Add Hospital" />
+                              <MenuItem mnemonicParsing="false" onAction="#showDeleteHospitalWindow" text="Delete Hospital" />
+                              <MenuItem mnemonicParsing="false" onAction="#showRenameHospitalWindow" text="Rename Hospital" />
+                              <MenuItem mnemonicParsing="false" onAction="#showHospitalListWindow" text="List Hospitals" />
+                           </items>
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/hospital.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </SplitMenuButton>
+                        <SplitMenuButton alignment="CENTER" layoutX="13.0" layoutY="340.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Sections" textAlignment="CENTER" textFill="#98a2b2">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#showAddSectionWindow" text="Add Section" />
+                              <MenuItem mnemonicParsing="false" onAction="#showDeleteSectionWindow" text="Delete Section" />
+                              <MenuItem mnemonicParsing="false" onAction="#showRenameSectionWindow" text="Rename Section" />
+                              <MenuItem mnemonicParsing="false" onAction="#showSectionListWindow" text="List Sections" />
+                           </items>
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/sections.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </SplitMenuButton>
+                        <SplitMenuButton alignment="CENTER" layoutX="13.0" layoutY="415.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Doctors" textAlignment="CENTER" textFill="#98a2b2">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#showAddDoctorWindow" text="Add Doctor" />
+                              <MenuItem mnemonicParsing="false" onAction="#showDeleteDoctorWindow" text="Delete Doctor" />
+                              <MenuItem mnemonicParsing="false" onAction="#showRenameDoctorWindow" text="Rename Doctor" />
+                              <MenuItem mnemonicParsing="false" onAction="#showDoctorListWindow" text="List Doctors" />
+                           </items>
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/doctor-menu.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </SplitMenuButton>
+                        <SplitMenuButton alignment="CENTER" layoutX="15.0" layoutY="490.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Patients" textAlignment="CENTER" textFill="#98a2b2">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#showAddPatientWindow" text="Add Patient" />
+                              <MenuItem mnemonicParsing="false" onAction="#showDeletePatientWindow" text="Delete Patient" />
+                              <MenuItem mnemonicParsing="false" onAction="#showRenamePatientWindow" text="Rename Patient" />
+                              <MenuItem mnemonicParsing="false" onAction="#showPatientListWindow" text="List Patients" />
+                           </items>
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/patients.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </SplitMenuButton>
+                        <Line endX="223.50001525878906" endY="579.2929077148438" layoutX="-1.0" layoutY="-5.0" startX="19.500015258789062" startY="579.2929077148438" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
+                        <Button alignment="CENTER" layoutX="13.0" layoutY="605.0" mnemonicParsing="false" onAction="#showAdminSettingsWindow" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Settings" textFill="#98a2b2">
+                           <font>
+                              <Font name="SansSerif Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/settings.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>
