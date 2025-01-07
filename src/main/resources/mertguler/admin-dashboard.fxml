@@ -198,7 +198,7 @@
                                           <Font name="SansSerif Bold" size="16.0" />
                                        </font>
                                     </Text>
-                                    <LineChart fx:id="patientVisitsChart" layoutX="-3.0" layoutY="48.0" prefHeight="285.0" prefWidth="519.0" titleSide="LEFT">
+                                    <LineChart fx:id="patientVisitsChart" layoutX="-3.0" layoutY="48.0" prefHeight="285.0" prefWidth="519.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" titleSide="LEFT">
                                       <xAxis>
                                         <CategoryAxis side="BOTTOM" />
                                       </xAxis>
@@ -219,6 +219,7 @@
                                     <Line endX="65.5" endY="597.0" layoutX="434.0" layoutY="-551.0" opacity="0.68" startX="-23.0" startY="597.0" stroke="WHITE" strokeWidth="0.5" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);" />
                                  </children>
                               </AnchorPane>
+                              <AnchorPane layoutX="653.0" layoutY="24.0" opacity="0.0" prefHeight="342.0" prefWidth="344.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0); -fx-background-color: #FFFFFF; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" />
                            </children>
                         </AnchorPane>
                      </children>
