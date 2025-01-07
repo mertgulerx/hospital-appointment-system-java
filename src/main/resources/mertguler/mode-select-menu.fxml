@@ -54,7 +54,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="185.0" prefWidth="1280.0" spacing="40.0">
          <children>
-            <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="170.0" prefWidth="220.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);" text="Receptionist Login" textAlignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="15.0" mnemonicParsing="false" onAction="#switchReceptionistMenu" prefHeight="170.0" prefWidth="220.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);" text="Receptionist Login" textAlignment="CENTER">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>

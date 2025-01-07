@@ -193,6 +193,11 @@ public class AdminStartGUI implements Initializable {
         }
     }
 
+    @FXML
+    public void goBack() throws IOException{
+        changeScene("mode-select-menu.fxml");
+    }
+
 
 
 }

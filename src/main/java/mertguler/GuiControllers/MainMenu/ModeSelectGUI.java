@@ -12,5 +12,9 @@ public class ModeSelectGUI {
         changeScene("admin-start-menu.fxml");
     }
 
+    public void switchReceptionistMenu(ActionEvent event) throws IOException {
+        changeScene("receptionist.fxml");
+    }
+
 
 }
