@@ -148,19 +148,6 @@ public class SectionMenu {
                 return false;
             }
 
-            /*
-            System.out.println("Enter Section ID: ");
-
-            try {
-                id = Integer.valueOf(scanner.nextLine());
-            } catch (Exception e) {
-                System.out.println("Please enter only valid numbers within range");
-                returner(scanner);
-                continue;
-            }
-
-             */
-
             try {
                 hospital.addSection(new Section(name, hospital, false));
                 System.out.println("Selection is successfully added.");

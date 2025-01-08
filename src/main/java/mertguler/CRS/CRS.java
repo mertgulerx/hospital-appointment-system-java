@@ -39,33 +39,9 @@ public class CRS {
         patientManager = new PatientManager(patients, this);
     }
 
-
-    // Use if you check everything in the Text UI and GUI
-    public void addRendezvous(Doctor doctor, Rendezvous rendezvous, Patient patient)
-            throws DateTimeException, IDException, DailyLimitException, DuplicateInfoException {
-
-        doctor.getSchedule().addRendezvous(rendezvous);
-        patient.addRendezvous(rendezvous);
-        rendezvouses.add(rendezvous);
-    }
-
-    // GUI Only
-    public void checkValidity(long patientID, Doctor doctor, LocalDate desiredDate)
-            throws IDException, RendezvousLimitException, DuplicateInfoException{
-
-        // ID Exception
-        patientManager.checkPatientID(patientID);
-
-        Patient patient = patientManager.getPatient(patientID);
-
-        // RendezvousLimitException
-        // Validates maximum rendezvous count for patient
-        patient.checkActiveRendezvousCount();
-        // DailyLimitException
-        doctor.getSchedule().checkDailyLimit(desiredDate);
-    }
-
     // Might be used in the future.
+    // I am not using it because my application checks info step by step
+    // Every exception is checked in GUI & Text UI.
     public boolean makeRendezvous(long patientID, int hospitalID, int sectionID, int diplomaID,
                                   LocalDate desiredDate) throws IDException, DailyLimitException,
             RendezvousLimitException, DateTimeException, ChildOnlyException{
@@ -101,6 +77,33 @@ public class CRS {
         rendezvouses.add(rendezvous);
         return true;
     }
+
+    // Use if you check everything in the Text UI and GUI
+    public void addRendezvous(Doctor doctor, Rendezvous rendezvous, Patient patient)
+            throws DateTimeException, IDException, DailyLimitException, DuplicateInfoException {
+
+        doctor.getSchedule().addRendezvous(rendezvous);
+        patient.addRendezvous(rendezvous);
+        rendezvouses.add(rendezvous);
+    }
+
+    // GUI Only
+    public void checkValidity(long patientID, Doctor doctor, LocalDate desiredDate)
+            throws IDException, RendezvousLimitException, DuplicateInfoException{
+
+        // ID Exception
+        patientManager.checkPatientID(patientID);
+
+        Patient patient = patientManager.getPatient(patientID);
+
+        // RendezvousLimitException
+        // Validates maximum rendezvous count for patient
+        patient.checkActiveRendezvousCount();
+        // DailyLimitException
+        doctor.getSchedule().checkDailyLimit(desiredDate);
+    }
+
+
 
     public void checkChildSection(Patient patient, Section section) throws ChildOnlyException {
         if (section.isChildSection()){

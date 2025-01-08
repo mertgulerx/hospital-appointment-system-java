@@ -15,6 +15,8 @@ public class Section implements Serializable {
     private ArrayList<Doctor> doctors;
     private boolean isChildSection;
 
+    // Don't forget to add section to hospital
+    // It is intentional to leave that job to GUI and TextUI
     public Section(String name, Hospital hospital, boolean isChildSection){
         this.name = name;
         this.id = hospital.getId() * 1000 + hospital.getAllTimeSectionCount() + 1;

@@ -58,7 +58,6 @@ public class Schedule implements Serializable {
         if (countForDay == maxPatientPerDay){
             throw new DailyLimitException("Doctor: " + doctor + " has reached daily rendezvous limit for date: " + desiredDate);
         }
-
     }
 
     public void setDoctor(Doctor doctor){
