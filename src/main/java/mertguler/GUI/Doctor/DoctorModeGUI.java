@@ -29,7 +29,7 @@ import static mertguler.GUI.Doctor.SelectDoctorGUI.doctorOfMenu;
 import static mertguler.GUI.Gui.*;
 
 public class DoctorModeGUI implements Initializable {
-    private int[] weeklyRendezvouses = new int[5];
+    private int[] weeklyRendezvouses = new int[6];
     public static LocalDate searchDate;
 
     @FXML
