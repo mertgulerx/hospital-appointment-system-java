@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static mertguler.GuiControllers.Gui.crs;
+import static mertguler.GuiControllers.Gui.*;
 
 
 public class AddDoctorGUI implements Initializable {
@@ -26,8 +26,6 @@ public class AddDoctorGUI implements Initializable {
     private int diplomaID;
     private Hospital hospital;
     private Section section;
-    private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
-    private Image image = new Image(is);
 
     @FXML
     private TextField nameField;
@@ -105,20 +103,10 @@ public class AddDoctorGUI implements Initializable {
 
     }
 
-    public void showError(String text) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(text);
-        alert.show();
-    }
-
     public void showSuccess() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
+        stage.getIcons().add(app_image);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Hospital: " + hospital + "\n"
         + "Section: " + section + "\n"
@@ -140,7 +128,7 @@ public class AddDoctorGUI implements Initializable {
             successAlert.setHeaderText(null);
             successAlert.setContentText("Doctor is successfully created!");
             Stage stage2 = (Stage) successAlert.getDialogPane().getScene().getWindow();
-            stage2.getIcons().add(image);
+            stage2.getIcons().add(app_image);
             successAlert.show();
         }
     }

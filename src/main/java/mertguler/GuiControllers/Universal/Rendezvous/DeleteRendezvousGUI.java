@@ -15,14 +15,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static mertguler.GuiControllers.Gui.crs;
+import static mertguler.GuiControllers.Gui.*;
 
 public class DeleteRendezvousGUI {
     private long nationalID;
     private Patient patient;
     private Rendezvous rendezvous;
-    private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
-    private Image image = new Image(is);
 
     @FXML
     private TextField nationalIDField;
@@ -76,20 +74,10 @@ public class DeleteRendezvousGUI {
         }
     }
 
-    public void showError(String text) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(text);
-        alert.show();
-    }
-
     public void showSuccess() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
+        stage.getIcons().add(app_image);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
         alert.setContentText("Are you sure? Please confirm the cancellation. This action cannot be undone.");

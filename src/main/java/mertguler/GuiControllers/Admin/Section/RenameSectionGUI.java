@@ -18,15 +18,12 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static mertguler.GuiControllers.Gui.crs;
+import static mertguler.GuiControllers.Gui.*;
 
 public class RenameSectionGUI implements Initializable {
     private String name;
     private Hospital hospital;
     private Section section;
-
-    private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
-    private Image image = new Image(is);
 
     @FXML
     private ComboBox<Hospital> hospitalBox;
@@ -60,20 +57,12 @@ public class RenameSectionGUI implements Initializable {
 
     }
 
-    public void showError(String text) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(text);
-        alert.show();
-    }
+
 
     public void showSuccess() {
         Dialog dialog = new TextInputDialog();
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
+        stage.getIcons().add(app_image);
         dialog.setTitle("Rename");
         dialog.setHeaderText("Enter new name for Section: " + section.getName());
         dialog.setContentText("New name:");
@@ -92,7 +81,7 @@ public class RenameSectionGUI implements Initializable {
                 successAlert.setContentText("Section with ID: " + section.getId() + " is successfully renamed!\n" +
                         "New name: " + newName);
                 Stage stage2 = (Stage) successAlert.getDialogPane().getScene().getWindow();
-                stage2.getIcons().add(image);
+                stage2.getIcons().add(app_image);
                 successAlert.show();
             }
         }

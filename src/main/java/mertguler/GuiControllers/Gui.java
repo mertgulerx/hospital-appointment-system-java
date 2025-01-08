@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TreeTablePosition;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.image.Image;
@@ -25,7 +26,8 @@ import java.util.Objects;
 public class Gui extends Application {
     public static CRS crs;
     private static Stage primaryStage;
-
+    public static InputStream app_icon = Main.class.getResourceAsStream("/images/app_icon.png");
+    public static Image app_image = new Image(app_icon);
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -56,6 +58,16 @@ public class Gui extends Application {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void showError(String text) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(app_image);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        alert.show();
     }
 
 

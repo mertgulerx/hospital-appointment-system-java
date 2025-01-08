@@ -24,9 +24,6 @@ import java.util.ResourceBundle;
 import static mertguler.GuiControllers.Universal.Rendezvous.CheckRendezvousGUI.patientForPatientRendezvousList;
 
 public class PatientRendezvousListGUI implements Initializable {
-    private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
-    private Image image = new Image(is);
-
     @FXML
     public TreeTableView<Object> rendezvousesTable;
 
@@ -157,16 +154,6 @@ public class PatientRendezvousListGUI implements Initializable {
 
         });
 
-    }
-
-    public void showError(String text) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(text);
-        alert.show();
     }
 
     @FXML

@@ -32,9 +32,6 @@ import static mertguler.GuiControllers.Gui.*;
 public class DoctorModeGUI implements Initializable {
     private int[] weeklyRendezvouses = new int[4];
     public static LocalDate searchDate;
-    private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
-    private Image image = new Image(is);
-
 
     @FXML
     private Button themeChanger;
@@ -252,16 +249,6 @@ public class DoctorModeGUI implements Initializable {
         InputStream is = Main.class.getResourceAsStream("/images/appointment.png");
         Image image = new Image(is);
         showWindow("doctor-rendezvouses-with-date.fxml", "My Appointments For Date: " + searchDate, Modality.APPLICATION_MODAL, image);
-    }
-
-    public void showError(String text) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(text);
-        alert.show();
     }
 
     @FXML

@@ -13,14 +13,11 @@ import mertguler.Person.Patient;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static mertguler.GuiControllers.Gui.crs;
-import static mertguler.GuiControllers.Gui.showWindow;
+import static mertguler.GuiControllers.Gui.*;
 
 public class CheckRendezvousGUI {
     private int nationalID;
     public static Patient patientForPatientRendezvousList;
-    private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
-    private Image image = new Image(is);
 
     @FXML
     private TextField nationalIDFIeld;
@@ -54,16 +51,6 @@ public class CheckRendezvousGUI {
             showError(e.getMessage());
         }
 
-    }
-
-    public void showError(String text) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(text);
-        alert.show();
     }
 
     public void showSuccess() throws IOException{

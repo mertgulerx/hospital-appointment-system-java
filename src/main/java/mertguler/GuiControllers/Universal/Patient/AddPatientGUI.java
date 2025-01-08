@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static mertguler.CRS.DateManager.getYearDifference;
-import static mertguler.GuiControllers.Gui.crs;
+import static mertguler.GuiControllers.Gui.*;
 
 
 public class AddPatientGUI implements Initializable{
@@ -24,8 +24,6 @@ public class AddPatientGUI implements Initializable{
     private long nationalID;
     private LocalDate birthdate;
     private boolean unknownDate = false;
-    private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
-    private Image image = new Image(is);
 
     // Printing purposes only
     private String age;
@@ -100,16 +98,6 @@ public class AddPatientGUI implements Initializable{
 
     }
 
-    public void showError(String text) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(text);
-        alert.show();
-    }
-
     public void showSuccess() {
         // Printing purposes only
         // Doesn't change the logic
@@ -119,7 +107,7 @@ public class AddPatientGUI implements Initializable{
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
+        stage.getIcons().add(app_image);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Name: " + name + "\n"
                 + "National ID: " + nationalID + "\n"
@@ -138,7 +126,7 @@ public class AddPatientGUI implements Initializable{
             successAlert.setHeaderText(null);
             successAlert.setContentText("Patient is successfully created!");
             Stage stage2 = (Stage) successAlert.getDialogPane().getScene().getWindow();
-            stage2.getIcons().add(image);
+            stage2.getIcons().add(app_image);
             successAlert.show();
         }
     }

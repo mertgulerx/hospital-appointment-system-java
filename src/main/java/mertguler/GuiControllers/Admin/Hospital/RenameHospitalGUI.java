@@ -14,12 +14,10 @@ import mertguler.Main;
 import java.io.InputStream;
 import java.util.Optional;
 
-import static mertguler.GuiControllers.Gui.crs;
+import static mertguler.GuiControllers.Gui.*;
 
 public class RenameHospitalGUI {
     private int hospitalID;
-    private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
-    private Image image = new Image(is);
 
     @FXML
     private TextField idField;
@@ -48,22 +46,12 @@ public class RenameHospitalGUI {
 
     }
 
-    public void showError(String text) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(text);
-        alert.show();
-    }
-
     public void showSuccess() {
         Hospital hospital = crs.getHospitalManager().getHospitalWithID(hospitalID);
 
         Dialog dialog = new TextInputDialog();
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
+        stage.getIcons().add(app_image);
         dialog.setTitle("Rename");
         dialog.setHeaderText("Enter new name for Hospital: " + hospital.getName());
         dialog.setContentText("New name:");
@@ -82,7 +70,7 @@ public class RenameHospitalGUI {
                 successAlert.setContentText("Hospital with ID: " + hospitalID + " is successfully renamed!\n" +
                         "New name: " + newName);
                 Stage stage2 = (Stage) successAlert.getDialogPane().getScene().getWindow();
-                stage2.getIcons().add(image);
+                stage2.getIcons().add(app_image);
                 successAlert.show();
             }
         }

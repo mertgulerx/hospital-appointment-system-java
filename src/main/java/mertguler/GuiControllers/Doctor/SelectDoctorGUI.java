@@ -17,15 +17,12 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static mertguler.GuiControllers.Gui.changeScene;
-import static mertguler.GuiControllers.Gui.crs;
+import static mertguler.GuiControllers.Gui.*;
 
 public class SelectDoctorGUI implements Initializable {
     private Hospital hospital;
     private Section section;
     public static Doctor doctorOfMenu;
-    private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
-    private Image image = new Image(is);
 
     @FXML
     private ComboBox<Hospital> hospitalBox;
@@ -73,15 +70,6 @@ public class SelectDoctorGUI implements Initializable {
 
     }
 
-    public void showError(String text) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(text);
-        alert.show();
-    }
 
     public void switchDoctorMenu() throws IOException {
         changeScene("doctor-dashboard.fxml");

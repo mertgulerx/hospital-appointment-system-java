@@ -21,7 +21,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static mertguler.GuiControllers.Gui.crs;
+import static mertguler.GuiControllers.Gui.*;
 
 public class AddRendezvousGUI implements Initializable {
     private long nationalID;
@@ -31,8 +31,6 @@ public class AddRendezvousGUI implements Initializable {
     private Patient patient;
     private LocalDate desiredDate;
     private Rendezvous rendezvous;
-    private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
-    private Image image = new Image(is);
 
     @FXML
     private TextField nationalIDField;
@@ -137,20 +135,10 @@ public class AddRendezvousGUI implements Initializable {
 
     }
 
-    public void showError(String text) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(text);
-        alert.show();
-    }
-
     public void showSuccess() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
+        stage.getIcons().add(app_image);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Patient: " + patient.getName() +
                 "\nHospital: " + hospital +
@@ -171,7 +159,7 @@ public class AddRendezvousGUI implements Initializable {
             successAlert.setHeaderText(null);
             successAlert.setContentText("Appointment is successfully made!");
             Stage stage2 = (Stage) successAlert.getDialogPane().getScene().getWindow();
-            stage2.getIcons().add(image);
+            stage2.getIcons().add(app_image);
             successAlert.show();
         }
     }

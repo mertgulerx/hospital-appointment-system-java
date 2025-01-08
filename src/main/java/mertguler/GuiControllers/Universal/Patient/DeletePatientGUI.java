@@ -14,12 +14,10 @@ import mertguler.Person.Patient;
 import java.io.InputStream;
 import java.util.Optional;
 
-import static mertguler.GuiControllers.Gui.crs;
+import static mertguler.GuiControllers.Gui.*;
 
 public class DeletePatientGUI {
     private int nationalID;
-    private InputStream is = Main.class.getResourceAsStream("/images/app_icon.png");
-    private Image image = new Image(is);
 
     @FXML
     private TextField idField;
@@ -48,15 +46,6 @@ public class DeletePatientGUI {
 
     }
 
-    public void showError(String text) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(text);
-        alert.show();
-    }
 
     public void showSuccess() {
         Patient patient = crs.getPatientManager().getPatient(nationalID);
@@ -70,7 +59,7 @@ public class DeletePatientGUI {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(image);
+        stage.getIcons().add(app_image);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Patient: " + patient.getName() + ", National ID: " + patient.getNational_id()
                + ", Age: " + age + " is found.");
@@ -91,7 +80,7 @@ public class DeletePatientGUI {
                     "\nID: " + nationalID +
                     "\nAge: " + age);
             Stage stage2 = (Stage) successAlert.getDialogPane().getScene().getWindow();
-            stage2.getIcons().add(image);
+            stage2.getIcons().add(app_image);
             successAlert.show();
         }
     }
