@@ -3,7 +3,7 @@ package mertguler;
 
 import javafx.application.Application;
 import mertguler.CRS.CRS;
-import mertguler.GuiControllers.Gui;
+import mertguler.GUI.Gui;
 import mertguler.TextUI.TextUI;
 
 import java.util.Scanner;
