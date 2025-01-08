@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -47,6 +48,19 @@ public class AdminDashboardGUI implements Initializable {
     private Parent root;
     private int[] monthlyRendezvouses = new int[12];
     private Hospital hospital;
+
+
+    @FXML
+    private Button themeChanger;
+
+    @FXML
+    private ImageView saveIcon;
+
+    @FXML
+    private ImageView loadIcon;
+
+    @FXML
+    private ImageView themeIcon;
 
     @FXML
     private Label currentYear;
@@ -221,16 +235,6 @@ public class AdminDashboardGUI implements Initializable {
                 )
         );
         pieChart.getData().addAll(pieChartData);
-    }
-
-    public void updatePatientVisitsChart(){
-        setCurrentDate();
-        setPatientCount();
-        setDoctorCount();
-        setHospitalCount();
-        setSectionCount();
-        setTotalRendezvousCount();
-        setActiveRendezvousCount();
     }
 
     public void setPatientCount() {
@@ -504,14 +508,48 @@ public class AdminDashboardGUI implements Initializable {
     public void turnOffTheLights(){
         if (Application.getUserAgentStylesheet().equals(Main.class.getResource("mac-light.css").toExternalForm())){
             Application.setUserAgentStylesheet(Main.class.getResource("mac-dark.css").toExternalForm());
+            themeChanger.setText("Light Mode");
+            InputStream is = Main.class.getResourceAsStream("/images/lightmode.png");
+            Image image = new Image(is);
+            themeIcon.setImage(image);
         } else {
             Application.setUserAgentStylesheet(Main.class.getResource("mac-light.css").toExternalForm());
+            themeChanger.setText("Dark Mode");
+            InputStream is = Main.class.getResourceAsStream("/images/darkmode.png");
+            Image image = new Image(is);
+            themeIcon.setImage(image);
         }
     }
 
     @FXML
     public void goBack() throws IOException{
         changeScene("mode-select-menu.fxml");
+    }
+
+    @FXML
+    public void save(){
+        if (crs.saveTablesToDisk()){
+            InputStream is = Main.class.getResourceAsStream("/images/save-success.png");
+            Image image = new Image(is);
+            saveIcon.setImage(image);
+        } else {
+            InputStream is = Main.class.getResourceAsStream("/images/save-failed.png");
+            Image image = new Image(is);
+            saveIcon.setImage(image);
+        }
+    }
+
+    @FXML
+    public void load(){
+        if (crs.loadTablesFromDisk()){
+            InputStream is = Main.class.getResourceAsStream("/images/load-success.png");
+            Image image = new Image(is);
+            loadIcon.setImage(image);
+        } else {
+            InputStream is = Main.class.getResourceAsStream("/images/load-failed.png");
+            Image image = new Image(is);
+            loadIcon.setImage(image);
+        }
     }
 
 

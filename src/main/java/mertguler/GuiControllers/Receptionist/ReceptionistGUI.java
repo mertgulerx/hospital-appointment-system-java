@@ -3,8 +3,10 @@ package mertguler.GuiControllers.Receptionist;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import mertguler.CRS.DateManager;
 import mertguler.Main;
@@ -15,12 +17,24 @@ import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-import static mertguler.GuiControllers.Gui.changeScene;
-import static mertguler.GuiControllers.Gui.showWindow;
+import static mertguler.GuiControllers.Gui.*;
+import static mertguler.GuiControllers.Gui.crs;
 
 public class ReceptionistGUI implements Initializable {
     @FXML
     private Label uiDate;
+
+    @FXML
+    private Button themeChanger;
+
+    @FXML
+    private ImageView saveIcon;
+
+    @FXML
+    private ImageView loadIcon;
+
+    @FXML
+    private ImageView themeIcon;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setCurrentDate();
@@ -93,13 +107,47 @@ public class ReceptionistGUI implements Initializable {
     public void turnOffTheLights(){
         if (Application.getUserAgentStylesheet().equals(Main.class.getResource("mac-light.css").toExternalForm())){
             Application.setUserAgentStylesheet(Main.class.getResource("mac-dark.css").toExternalForm());
+            themeChanger.setText("Light Mode");
+            InputStream is = Main.class.getResourceAsStream("/images/lightmode.png");
+            Image image = new Image(is);
+            themeIcon.setImage(image);
         } else {
             Application.setUserAgentStylesheet(Main.class.getResource("mac-light.css").toExternalForm());
+            themeChanger.setText("Dark Mode");
+            InputStream is = Main.class.getResourceAsStream("/images/darkmode.png");
+            Image image = new Image(is);
+            themeIcon.setImage(image);
         }
     }
 
     @FXML
     public void goBack() throws IOException{
         changeScene("mode-select-menu.fxml");
+    }
+
+    @FXML
+    public void save(){
+        if (crs.saveTablesToDisk()){
+            InputStream is = Main.class.getResourceAsStream("/images/save-success.png");
+            Image image = new Image(is);
+            saveIcon.setImage(image);
+        } else {
+            InputStream is = Main.class.getResourceAsStream("/images/save-failed.png");
+            Image image = new Image(is);
+            saveIcon.setImage(image);
+        }
+    }
+
+    @FXML
+    public void load(){
+        if (crs.loadTablesFromDisk()){
+            InputStream is = Main.class.getResourceAsStream("/images/load-success.png");
+            Image image = new Image(is);
+            loadIcon.setImage(image);
+        } else {
+            InputStream is = Main.class.getResourceAsStream("/images/load-failed.png");
+            Image image = new Image(is);
+            loadIcon.setImage(image);
+        }
     }
 }

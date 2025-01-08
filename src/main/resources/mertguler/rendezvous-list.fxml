@@ -19,7 +19,7 @@
    <children>
       <AnchorPane layoutX="19.0" layoutY="34.0" prefHeight="410.0" prefWidth="566.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0); -fx-background-color:  -color-bg-default; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="34.0">
          <children>
-            <TreeTableView fx:id="rendezvousesTable" layoutX="-1.0" layoutY="37.0" maxHeight="800.0" maxWidth="800.0" prefHeight="349.0" prefWidth="528.0" style="-fx-background-color: f6f6f6; -fx-background-radius: 0 0 20 20; -fx-border-radius: 0 0 20 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="37.0">
+            <TreeTableView fx:id="rendezvousesTable" layoutX="-1.0" layoutY="37.0" maxHeight="800.0" maxWidth="800.0" prefHeight="349.0" prefWidth="528.0" style="-fx-background-color: -color-bg-default; -fx-background-radius: 0 0 20 20; -fx-border-radius: 0 0 20 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="37.0">
                <columns>
                   <TreeTableColumn fx:id="patientNameColumn" prefWidth="110.0" text="Patient " />
                   <TreeTableColumn fx:id="doctorNameColumn" prefWidth="114.0" text="Doctor" />

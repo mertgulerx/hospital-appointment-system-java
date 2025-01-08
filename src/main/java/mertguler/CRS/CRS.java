@@ -204,7 +204,7 @@ public class CRS {
 
     // Serialization - Deserialization
 
-    public void saveTablesToDisk(){
+    public boolean saveTablesToDisk(){
         try {
             FileOutputStream fileOut = new FileOutputStream(dataPath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -214,8 +214,10 @@ public class CRS {
             out.close();
             fileOut.close();
             System.out.printf("\nSerialized data is saved to " + dataPath + " file.");
+            return true;
         } catch (IOException e) {
             System.out.println("\n" + e.getMessage());
+            return false;
         }
     }
 
@@ -232,6 +234,8 @@ public class CRS {
             System.out.printf("\nSerialized data is read from " + dataPath + " file.");
             hospitalManager.updateHospitalMap(hospitals);
             patientManager.updatePatientsMap(patients);
+            expiredUpdater();
+            return true;
         } catch (IOException i) {
             System.out.println("\n" + i.getMessage());
             return false;
@@ -239,8 +243,6 @@ public class CRS {
             System.out.println("\n\n" + c.getMessage());
             return false;
         }
-        expiredUpdater();
-        return true;
     }
 
 
