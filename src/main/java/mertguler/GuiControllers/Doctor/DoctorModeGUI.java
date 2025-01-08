@@ -43,9 +43,6 @@ public class DoctorModeGUI implements Initializable {
     private ImageView themeIcon;
 
     @FXML
-    private ImageView saveIcon;
-
-    @FXML
     private ImageView loadIcon;
 
     @FXML
@@ -222,19 +219,6 @@ public class DoctorModeGUI implements Initializable {
             InputStream is = Main.class.getResourceAsStream("/images/darkmode.png");
             Image image = new Image(is);
             themeIcon.setImage(image);
-        }
-    }
-
-    @FXML
-    public void save(){
-        if (crs.saveTablesToDisk()){
-            InputStream is = Main.class.getResourceAsStream("/images/save-success.png");
-            Image image = new Image(is);
-            saveIcon.setImage(image);
-        } else {
-            InputStream is = Main.class.getResourceAsStream("/images/save-failed.png");
-            Image image = new Image(is);
-            saveIcon.setImage(image);
         }
     }
 

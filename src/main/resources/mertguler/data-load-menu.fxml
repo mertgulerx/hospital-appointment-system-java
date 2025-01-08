@@ -31,7 +31,7 @@
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchModeSelectMenu" prefHeight="110.0" prefWidth="190.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);" text="Fresh Start">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#freshStart" prefHeight="110.0" prefWidth="190.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);" text="Fresh Start">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>

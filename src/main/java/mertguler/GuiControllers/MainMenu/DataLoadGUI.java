@@ -3,6 +3,7 @@ package mertguler.GuiControllers.MainMenu;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import mertguler.CRS.CRS;
 
 import java.io.IOException;
 
@@ -32,6 +33,11 @@ public class DataLoadGUI {
 
     public void switchModeSelectMenu() throws IOException {
         changeScene("mode-select-menu.fxml");
+    }
+
+    public void freshStart() throws IOException{
+        crs = new CRS();
+        switchModeSelectMenu();
     }
 
 }

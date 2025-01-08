@@ -155,22 +155,7 @@
                                  </children></AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="167.0" prefWidth="1039.0">
-                           <children>
-                              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="900.0" layoutY="36.0" mnemonicParsing="false" onAction="#save" prefHeight="93.0" prefWidth="92.0" style="-fx-border-radius: 230 230 230 230; -fx-background-radius: 230 230 230 230; -fx-background-color: -color-bg-default; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 0);">
-                                 <graphic>
-                                    <ImageView fx:id="saveIcon" fitHeight="69.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);">
-                                       <image>
-                                          <Image url="@../images/save.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <padding>
-                                    <Insets left="5.0" top="2.0" />
-                                 </padding>
-                              </Button>
-                           </children>
-                        </AnchorPane>
+                        <AnchorPane prefHeight="167.0" prefWidth="1039.0" />
                      </children>
                   </VBox>
                </children>
