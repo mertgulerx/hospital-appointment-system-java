@@ -8,7 +8,6 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import mertguler.Exceptions.IDException;
-import mertguler.Hospital.Hospital;
 import mertguler.Main;
 import mertguler.Person.Patient;
 

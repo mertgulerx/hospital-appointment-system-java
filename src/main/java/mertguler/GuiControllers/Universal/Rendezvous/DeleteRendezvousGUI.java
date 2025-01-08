@@ -6,24 +6,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import mertguler.CRS.DateManager;
-import mertguler.Exceptions.DailyLimitException;
-import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
-import mertguler.Exceptions.RendezvousLimitException;
-import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Rendezvous;
-import mertguler.Hospital.Section;
 import mertguler.Main;
-import mertguler.Person.Doctor;
 import mertguler.Person.Patient;
 
 import java.io.InputStream;
-import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 import static mertguler.GuiControllers.Gui.crs;
 

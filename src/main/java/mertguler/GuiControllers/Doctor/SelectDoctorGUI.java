@@ -1,13 +1,12 @@
 package mertguler.GuiControllers.Doctor;
 
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;
 import mertguler.Main;
@@ -16,7 +15,6 @@ import mertguler.Person.Doctor;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static mertguler.GuiControllers.Gui.changeScene;

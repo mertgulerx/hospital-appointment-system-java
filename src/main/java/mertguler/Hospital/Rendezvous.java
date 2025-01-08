@@ -20,13 +20,6 @@ public class Rendezvous implements Serializable {
     private Section section;
     private boolean expired;
 
-    public Rendezvous(LocalDate desiredDate, Doctor doctor, Patient patient){
-        date = desiredDate;
-        this.doctor = doctor;
-        this.patient = patient;
-        expired = false;
-    }
-
     public Rendezvous(LocalDate desiredDate, Doctor doctor, Patient patient, Hospital hospital, Section section){
         date = desiredDate;
         this.doctor = doctor;
@@ -35,6 +28,14 @@ public class Rendezvous implements Serializable {
         this.hospital = hospital;
         expired = false;
     }
+
+    public void updateExpired(){
+        if (date.isBefore(DateManager.getCurrentDate())){
+            expired = true;
+        }
+    }
+
+    // Getters & Setters
 
     public LocalDate getDate(){
         return date;
@@ -58,12 +59,6 @@ public class Rendezvous implements Serializable {
 
     public boolean isExpired(){
         return expired;
-    }
-
-    public void updateExpired(){
-        if (date.isBefore(DateManager.getCurrentDate())){
-            expired = true;
-        }
     }
 
 

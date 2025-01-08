@@ -18,7 +18,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static mertguler.GuiControllers.Gui.*;
-import static mertguler.GuiControllers.Gui.crs;
 
 public class ReceptionistGUI implements Initializable {
     @FXML

@@ -15,22 +15,21 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import mertguler.CRS.CRS;
-import mertguler.CRS.DateManager;
 import mertguler.Main;
-import mertguler.Person.Patient;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 
 public class Gui extends Application {
-    public static CRS crs = new CRS();
+    public static CRS crs;
     private static Stage primaryStage;
+
 
     @Override
     public void start(Stage stage) throws IOException {
+        crs = new CRS();
         primaryStage = stage;
         // Can it improve text quality??
         System.setProperty("prism.lcdtext", "false");
@@ -59,6 +58,7 @@ public class Gui extends Application {
         stage.show();
     }
 
+
     public static void changeScene(String fxml) throws IOException {
         Parent pane = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(fxml)));
         primaryStage.getScene().setRoot(pane);
@@ -75,10 +75,6 @@ public class Gui extends Application {
         stage.setScene(scene);
         stage.initModality(modality);
         stage.show();
-    }
-
-    public static String getUiDate(){
-        return DateManager.getCurrentDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public static void copy(TreeTableView<Object> table){

@@ -1,15 +1,13 @@
 package mertguler.GuiControllers.Universal.Patient;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import mertguler.Enums.City;
 import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Main;
-import mertguler.Person.Doctor;
+import mertguler.Person.Patient;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -133,7 +131,7 @@ public class AddPatientGUI implements Initializable{
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == confirmButton) {
-            crs.getPatientManager().patientAdder(name, nationalID, birthdate);
+            crs.getPatients().put(nationalID, new Patient(name, nationalID, birthdate));
             System.out.println("Patient: " + name + ", ID: " + nationalID + ", Age: " + age + " is created");
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Success");

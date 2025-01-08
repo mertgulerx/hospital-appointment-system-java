@@ -7,7 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import mertguler.CRS.DateManager;
-import mertguler.CRS.PatientManager;
 import mertguler.Exceptions.*;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Rendezvous;
@@ -18,9 +17,7 @@ import mertguler.Person.Patient;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -117,7 +114,7 @@ public class AddRendezvousGUI implements Initializable {
             patient = crs.getPatientManager().getPatient(nationalID);
             crs.checkChildSection(patient, section);
             rendezvous = new Rendezvous(desiredDate, doctor, patient, hospital, section);
-            crs.checkDuplication(doctor, rendezvous);
+            doctor.getSchedule().checkRendezvousDuplication(rendezvous);
             showSuccess();
         } catch (IDException ie) {
             System.out.println(ie.getMessage());

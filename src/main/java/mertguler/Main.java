@@ -16,7 +16,6 @@ public class Main {
         // launch();
         Scanner scanner = new Scanner(System.in);
 
-        CRS crs = new CRS();
         System.out.println("GUI or Text User Interface? (1/0)");
 
         try {
@@ -32,6 +31,7 @@ public class Main {
         if (gui_mode) {
             Application.launch(Gui.class);
         } else {
+            CRS crs = new CRS();
             TextUI textUI = new TextUI(scanner, crs);
             textUI.start();
         }

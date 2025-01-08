@@ -1,31 +1,17 @@
 package mertguler.GuiControllers.Universal.Rendezvous;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mertguler.Exceptions.IDException;
-import mertguler.GuiControllers.Gui;
-import mertguler.Hospital.Hospital;
-import mertguler.Hospital.Rendezvous;
 import mertguler.Main;
 import mertguler.Person.Patient;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.ResourceBundle;
 
 import static mertguler.GuiControllers.Gui.crs;
 import static mertguler.GuiControllers.Gui.showWindow;

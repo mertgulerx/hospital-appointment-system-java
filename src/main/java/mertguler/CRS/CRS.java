@@ -14,9 +14,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 import static mertguler.CRS.DateManager.checkDateRange;
 
@@ -42,13 +39,19 @@ public class CRS {
         patientManager = new PatientManager(patients, this);
     }
 
-    // Rendezvous
 
-    public boolean makeRendezvous(long patientID, int hospitalID, int sectionID, int diplomaID,
-                                  LocalDate desiredDate) throws IDException, DailyLimitException,
-            RendezvousLimitException, DateTimeException, ChildOnlyException{
-        // DateTimeException
-        checkDateRange(desiredDate);
+    // Use if you check everything in the Text UI and GUI
+    public void addRendezvous(Doctor doctor, Rendezvous rendezvous, Patient patient)
+            throws DateTimeException, IDException, DailyLimitException, DuplicateInfoException {
+
+        doctor.getSchedule().addRendezvous(rendezvous);
+        patient.addRendezvous(rendezvous);
+        rendezvouses.add(rendezvous);
+    }
+
+    // GUI Only
+    public void checkValidity(long patientID, Doctor doctor, LocalDate desiredDate)
+            throws IDException, RendezvousLimitException, DuplicateInfoException{
 
         // ID Exception
         patientManager.checkPatientID(patientID);
@@ -57,24 +60,33 @@ public class CRS {
 
         // RendezvousLimitException
         // Validates maximum rendezvous count for patient
-        patient.checkValidity();
+        patient.checkActiveRendezvousCount();
+        // DailyLimitException
+        doctor.getSchedule().checkDailyLimit(desiredDate);
+    }
+
+    // Might be used in the future.
+    public boolean makeRendezvous(long patientID, int hospitalID, int sectionID, int diplomaID,
+                                  LocalDate desiredDate) throws IDException, DailyLimitException,
+            RendezvousLimitException, DateTimeException, ChildOnlyException{
+
+        // DateTimeException
+        checkDateRange(desiredDate);
+
+        // ID Exception
+        Patient patient = patientManager.getPatient(patientID);
+
+        // RendezvousLimitException
+        patient.checkActiveRendezvousCount();
 
         // ID Exceptions
-        hospitalManager.checkHospitalID(hospitalID);
-
-        hospitalManager.getSectionManager().checkSectionID(hospitalID, sectionID);
-
-        hospitalManager.getSectionManager().getDoctorManager().checkDoctorID(hospitalID,sectionID,diplomaID);
-
-        Hospital hospital = hospitals.get(hospitalID);
+        Hospital hospital = hospitalManager.getHospitalWithID(hospitalID);
         Section section = hospital.getSection(sectionID);
 
-        if (section.isChildSection()){
-            if (patient.getAge() > 18){
-                throw new ChildOnlyException("This section is only for children! Patient: " + patient + " is over Age 18");
-            }
-        }
+        // Child Only Exception
+        checkChildSection(patient, section);
 
+        // ID Exception
         Doctor doctor = section.getDoctor(diplomaID);
 
         // DailyLimitException
@@ -90,30 +102,6 @@ public class CRS {
         return true;
     }
 
-    // GUI
-    public void addRendezvous(Doctor doctor, Rendezvous rendezvous, Patient patient)
-            throws DateTimeException, IDException, DailyLimitException, DuplicateInfoException {
-
-        doctor.getSchedule().addRendezvous(rendezvous);
-        patient.addRendezvous(rendezvous);
-        rendezvouses.add(rendezvous);
-    }
-
-    public void checkValidity(long patientID, Doctor doctor, LocalDate desiredDate)
-            throws IDException, RendezvousLimitException, DuplicateInfoException{
-
-        // ID Exception
-        patientManager.checkPatientID(patientID);
-
-        Patient patient = patientManager.getPatient(patientID);
-
-        // RendezvousLimitException
-        // Validates maximum rendezvous count for patient
-        patient.checkValidity();
-        // DailyLimitException
-        doctor.getSchedule().checkDailyLimit(desiredDate);
-    }
-
     public void checkChildSection(Patient patient, Section section) throws ChildOnlyException {
         if (section.isChildSection()){
             if (patient.getAge() > 18){
@@ -122,14 +110,9 @@ public class CRS {
         }
     }
 
-    public void checkDuplication(Doctor doctor, Rendezvous rendezvous) throws DuplicateInfoException{
-        // Duplicate Info Exception
-        doctor.getSchedule().checkRendezvousDuplication(rendezvous);
-    }
-
-    public void deleteRendezvous(Rendezvous rendezvous) throws IDException{
+    public void deleteRendezvous(Rendezvous rendezvous) throws NullPointerException{
         if (rendezvous == null) {
-            throw new IDException("Rendezvous is null");
+            throw new NullPointerException("Rendezvous is null");
         }
 
         Doctor doctor = rendezvous.getDoctor();
@@ -140,9 +123,10 @@ public class CRS {
         rendezvouses.remove(rendezvous);
     }
 
-    // Thread Work
 
-    public boolean expiredUpdater(){
+    // Updates Expired Status of Rendezvouses
+    // Using 4 threads
+    public void updateExpired(){
         int size = rendezvouses.size();
         int quarter = size / 4;
         int half = quarter * 2;
@@ -150,7 +134,6 @@ public class CRS {
 
         Runnable task1 = () ->
         {
-            //Thread.currentThread().setName("firstQuarter");
             for (int i = 0; i < quarter; i++){
                 rendezvouses.get(i).updateExpired();
             }
@@ -158,7 +141,6 @@ public class CRS {
 
         Runnable task2 = () ->
         {
-            //Thread.currentThread().setName("secondQuarter");
             for (int i = quarter; i < half; i++){
                 rendezvouses.get(i).updateExpired();
             }
@@ -166,7 +148,6 @@ public class CRS {
 
         Runnable task3 = () ->
         {
-            //Thread.currentThread().setName("thirdQuarter");
             for (int i = half; i < threeQuarter; i++){
                 rendezvouses.get(i).updateExpired();
             }
@@ -174,7 +155,6 @@ public class CRS {
 
         Runnable task4 = () ->
         {
-            //Thread.currentThread().setName("forthQuarter");
             for (int i = threeQuarter; i < size; i++){
                 rendezvouses.get(i).updateExpired();
             }
@@ -199,11 +179,9 @@ public class CRS {
             e.printStackTrace();
         }
 
-        return true;
     }
 
-    // Serialization - Deserialization
-
+    // Serialization
     public boolean saveTablesToDisk(){
         try {
             FileOutputStream fileOut = new FileOutputStream(dataPath);
@@ -221,7 +199,7 @@ public class CRS {
         }
     }
 
-
+    // Deserialization
     public boolean loadTablesFromDisk(){
         try {
             FileInputStream fileIn = new FileInputStream(dataPath);
@@ -234,7 +212,7 @@ public class CRS {
             System.out.printf("\nSerialized data is read from " + dataPath + " file.");
             hospitalManager.updateHospitalMap(hospitals);
             patientManager.updatePatientsMap(patients);
-            expiredUpdater();
+            updateExpired();
             return true;
         } catch (IOException i) {
             System.out.println("\n" + i.getMessage());
@@ -245,23 +223,8 @@ public class CRS {
         }
     }
 
-
-    public void saveSettings(){
-        String path = "settings.txt";
-        try {
-            FileWriter fileWriter = new FileWriter(path);
-            fileWriter.write(String.valueOf(MAX_RENDEZVOUS_PER_PATIENT));
-            fileWriter.write(",");
-            fileWriter.write(String.valueOf(RENDEZVOUS_DAY_LIMIT));
-
-            fileWriter.close();
-            System.out.println("\nSettings are saved to " + path + "\n");
-        } catch (IOException e) {
-            System.out.println("\n" + e.getMessage());
-        }
-    }
-
-    public void saveSettingsGUI() throws IOException{
+    // GUI Only
+    public void saveSettings() throws IOException{
         String path = "settings.txt";
         try {
             FileWriter fileWriter = new FileWriter(path);
@@ -276,25 +239,8 @@ public class CRS {
         }
     }
 
-    public void loadSettings(){
-        String path = "settings.txt";
-        try {
-            Scanner fileScanner = new Scanner(Paths.get(path));
-            String settingsText = fileScanner.nextLine();
-            String[] settings = settingsText.split(",");
-
-            MAX_RENDEZVOUS_PER_PATIENT = Integer.valueOf(settings[0]);
-            RENDEZVOUS_DAY_LIMIT = Integer.valueOf(settings[1]);
-
-            System.out.println("\nSettings are loaded from: " + path + "\n");
-        } catch (IOException e) {
-            System.out.println("\n" + e.getMessage());
-        } catch (ArrayIndexOutOfBoundsException indexE){
-            System.out.println("\nSettings file is corrupted");
-        }
-    }
-
-    public void loadSettingsGUI() throws IOException, ArrayIndexOutOfBoundsException{
+    // GUI Only
+    public void loadSettings() throws IOException, ArrayIndexOutOfBoundsException{
         String path = "settings.txt";
         try {
             Scanner fileScanner = new Scanner(Paths.get(path));

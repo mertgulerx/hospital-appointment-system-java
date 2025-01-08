@@ -11,8 +11,7 @@ import mertguler.Person.Doctor;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static mertguler.TextUI.TextUI.clear;
-import static mertguler.TextUI.TextUI.header;
+import static mertguler.TextUI.TextUI.*;
 
 public class DoctorMenu {
     private Scanner scanner;
@@ -55,7 +54,7 @@ public class DoctorMenu {
                 input = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers within range");
-                returner();
+                returner(scanner);
                 continue;
             }
 
@@ -69,7 +68,7 @@ public class DoctorMenu {
                 clear();
                 header();
                 section.listDoctors();
-                returner();
+                returner(scanner);
             }
         }
     }
@@ -91,7 +90,7 @@ public class DoctorMenu {
                 input = Integer.valueOf(scanner.nextLine());
             } catch (Exception e){
                 System.out.println("Enter valid numbers only");
-                returner();
+                returner(scanner);
                 return null;
             }
 
@@ -105,7 +104,7 @@ public class DoctorMenu {
                 clear();
                 header();
                 section.listDoctors();
-                returner();
+                returner(scanner);
             }
         }
     }
@@ -122,7 +121,7 @@ public class DoctorMenu {
                 diploma_id = Integer.valueOf(scanner.nextLine());
             } catch (Exception e){
                 System.out.println("Enter valid numbers only");
-                returner();
+                returner(scanner);
                 clear();
                 return null;
             }
@@ -130,7 +129,7 @@ public class DoctorMenu {
             Doctor doctor = section.getDoctor(diploma_id);
             if (doctor == null){
                 System.out.println("Doctor is not found");
-                returner();
+                returner(scanner);
                 clear();
                 return null;
             }
@@ -151,7 +150,7 @@ public class DoctorMenu {
                 name = scanner.nextLine();
             } catch (Exception e){
                 System.out.println("Enter valid characters only");
-                returner();
+                returner(scanner);
                 clear();
                 return null;
             }
@@ -160,7 +159,7 @@ public class DoctorMenu {
 
             if (searchedDoctorList == null){
                 System.out.println("No Doctor is found with name: " + name);
-                returner();
+                returner(scanner);
                 clear();
                 return null;
             }
@@ -195,7 +194,7 @@ public class DoctorMenu {
                     clear();
                     header();
                     System.out.println("\nDoctor with Diploma ID: " + id + " is not found");
-                    returner();
+                    returner(scanner);
                     return null;
                 }
 
@@ -219,7 +218,7 @@ public class DoctorMenu {
                 national_id = Long.valueOf(scanner.nextLine());
             } catch (Exception e){
                 System.out.println("Enter valid numbers only");
-                returner();
+                returner(scanner);
                 return false;
             }
 
@@ -229,7 +228,7 @@ public class DoctorMenu {
                 diploma_id = Integer.valueOf(scanner.nextLine());
             } catch (Exception e){
                 System.out.println("Enter valid numbers only");
-                returner();
+                returner(scanner);
                 return false;
             }
 
@@ -239,24 +238,24 @@ public class DoctorMenu {
                 name = scanner.nextLine();
             } catch (Exception e){
                 System.out.println("Enter valid characters only");
-                returner();
+                returner(scanner);
                 return false;
             }
 
             if (name.isBlank()){
                 System.out.println("Name cant be empty");
-                returner();
+                returner(scanner);
                 return false;
             }
 
             try{
                 section.addDoctor(new Doctor(name, national_id, diploma_id));
                 System.out.println("Doctor is successfully added");
-                returner();
+                returner(scanner);
                 return true;
             } catch (DuplicateInfoException e) {
                 System.out.println(e.getMessage());
-                returner();
+                returner(scanner);
                 return false;
             }
         }
@@ -274,26 +273,22 @@ public class DoctorMenu {
                 diploma_id = Integer.valueOf(scanner.nextLine());
             } catch (Exception e){
                 System.out.println("Enter valid numbers only");
-                returner();
+                returner(scanner);
                 return false;
             }
 
             try {
                 hospitalManager.getSectionManager().getDoctorManager().deleteDoctor(hospital.getId(), section.getId(), diploma_id);
                 System.out.println("Doctor is successfully deleted");
-                returner();
+                returner(scanner);
                 return true;
             } catch (IDException e){
                 System.out.println(e.getMessage());
-                returner();
+                returner(scanner);
                 return false;
             }
 
         }
     }
 
-    public void returner(){
-        System.out.println("\nPress anything to return");
-        scanner.nextLine();
-    }
 }

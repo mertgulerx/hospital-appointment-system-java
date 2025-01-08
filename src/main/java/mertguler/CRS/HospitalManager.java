@@ -5,7 +5,8 @@ import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;
-import java.util.*;
+
+import java.util.HashMap;
 
 public class HospitalManager {
     private HashMap<Integer, Hospital> hospitals;
@@ -24,10 +25,9 @@ public class HospitalManager {
         return sectionManager;
     }
 
-    public boolean updateHospitalMap(HashMap<Integer, Hospital> hospitals) {
+    public void updateHospitalMap(HashMap<Integer, Hospital> hospitals) {
         this.hospitals = hospitals;
         hospitalCount = hospitals.size();
-        return true;
     }
 
     public void createHospital(String name, City city) throws DuplicateInfoException {
@@ -47,6 +47,7 @@ public class HospitalManager {
         return hospitals.get(id);
     }
 
+    // Text UI Only
     public Hospital getHospitalWithName(String name) throws IDException {
         if (hospitals.isEmpty()) {
             throw new IDException("No hospital found!");
@@ -79,6 +80,8 @@ public class HospitalManager {
         return hospitals;
     }
 
+
+    // Counter for Admin Dashboard
     public int countAllSections() {
         int count = 0;
 
@@ -93,7 +96,7 @@ public class HospitalManager {
         return count;
     }
 
-
+    // Counter for Admin Dashboard
     public int countAllDoctors() {
         int count = 0;
 
@@ -105,6 +108,7 @@ public class HospitalManager {
         return count;
     }
 
+    // Inner Class of Hospital Manager
     public class SectionManager {
         private DoctorManager doctorManager = new DoctorManager();
 

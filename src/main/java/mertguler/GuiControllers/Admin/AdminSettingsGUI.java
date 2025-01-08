@@ -58,7 +58,7 @@ public class AdminSettingsGUI implements Initializable {
         try {
             MAX_RENDEZVOUS_PER_PATIENT = perPatientSpinner.getValue();
             RENDEZVOUS_DAY_LIMIT = dayLimitSpinner.getValue();
-            crs.saveSettingsGUI();
+            crs.saveSettings();
             dataLabel.setText("Settings are successfully saved");
             dataLabel.setTextFill(Color.DARKGREEN);
         } catch (IOException e){
@@ -71,8 +71,8 @@ public class AdminSettingsGUI implements Initializable {
 
     public void loadFromFile(){
         try {
-            crs.loadSettingsGUI();
-            dataLabel.setText("Settings are successfully saved");
+            crs.loadSettings();
+            dataLabel.setText("Settings are successfully loaded");
             dataLabel.setTextFill(Color.DARKGREEN);
             patientFactory.setValue(MAX_RENDEZVOUS_PER_PATIENT);
             dayLimitFactory.setValue(RENDEZVOUS_DAY_LIMIT);

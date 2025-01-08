@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;
@@ -19,7 +18,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static mertguler.GuiControllers.Gui.crs;
-import static mertguler.GuiControllers.Gui.showWindow;
 
 
 public class AddDoctorGUI implements Initializable {
@@ -99,7 +97,7 @@ public class AddDoctorGUI implements Initializable {
         }
 
         try {
-            section.checkDoctorExistence(diplomaID);
+            section.checkDoctorDuplication(diplomaID);
             showSuccess();
         } catch (IDException e) {
             showError("Doctor is already exist in Section: " + section);

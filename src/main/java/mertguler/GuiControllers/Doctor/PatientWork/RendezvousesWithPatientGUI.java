@@ -1,6 +1,5 @@
 package mertguler.GuiControllers.Doctor.PatientWork;
 
-import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

@@ -30,4 +30,5 @@ module mertguler.hospitalreservationsystemjava {
     opens mertguler.GuiControllers.Doctor to javafx.fxml;
     exports mertguler.GuiControllers.Doctor.PatientWork to javafx.fxml;
     opens mertguler.GuiControllers.Doctor.PatientWork to javafx.fxml;
+    exports mertguler.CRS to javafx.fxml;
 }

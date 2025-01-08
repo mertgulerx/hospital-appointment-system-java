@@ -4,9 +4,7 @@ import mertguler.CRS.CRS;
 
 import java.util.Scanner;
 
-import static mertguler.CRS.CRS.dataPath;
-import static mertguler.TextUI.TextUI.clear;
-import static mertguler.TextUI.TextUI.header;
+import static mertguler.TextUI.TextUI.*;
 
 public class AdminMenu {
     private Scanner scanner;
@@ -45,7 +43,7 @@ public class AdminMenu {
                 input = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers within range");
-                returner();
+                returner(scanner);
                 continue;
             }
 
@@ -63,17 +61,13 @@ public class AdminMenu {
                 rendezvousMenu.rendezvousManager();
             } else if (input == 6){
                 crs.saveTablesToDisk();
-                returner();
+                returner(scanner);
             } else if (input == 7){
                 crs.loadTablesFromDisk();
-                returner();
+                returner(scanner);
             }
         }
 
     }
 
-    public void returner(){
-        System.out.println("\nPress anything to return");
-        scanner.nextLine();
-    }
 }

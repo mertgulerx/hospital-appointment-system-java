@@ -4,6 +4,7 @@ import mertguler.CRS.CRS;
 import mertguler.CRS.DateManager;
 import mertguler.Exceptions.DailyLimitException;
 import mertguler.Exceptions.IDException;
+import mertguler.Exceptions.RendezvousLimitException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Rendezvous;
 import mertguler.Hospital.Section;
@@ -16,7 +17,6 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
 
 import static mertguler.CRS.CRS.RENDEZVOUS_DAY_LIMIT;
 import static mertguler.TextUI.TextUI.*;
@@ -152,6 +152,14 @@ public class RendezvousMenu {
                 return false;
             }
 
+            try {
+                patient.checkActiveRendezvousCount();
+            } catch (RendezvousLimitException e) {
+                System.out.println(e.getMessage());
+                returner(scanner);
+                return false;
+            }
+
             Hospital hospital = hospitalMenu.hospitalSelector();
 
             // Check this part
@@ -220,7 +228,15 @@ public class RendezvousMenu {
             }
 
             try {
-                crs.makeRendezvous(national_id, hospital.getId(), section.getId(), doctor.getDiploma_id(), desiredDate);
+                // DailyLimitException
+                doctor.getSchedule().checkDailyLimit(desiredDate);
+            } catch (DailyLimitException e) {
+                System.out.println(e.getMessage());
+                returner(scanner);
+            }
+
+            Rendezvous rendezvous = new Rendezvous(desiredDate, doctor, patient, hospital, section);
+                crs.addRendezvous(doctor, rendezvous, patient);
                 clear();
                 header();
                 System.out.println("\nRendezvous is successfully made\n");
@@ -233,11 +249,6 @@ public class RendezvousMenu {
                 returner(scanner);;
                 clear();
                 return true;
-            } catch (DailyLimitException dle){
-                System.out.println("\n" + dle.getMessage());
-                returner(scanner);
-                return false;
-            }
 
         }
     }
