@@ -1,6 +1,8 @@
 module mertguler.hospitalreservationsystemjava {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.base;
+    requires javafx.graphics;
 
     opens mertguler to javafx.fxml;
     exports mertguler;
