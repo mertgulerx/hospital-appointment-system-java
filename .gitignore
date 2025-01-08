@@ -40,4 +40,4 @@ build/
 /.idea/artifacts/hospital_reservation_system_java_jar.xml
 /src/main/resources/META-INF/MANIFEST.MF
 /hospital-reservation-system-java.jar
-/data.ser
+
