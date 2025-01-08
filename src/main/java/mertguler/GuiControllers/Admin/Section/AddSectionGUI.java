@@ -6,16 +6,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import mertguler.Enums.City;
 import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;
 import mertguler.Main;
-import org.controlsfx.control.ToggleSwitch;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static mertguler.GuiControllers.Gui.crs;

@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.GuiControllers.Admin.Section.RenameSectionGUI">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.GuiControllers.Admin.Section.RenameSectionGUI">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="600.0">
          <children>

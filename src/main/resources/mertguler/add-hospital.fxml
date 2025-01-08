@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.GuiControllers.Admin.Hospital.AddHospitalGUI">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mertguler.GuiControllers.Admin.Hospital.AddHospitalGUI">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="323.0" prefWidth="350.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0, 0, 0); -fx-background-color:  -color-bg-default; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;">
          <children>

@@ -4,11 +4,7 @@ import mertguler.Enums.City;
 import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
-import mertguler.Hospital.Rendezvous;
 import mertguler.Hospital.Section;
-import mertguler.Person.Doctor;
-
-import javax.print.Doc;
 import java.util.*;
 
 public class HospitalManager {
