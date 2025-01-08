@@ -5,14 +5,15 @@ import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Person.Doctor;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Schedule implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
+
     private ArrayList<Rendezvous> sessions;
     private int maxPatientPerDay;
     private Doctor doctor;
@@ -22,11 +23,13 @@ public class Schedule implements Serializable {
         sessions = new ArrayList<>();
     }
 
+    // Already checks for duplication
     public void addRendezvous(Rendezvous rendezvous) throws DuplicateInfoException {
         checkRendezvousDuplication(rendezvous);
         sessions.add(rendezvous);
     }
 
+    // Already checks for contains
     public void deleteRendezvous(Rendezvous rendezvous) throws IDException{
         if (!(sessions.contains(rendezvous))){
             throw new IDException("Rendezvous is not found");
@@ -39,20 +42,6 @@ public class Schedule implements Serializable {
         if (sessions.contains(rendezvous)){
             throw new DuplicateInfoException("Rendezvous: " + rendezvous + " is already exist");
         }
-    }
-
-    // Get rendezvouses in that day as a list
-    public LinkedList<Rendezvous> getRendezvousForDay(LocalDateTime desiredDate){
-        LinkedList<Rendezvous> rendezvousList = new LinkedList<>();
-
-        for (Rendezvous rendezvous: sessions){
-            if (rendezvous.getDate().getMonthValue() == desiredDate.getMonthValue() &&
-                    rendezvous.getDate().getDayOfMonth() == desiredDate.getDayOfMonth()){
-              rendezvousList.add(rendezvous);
-            }
-        }
-
-        return rendezvousList;
     }
 
     // Daily Patient Limit Checker
@@ -69,16 +58,14 @@ public class Schedule implements Serializable {
         if (countForDay == maxPatientPerDay){
             throw new DailyLimitException("Doctor: " + doctor + " has reached daily rendezvous limit for date: " + desiredDate);
         }
-
     }
 
-    public boolean setDoctor(Doctor doctor){
+    public void setDoctor(Doctor doctor){
         if (doctor == null){
-            return false;
+            return;
         }
 
         this.doctor = doctor;
-        return true;
     }
 
     public int getRendezvousCount(){

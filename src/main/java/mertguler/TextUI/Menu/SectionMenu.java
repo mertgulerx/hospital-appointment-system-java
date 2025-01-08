@@ -9,8 +9,7 @@ import mertguler.Hospital.Section;
 import java.util.Comparator;
 import java.util.Scanner;
 
-import static mertguler.TextUI.TextUI.clear;
-import static mertguler.TextUI.TextUI.header;
+import static mertguler.TextUI.TextUI.*;
 
 public class SectionMenu {
     private Scanner scanner;
@@ -49,7 +48,7 @@ public class SectionMenu {
                 input = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers within range");
-                returner();
+                returner(scanner);
                 continue;
             }
 
@@ -72,7 +71,7 @@ public class SectionMenu {
         header();
         if (hospital.getSections().isEmpty()){
             System.out.println("\nSection list is empty.");
-            returner();
+            returner(scanner);
             return false;
         }
 
@@ -85,7 +84,7 @@ public class SectionMenu {
                 .sorted(comparator)
                 .forEach(System.out::println);
 
-        returner();
+        returner(scanner);
         return true;
     }
 
@@ -102,13 +101,13 @@ public class SectionMenu {
                 id = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers within range");
-                returner();
+                returner(scanner);
                 return false;
             }
 
             if (hospital.getSection(id) == null){
                 System.out.println("Section with ID: " + id + " is not found");
-                returner();
+                returner(scanner);
                 return false;
             }
 
@@ -118,7 +117,7 @@ public class SectionMenu {
                 name = scanner.nextLine();
             } catch (Exception e) {
                 System.out.println("Please enter only valid characters");
-                returner();
+                returner(scanner);
                 return false;
             }
 
@@ -139,37 +138,24 @@ public class SectionMenu {
                 name = scanner.nextLine();
             } catch (Exception e) {
                 System.out.println("Please enter only valid characters");
-                returner();
+                returner(scanner);
                 continue;
             }
 
             if (name.isBlank()){
                 System.out.println("Name cant be empty");
-                returner();
+                returner(scanner);
                 return false;
             }
-
-            /*
-            System.out.println("Enter Section ID: ");
-
-            try {
-                id = Integer.valueOf(scanner.nextLine());
-            } catch (Exception e) {
-                System.out.println("Please enter only valid numbers within range");
-                returner();
-                continue;
-            }
-
-             */
 
             try {
                 hospital.addSection(new Section(name, hospital, false));
                 System.out.println("Selection is successfully added.");
-                returner();
+                returner(scanner);
                 return true;
             } catch (DuplicateInfoException e){
                 System.out.println("Section with this id is already exists");
-                returner();
+                returner(scanner);
                 return false;
             }
         }
@@ -186,18 +172,18 @@ public class SectionMenu {
                 sectionId = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers within range");
-                returner();
+                returner(scanner);
                 return false;
             }
 
             try {
                 crs.getHospitalManager().getSectionManager().deleteSection(hospital.getId(), sectionId);
                 System.out.println("Section is successfully deleted.");
-                returner();
+                returner(scanner);
                 return true;
             } catch (IDException e){
                 System.out.println(e.getMessage());
-                returner();
+                returner(scanner);
                 return false;
             }
         }
@@ -213,7 +199,7 @@ public class SectionMenu {
             clear();
             header();
             System.out.println("\nNo Section found for Hospital: " + hospital);
-            returner();
+            returner(scanner);
             return null;
         }
 
@@ -233,7 +219,7 @@ public class SectionMenu {
                 input = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers within range");
-                returner();
+                returner(scanner);
                 continue;
             }
 
@@ -263,7 +249,7 @@ public class SectionMenu {
                 id = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers");
-                returner();
+                returner(scanner);
                 return null;
             }
 
@@ -271,7 +257,7 @@ public class SectionMenu {
 
             if (section == null){
                 System.out.println("Section with ID: " + id + " is not found");
-                returner();
+                returner(scanner);
                 return null;
             } else {
                 return section;
@@ -292,14 +278,14 @@ public class SectionMenu {
                 name = scanner.nextLine();
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers");
-                returner();
+                returner(scanner);
                 return null;
             }
 
             Section section = hospital.getSection(name);
             if (section == null){
                 System.out.println("Section with name: " + name + " is not found");
-                returner();
+                returner(scanner);
                 return null;
             } else {
                 return section;
@@ -307,11 +293,6 @@ public class SectionMenu {
 
         }
     }
-
-    public void returner(){
-        System.out.println("\nPress anything to return");
-        scanner.nextLine();
-    }
-
+    
 
 }

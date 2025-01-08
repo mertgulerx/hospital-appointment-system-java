@@ -4,9 +4,11 @@ import mertguler.CRS.CRS;
 import mertguler.TextUI.Menu.AdminMenu;
 import mertguler.TextUI.Menu.UserMenu;
 
+import java.io.IOException;
 import java.util.Scanner;
 
-import static mertguler.CRS.CRS.*;
+import static mertguler.CRS.CRS.MAX_RENDEZVOUS_PER_PATIENT;
+import static mertguler.CRS.CRS.RENDEZVOUS_DAY_LIMIT;
 
 public class TextUI {
     private Scanner scanner;
@@ -123,10 +125,23 @@ public class TextUI {
             } else if (input == 1){
                 userMenu.start();
             } else if (input == 2){
-                crs.saveSettings();
+                try {
+                    crs.saveSettings();
+                } catch (IOException e){
+                    System.out.println(e.getMessage());
+                    returner(scanner);
+                }
                 returner(scanner);
             } else if (input == 3){
-                crs.loadSettings();
+                try {
+                    crs.loadSettings();
+                } catch (IOException e){
+                    System.out.println(e.getMessage());
+                    returner(scanner);
+                } catch (ArrayIndexOutOfBoundsException ae){
+                    System.out.println(ae.getMessage());
+                    returner(scanner);
+                }
                 returner(scanner);
             }
         }

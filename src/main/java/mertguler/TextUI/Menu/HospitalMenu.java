@@ -11,8 +11,7 @@ import java.util.Comparator;
 import java.util.Locale;
 import java.util.Scanner;
 
-import static mertguler.TextUI.TextUI.clear;
-import static mertguler.TextUI.TextUI.header;
+import static mertguler.TextUI.TextUI.*;
 
 public class HospitalMenu {
     private CRS crs;
@@ -41,7 +40,7 @@ public class HospitalMenu {
                 input = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers within range");
-                returner();
+                returner(scanner);
                 continue;
             }
 
@@ -72,13 +71,13 @@ public class HospitalMenu {
             name = scanner.nextLine();
         } catch (Exception e){
             System.out.println("Enter valid characters only");
-            returner();
+            returner(scanner);
             return;
         }
 
         if (name.isBlank()){
             System.out.println("Name cant be empty");
-            returner();
+            returner(scanner);
             return;
         }
 
@@ -89,7 +88,7 @@ public class HospitalMenu {
             id = Integer.valueOf(scanner.nextLine());
         } catch (NumberFormatException e){
             System.out.println("Please enter only valid numbers");
-            returner();
+            returner(scanner);
             return;
         }
 
@@ -101,7 +100,7 @@ public class HospitalMenu {
             city = City.valueOf(scanner.nextLine().toUpperCase(Locale.ROOT));
         } catch (Exception e){
             System.out.println("please enter valid names only");
-            returner();
+            returner(scanner);
             return;
         }
 
@@ -112,7 +111,7 @@ public class HospitalMenu {
             System.out.println(e.getMessage());
         }
 
-        returner();
+        returner(scanner);
     }
 
     public void hospitalDeleter(){
@@ -125,17 +124,17 @@ public class HospitalMenu {
             id = Integer.valueOf(scanner.nextLine());
         } catch (NumberFormatException e){
             System.out.println("Please enter only valid numbers");
-            returner();
+            returner(scanner);
             return;
         }
 
         try{
             hospitalManager.deleteHospital(id);
             System.out.println("Hospital is successfully deleted.");
-            returner();
+            returner(scanner);
         } catch (IDException e){
             System.out.println(e.getMessage());
-            returner();
+            returner(scanner);
         }
     }
 
@@ -149,13 +148,13 @@ public class HospitalMenu {
             id = Integer.valueOf(scanner.nextLine());
         } catch (NumberFormatException e){
             System.out.println("Please enter only valid numbers");
-            returner();
+            returner(scanner);
             return;
         }
 
         if(!(hospitalManager.getHospitals().containsKey(id))){
             System.out.println("Hospital with ID: " + id + " is not found.");
-            returner();
+            returner(scanner);
             return;
         }
 
@@ -164,7 +163,7 @@ public class HospitalMenu {
 
         hospitalManager.getHospitals().get(id).setName(name);
         System.out.println("Hospital successfully renamed to: " + name);
-        returner();
+        returner(scanner);
     }
 
     public Hospital hospitalSelector(){
@@ -172,7 +171,7 @@ public class HospitalMenu {
             clear();
             header();
             System.out.println("\nHospital list is empty");
-            returner();
+            returner(scanner);
             return null;
         }
 
@@ -192,7 +191,7 @@ public class HospitalMenu {
                 input = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers within range");
-                returner();
+                returner(scanner);
                 continue;
             }
 
@@ -222,7 +221,7 @@ public class HospitalMenu {
                 id = Integer.valueOf(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers");
-                returner();
+                returner(scanner);
                 return null;
             }
 
@@ -230,7 +229,7 @@ public class HospitalMenu {
                 return hospitalManager.getHospitalWithID(id);
             } catch (IDException e){
                 System.out.println(e.getMessage());
-                returner();
+                returner(scanner);
                 return null;
             }
 
@@ -248,7 +247,7 @@ public class HospitalMenu {
                 name = scanner.nextLine();
             } catch (Exception e) {
                 System.out.println("Please enter only valid numbers");
-                returner();
+                returner(scanner);
                 return null;
             }
 
@@ -256,7 +255,7 @@ public class HospitalMenu {
                 return hospitalManager.getHospitalWithName(name);
             } catch (IDException e){
                 System.out.println(e.getMessage());
-                returner();
+                returner(scanner);
                 return null;
             }
 
@@ -268,7 +267,7 @@ public class HospitalMenu {
         header();
         if (hospitalManager.getHospitals().isEmpty()){
             System.out.println("\nHospital list is empty.");
-            returner();
+            returner(scanner);
             return false;
         }
 
@@ -282,12 +281,8 @@ public class HospitalMenu {
                 .sorted(comparator)
                 .forEach(System.out::println);
 
-        returner();
+        returner(scanner);
         return true;
     }
-
-    public void returner(){
-        System.out.println("Press anything to return");
-        scanner.nextLine();
-    }
+    
 }

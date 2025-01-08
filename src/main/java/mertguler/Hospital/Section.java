@@ -8,8 +8,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import static mertguler.Main.gui_mode;
-
 public class Section implements Serializable {
     private static final long serialVersionUID = 1L;
     private final int id;
@@ -17,13 +15,8 @@ public class Section implements Serializable {
     private ArrayList<Doctor> doctors;
     private boolean isChildSection;
 
-    public Section(String name, int id){
-        this.name = name;
-        this.id = id;
-        doctors = new ArrayList<>();
-        isChildSection = false;
-    }
-
+    // Don't forget to add section to hospital
+    // It is intentional to leave that job to GUI and TextUI
     public Section(String name, Hospital hospital, boolean isChildSection){
         this.name = name;
         this.id = hospital.getId() * 1000 + hospital.getAllTimeSectionCount() + 1;
@@ -33,7 +26,6 @@ public class Section implements Serializable {
     }
 
     public void addDoctor (Doctor doctor) throws DuplicateInfoException{
-        // Must be same with for loop
         if (doctors.contains(doctor)){
             throw new DuplicateInfoException("Doctor with Diploma ID: " + doctor.getDiploma_id() + " is already exists");
         }
@@ -41,33 +33,13 @@ public class Section implements Serializable {
         doctors.add(doctor);
     }
 
-    public boolean deleteDoctor(int diploma_id){
+    public void deleteDoctor(int diploma_id) throws IDException{
         Doctor doctor = getDoctor(diploma_id);
         if (doctor == null){
-            return false;
-        } else {
-            doctors.remove(doctor);
-            return true;
+            return;
         }
-    }
 
-    public void listDoctors(){
-        // Empty for GUI
-        if (!gui_mode){
-            if (doctors.isEmpty()){
-                System.out.println("This section doesnt have any doctors");
-                return;
-            }
-
-            Comparator<Doctor> comparator = Comparator
-                    .comparing(Doctor::getDiploma_id);
-
-            System.out.println();
-
-            doctors.stream()
-                    .sorted(comparator)
-                    .forEach(System.out::println);
-        }
+        doctors.remove(doctor);
     }
 
     public Doctor getDoctor(int diploma_id) throws IDException {
@@ -85,7 +57,7 @@ public class Section implements Serializable {
         throw new IDException("Doctor with ID: " + diploma_id + " is not found");
     }
 
-    public void checkDoctorExistence(int diploma_id){
+    public void checkDoctorDuplication(int diploma_id) throws DuplicateInfoException{
         if (doctors.isEmpty()){
             return;
         }
@@ -95,9 +67,26 @@ public class Section implements Serializable {
                 throw new DuplicateInfoException("Doctor with ID: " + diploma_id + " is already exist");
             }
         }
-
     }
 
+    // Text UI Only
+    public void listDoctors(){
+        if (doctors.isEmpty()){
+            System.out.println("This section doesnt have any doctors");
+            return;
+        }
+
+        Comparator<Doctor> comparator = Comparator
+                .comparing(Doctor::getDiploma_id);
+
+        System.out.println();
+
+        doctors.stream()
+                .sorted(comparator)
+                .forEach(System.out::println);
+    }
+
+    // Text UI Only
     public ArrayList<Doctor> getDoctor(String name){
         if (doctors.isEmpty()){
             return null;
@@ -114,15 +103,12 @@ public class Section implements Serializable {
 
         if (!foundDoctors.isEmpty()){
             return foundDoctors;
-        } else {
-            return null;
         }
+
+        return null;
     }
 
-    public boolean isChildSection(){
-        return isChildSection;
-    }
-
+    // Counters
     public int countAllRendezvouses(){
         int count = 0;
         for (Doctor doctor: doctors){
@@ -130,6 +116,12 @@ public class Section implements Serializable {
         }
 
         return count;
+    }
+
+    // Getters & Setters
+
+    public boolean isChildSection(){
+        return isChildSection;
     }
 
     public int getId(){

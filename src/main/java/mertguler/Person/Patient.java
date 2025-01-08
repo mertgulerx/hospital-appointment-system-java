@@ -14,12 +14,7 @@ public class Patient extends Person {
     private final ArrayList<Rendezvous> rendezvouses;
     private LocalDate birthDate;
 
-    public Patient(String name, long national_id) {
-        super(name, national_id);
-        rendezvouses = new ArrayList<>();
-        birthDate = null;
-    }
-
+    // If birthdate is unknown, put null.
     public Patient(String name, long national_id, LocalDate birthDate) {
         super(name, national_id);
         rendezvouses = new ArrayList<>();
@@ -34,25 +29,28 @@ public class Patient extends Person {
         rendezvouses.remove(rendezvous);
     }
 
-    public boolean haveRendezvous(Rendezvous rendezvous){
-        if (rendezvouses.contains(rendezvous)){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void checkValidity(){
-        int nonExpiredCount = 0;
+    public void checkActiveRendezvousCount() throws RendezvousLimitException{
+        int activeCount = 0;
 
         for (Rendezvous rendezvous: rendezvouses){
             if (!(rendezvous.isExpired())){
-                nonExpiredCount++;
+                activeCount++;
             }
         }
 
-        if (nonExpiredCount >= MAX_RENDEZVOUS_PER_PATIENT) {
+        if (activeCount >= MAX_RENDEZVOUS_PER_PATIENT) {
             throw new RendezvousLimitException("Patient: " + this + " has more rendezvouses than limit: " + MAX_RENDEZVOUS_PER_PATIENT);
+        }
+    }
+
+    // Getters & Setters
+
+    // 0 is for unknown.
+    public int getAge(){
+        if ((birthDate != null)) {
+            return Period.between(birthDate, DateManager.getCurrentDate()).getYears();
+        } else {
+            return 0;
         }
     }
 
@@ -62,37 +60,6 @@ public class Patient extends Person {
 
     public ArrayList<Rendezvous> getRendezvouses() {
         return rendezvouses;
-    }
-
-    public int getAge(){
-        if ((birthDate != null)) {
-            return Period.between(birthDate, DateManager.getCurrentDate()).getYears();
-        } else {
-            return 0;
-        }
-    }
-
-    public void setBirthDate(LocalDate newBirthDate){
-        birthDate = newBirthDate;
-    }
-
-    @Override
-    public boolean equals(Object object){
-        if (this == object){
-            return true;
-        }
-
-        if (!(object instanceof Patient)){
-            return false;
-        }
-
-        Patient comparedPatient = (Patient) object;
-
-        if (this.getNational_id() == (comparedPatient.getNational_id())){
-            return true;
-        }
-
-        return false;
     }
 
     @Override

@@ -4,12 +4,9 @@ import mertguler.Enums.City;
 import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
-import mertguler.Hospital.Rendezvous;
 import mertguler.Hospital.Section;
-import mertguler.Person.Doctor;
 
-import javax.print.Doc;
-import java.util.*;
+import java.util.HashMap;
 
 public class HospitalManager {
     private HashMap<Integer, Hospital> hospitals;
@@ -28,10 +25,9 @@ public class HospitalManager {
         return sectionManager;
     }
 
-    public boolean updateHospitalMap(HashMap<Integer, Hospital> hospitals) {
+    public void updateHospitalMap(HashMap<Integer, Hospital> hospitals) {
         this.hospitals = hospitals;
         hospitalCount = hospitals.size();
-        return true;
     }
 
     public void createHospital(String name, City city) throws DuplicateInfoException {
@@ -51,6 +47,7 @@ public class HospitalManager {
         return hospitals.get(id);
     }
 
+    // Text UI Only
     public Hospital getHospitalWithName(String name) throws IDException {
         if (hospitals.isEmpty()) {
             throw new IDException("No hospital found!");
@@ -67,9 +64,10 @@ public class HospitalManager {
     }
 
     public void checkHospitalDuplication(String name, City city) throws DuplicateInfoException {
-        Hospital hospital = new Hospital(name, city);
-        if (hospitals.containsValue(hospital)) {
-            throw new DuplicateInfoException(name + ", " + city + " is already exist");
+        for (Hospital hospital: hospitals.values()) {
+            if (hospital.getName().trim().equalsIgnoreCase(name.trim()) && hospital.getCity() == city){
+                throw new DuplicateInfoException(name + ", " + city + " is already exist");
+            }
         }
     }
 
@@ -83,6 +81,8 @@ public class HospitalManager {
         return hospitals;
     }
 
+
+    // Counter for Admin Dashboard
     public int countAllSections() {
         int count = 0;
 
@@ -97,7 +97,7 @@ public class HospitalManager {
         return count;
     }
 
-
+    // Counter for Admin Dashboard
     public int countAllDoctors() {
         int count = 0;
 
@@ -109,6 +109,7 @@ public class HospitalManager {
         return count;
     }
 
+    // Inner Class of Hospital Manager
     public class SectionManager {
         private DoctorManager doctorManager = new DoctorManager();
 

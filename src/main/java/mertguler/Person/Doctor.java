@@ -14,17 +14,9 @@ public class Doctor extends Person{
         createSchedule();
     }
 
-    public void changeMaxPatientPerDay(int maxPatientPerDay){
-        this.maxPatientPerDay = maxPatientPerDay;
-    }
-
-    public void createSchedule(){
+    private void createSchedule(){
         schedule = new Schedule(maxPatientPerDay);
         schedule.setDoctor(this);
-    }
-
-    public void resetSchedule(){
-        schedule.getSessions().clear();
     }
 
     public Schedule getSchedule(){
@@ -34,6 +26,17 @@ public class Doctor extends Person{
     public int getDiploma_id(){
         return diploma_id;
     }
+
+    // Might be used in the future
+    public void resetSchedule(){
+        schedule.getSessions().clear();
+    }
+
+    // Might be used in the future
+    public void changeMaxPatientPerDay(int maxPatientPerDay){
+        this.maxPatientPerDay = maxPatientPerDay;
+    }
+
 
     @Override
     public boolean equals(Object object){

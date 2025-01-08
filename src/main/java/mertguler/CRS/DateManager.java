@@ -9,12 +9,9 @@ import java.time.format.DateTimeParseException;
 import static mertguler.CRS.CRS.RENDEZVOUS_DAY_LIMIT;
 
 public class DateManager {
+    // Text UI Only
     public static String datePattern = "dd-MM-yyyy";
     public static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(datePattern);
-
-
-    public DateManager(){
-    }
 
     public DateManager(String newDatePattern){
         datePattern = newDatePattern;
@@ -29,11 +26,13 @@ public class DateManager {
         return date.format(dateFormatter);
     }
 
+    // Used constant CRS: RENDEZVOUS_DAY_LIMIT
     public static LocalDate getLastDate(){
         LocalDate lastRendezvousDate = getCurrentDate().plusDays(RENDEZVOUS_DAY_LIMIT);
         return lastRendezvousDate;
     }
 
+    // Text UI Only. Date format checker.
     public static LocalDate isValidDate(String date) throws DateTimeParseException {
         LocalDate checkedDate = null;
 
@@ -41,6 +40,7 @@ public class DateManager {
         return checkedDate;
     }
 
+    // For calculating Person's Age.
     public static int getYearDifference(LocalDate localDate){
         if ((localDate != null)) {
             return Period.between(localDate, DateManager.getCurrentDate()).getYears();
@@ -49,6 +49,7 @@ public class DateManager {
         }
     }
 
+    // Rendezvous Date Range management.
     public static void checkDateRange(LocalDate desiredDate) throws DateTimeException {
         if (desiredDate == null){
             throw new DateTimeException("Date is null");

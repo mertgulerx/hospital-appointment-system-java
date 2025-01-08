@@ -9,8 +9,7 @@ import mertguler.Person.Patient;
 import java.util.Comparator;
 import java.util.Scanner;
 
-import static mertguler.TextUI.TextUI.clear;
-import static mertguler.TextUI.TextUI.header;
+import static mertguler.TextUI.TextUI.*;
 
 public class PatientMenu {
     private Scanner scanner;
@@ -39,7 +38,7 @@ public class PatientMenu {
                 input = Integer.valueOf(scanner.nextLine());
             } catch (Exception e){
                 System.out.println("Please enter valid numbers only");
-                returner();
+                returner(scanner);
                 continue;
             }
 
@@ -53,7 +52,7 @@ public class PatientMenu {
                 patientRenamer();
             } else if (input == 4){
                 patientLister();
-                returner();
+                returner(scanner);
             }
         }
     }
@@ -71,7 +70,7 @@ public class PatientMenu {
                 national_id = Long.valueOf(scanner.nextLine());
             } catch (Exception e){
                 System.out.println("Enter valid numbers only");
-                returner();
+                returner(scanner);
                 return false;
             }
 
@@ -79,7 +78,7 @@ public class PatientMenu {
                 patientManager.checkPatientDuplication(national_id);
             } catch (DuplicateInfoException e){
                 System.out.println(e.getMessage());
-                returner();
+                returner(scanner);
                 return false;
             }
 
@@ -89,20 +88,20 @@ public class PatientMenu {
                 name = scanner.nextLine();
             } catch (Exception e){
                 System.out.println("Enter valid characters only");
-                returner();
+                returner(scanner);
                 return false;
             }
 
             if (name.isBlank()){
                 System.out.println("Name cant be empty");
-                returner();
+                returner(scanner);
                 return false;
             }
 
 
-            patientManager.patientAdder(name, national_id);
+            crs.getPatients().put(national_id, new  Patient(name , national_id, null));
             System.out.println("Patient: " + name + " with National ID: " + national_id + " is successfully added");
-            returner();
+            returner(scanner);
             return true;
         }
     }
@@ -119,7 +118,7 @@ public class PatientMenu {
                 national_id = Long.valueOf(scanner.nextLine());
             } catch (Exception e){
                 System.out.println("Enter valid numbers only");
-                returner();
+                returner(scanner);
                 return false;
             }
 
@@ -127,7 +126,7 @@ public class PatientMenu {
                 patientManager.checkPatientID(national_id);
             } catch (IDException e){
                 System.out.println(e.getMessage());
-                returner();
+                returner(scanner);
                 return false;
             }
 
@@ -135,11 +134,11 @@ public class PatientMenu {
             try {
                 patientManager.patientDeleter(national_id);
                 System.out.println("Patient with National ID: " + national_id + " is successfully deleted");
-                returner();
+                returner(scanner);
                 return true;
             } catch (IDException e){
                 System.out.println(e.getMessage());
-                returner();
+                returner(scanner);
                 return false;
             }
         }
@@ -158,7 +157,7 @@ public class PatientMenu {
                 national_id = Long.valueOf(scanner.nextLine());
             } catch (Exception e){
                 System.out.println("Enter valid numbers only");
-                returner();
+                returner(scanner);
                 return false;
             }
 
@@ -167,7 +166,7 @@ public class PatientMenu {
                 patientManager.checkPatientID(national_id);
             } catch (IDException e){
                 System.out.println(e.getMessage());
-                returner();
+                returner(scanner);
                 return false;
             }
 
@@ -177,14 +176,14 @@ public class PatientMenu {
                 name = scanner.nextLine();
             } catch (Exception e){
                 System.out.println("Enter valid characters only");
-                returner();
+                returner(scanner);
                 return false;
             }
 
 
-            patientManager.patientRenamer(national_id, name);
+            patientManager.getPatient(national_id).setName(name);
             System.out.println("Patient with National ID: " + national_id + " is successfully renamed");
-            returner();
+            returner(scanner);
             return true;
         }
     }
@@ -194,7 +193,7 @@ public class PatientMenu {
         header();
         System.out.println();
 
-        if (patientManager.getPatients().isEmpty()){
+        if (crs.getPatients().isEmpty()){
             System.out.println("No patient is found");
             return false;
         }
@@ -202,14 +201,10 @@ public class PatientMenu {
         Comparator<Patient> comparator = Comparator
                 .comparing(Patient::getName);
 
-        patientManager.getPatients().values().stream()
+       crs.getPatients().values().stream()
                 .sorted(comparator)
                 .forEach(System.out::println);
         return true;
     }
-
-    public void returner(){
-        System.out.println("Press anything to return");
-        scanner.nextLine();
-    }
+    
 }
