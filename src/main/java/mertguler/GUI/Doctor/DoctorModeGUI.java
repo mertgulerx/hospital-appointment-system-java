@@ -29,7 +29,7 @@ import static mertguler.GUI.Doctor.SelectDoctorGUI.doctorOfMenu;
 import static mertguler.GUI.Gui.*;
 
 public class DoctorModeGUI implements Initializable {
-    private int[] weeklyRendezvouses = new int[4];
+    private int[] weeklyRendezvouses = new int[5];
     public static LocalDate searchDate;
 
     @FXML
@@ -74,6 +74,7 @@ public class DoctorModeGUI implements Initializable {
         series.getData().add(new XYChart.Data("Week 2", weeklyRendezvouses[1]));
         series.getData().add(new XYChart.Data("Week 3", weeklyRendezvouses[2]));
         series.getData().add(new XYChart.Data("Week 4", weeklyRendezvouses[3]));
+        series.getData().add(new XYChart.Data("Week 5", weeklyRendezvouses[4]));
         patientVisitsChart.getData().add(series);
         currentMonth.setText(String.valueOf(DateManager.getCurrentDate().getMonth().toString()));
 

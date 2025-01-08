@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import mertguler.Exceptions.DuplicateInfoException;
 import mertguler.Exceptions.IDException;
 import mertguler.Hospital.Hospital;
 import mertguler.Hospital.Section;
@@ -46,6 +47,9 @@ public class AddDoctorGUI implements Initializable {
 
     public void setSectionBox(){
         hospital = hospitalBox.getValue();
+        if (hospital == null){
+            return;
+        }
         sectionBox.setItems(FXCollections.observableArrayList(hospital.getSections()));
     }
 
@@ -94,7 +98,7 @@ public class AddDoctorGUI implements Initializable {
         try {
             section.checkDoctorDuplication(diplomaID);
             showSuccess();
-        } catch (IDException e) {
+        } catch (DuplicateInfoException e) {
             showError("Doctor is already exist in Section: " + section);
         }
 

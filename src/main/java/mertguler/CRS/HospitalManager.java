@@ -64,9 +64,10 @@ public class HospitalManager {
     }
 
     public void checkHospitalDuplication(String name, City city) throws DuplicateInfoException {
-        Hospital hospital = new Hospital(name, city);
-        if (hospitals.containsValue(hospital)) {
-            throw new DuplicateInfoException(name + ", " + city + " is already exist");
+        for (Hospital hospital: hospitals.values()) {
+            if (hospital.getName().trim().equalsIgnoreCase(name.trim()) && hospital.getCity() == city){
+                throw new DuplicateInfoException(name + ", " + city + " is already exist");
+            }
         }
     }
 

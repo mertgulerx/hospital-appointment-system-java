@@ -60,16 +60,26 @@ public class AddRendezvousGUI implements Initializable {
 
     public void setSectionBox(){
         hospital = hospitalBox.getValue();
+        if (hospital == null){
+            return;
+        }
         sectionBox.setItems(FXCollections.observableArrayList(hospital.getSections()));
     }
 
     public void setDoctorBox(){
         section = sectionBox.getValue();
+        if (section == null){
+            return;
+        }
         doctorBox.setItems(FXCollections.observableArrayList(section.getDoctors()));
     }
 
     public void check() {
         doctor = doctorBox.getValue();
+
+        if (doctor == null){
+            return;
+        }
 
         try {
             nationalID = Integer.valueOf(nationalIDField.getText());
