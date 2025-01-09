@@ -441,12 +441,12 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="themeChanger1" alignment="CENTER" layoutX="15.0" layoutY="583.0" mnemonicParsing="false" onAction="#turnOffTheLights" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Dark Mode" textFill="#98a2b2">
+                        <Button fx:id="themeChanger" alignment="CENTER" layoutX="15.0" layoutY="583.0" mnemonicParsing="false" onAction="#turnOffTheLights" prefHeight="55.0" prefWidth="212.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);" text="Dark Mode" textFill="#98a2b2">
                            <font>
                               <Font name="SansSerif Bold" size="15.0" />
                            </font>
                            <graphic>
-                              <ImageView fx:id="themeIcon1" fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="themeIcon" fitHeight="50.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/darkmode.png" />
                                  </image>
