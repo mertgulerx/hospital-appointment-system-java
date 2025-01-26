@@ -54,7 +54,7 @@
 
 
   <a>
-    <img src="images/mainmenu.png" alt="Logo" width="540" height="">
+    <img src="images/mainmenu.png" alt="Logo" width="648" height="">
   </a>
 
 Hospi is essentially a university project for Object Oriented Programming Class and it is my first ever Java project.
@@ -147,7 +147,7 @@ Dark Mode
 Mac Style Modern Menu Design
 
 <a>
-    <img src="images/macstyle.png" alt="Logo" width="300" height="">
+    <img src="images/macstyle.png" alt="Logo" width="400" height="">
   </a>
 
 Different User Modes
