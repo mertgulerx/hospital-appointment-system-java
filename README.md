@@ -9,7 +9,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/mertgulerx/hospital-reservation-system-java">
+  <a href="https://github.com/mertgulerx/hospital-appointment-system-java">
     <img src="images/logo.png" alt="Logo" width="295" height="80">
   </a>
 
@@ -115,7 +115,7 @@ Hospi is written with Java 21 and only requires core JavaFX libraries.
    ```
 4. Download the latest hospi release
    ```sh
-   https://github.com/mertgulerx/hospital-reservation-system-java/releases/tag/Hospi
+   https://github.com/mertgulerx/hospital-appointment-system-java/releases/tag/Hospi
 4. Run the jar file
    ```sh
    java -jar hospi.jar
@@ -179,8 +179,8 @@ Don't forget to give the project a star! Thanks again!
 
 ### Top contributors:
 
-<a href="https://github.com/mertgulerx/hospital-reservation-system-java/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=mertgulerx/hospital-reservation-system-java" />
+<a href="https://github.com/mertgulerx/hospital-appointment-system-java/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=mertgulerx/hospital-appointment-system-java" />
 </a>
 
 
@@ -197,11 +197,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 
-[contributors-shield]: https://img.shields.io/github/contributors/mertgulerx/hospital-reservation-system-java.svg?style=for-the-badge
-[contributors-url]: https://github.com/mertgulerx/hospital-reservation-system-java/graphs/contributors
-[stars-shield]: https://img.shields.io/github/stars/mertgulerx/hospital-reservation-system-java.svg?style=for-the-badge
-[stars-url]: https://github.com/mertgulerx/hospital-reservation-system-java/stargazers
-[issues-shield]: https://img.shields.io/github/issues/mertgulerx/hospital-reservation-system-java.svg?style=for-the-badge
-[issues-url]: https://github.com/mertgulerx/hospital-reservation-system-java/issues
-[license-shield]: https://img.shields.io/github/license/mertgulerx/hospital-reservation-system-java.svg?style=for-the-badge
-[license-url]: https://github.com/mertgulerx/hospital-reservation-system-java/blob/main/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/mertgulerx/hospital-appointment-system-java.svg?style=for-the-badge
+[contributors-url]: https://github.com/mertgulerx/hospital-appointment-system-java/graphs/contributors
+[stars-shield]: https://img.shields.io/github/stars/mertgulerx/hospital-appointment-system-java.svg?style=for-the-badge
+[stars-url]: https://github.com/mertgulerx/hospital-appointment-system-java/stargazers
+[issues-shield]: https://img.shields.io/github/issues/mertgulerx/hospital-appointment-system-java.svg?style=for-the-badge
+[issues-url]: https://github.com/mertgulerx/hospital-appointment-system-java/issues
+[license-shield]: https://img.shields.io/github/license/mertgulerx/hospital-appointment-system-java.svg?style=for-the-badge
+[license-url]: https://github.com/mertgulerx/hospital-appointment-system-java/blob/main/LICENSE
