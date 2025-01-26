@@ -163,8 +163,6 @@ Minimal and Modern Design for fast usage
 </a>
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## Contributing
 
