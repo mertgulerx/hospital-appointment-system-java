@@ -156,6 +156,12 @@ Different User Modes
 <img src="images/modeselector.png" alt="Logo" width="720" height="">
 </a>
 
+Doctor Dashboard
+
+<a>
+<img src="images/doctormenu.png" alt="Logo" width="720" height="">
+</a>
+
 Minimal and Modern Design for fast usage
 
 <a>
