@@ -34,7 +34,7 @@ public class AdminMenu {
             System.out.println("Section Management: 2");
             System.out.println("Doctor Management: 3");
             System.out.println("Patient Management: 4");
-            System.out.println("Rendezvous Management: 5");
+            System.out.println("Appointment Management: 5");
             System.out.println("Save Data: 6");
             System.out.println("Load Data: 7");
             System.out.println("Return to last menu: 0");

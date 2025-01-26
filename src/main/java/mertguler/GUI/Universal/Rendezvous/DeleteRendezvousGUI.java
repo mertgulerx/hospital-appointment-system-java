@@ -84,8 +84,19 @@ public class DeleteRendezvousGUI {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == confirmButton) {
+            rendezvous = rendezvousBox.getValue();
             crs.deleteRendezvous(rendezvous);
             System.out.println("Appointment: " + rendezvous + " is cancelled");
         }
+
+        Alert success = new Alert(Alert.AlertType.INFORMATION);
+        Stage stage1 = (Stage) success.getDialogPane().getScene().getWindow();
+        stage1.getIcons().add(app_image);
+        success.setTitle("Appointment successfully cancelled");
+        success.setHeaderText(null);
+        success.setContentText("Appointment is successfully cancelled");
+        success.showAndWait();
+        rendezvousBox.getScene().getWindow().hide();
+
     }
 }

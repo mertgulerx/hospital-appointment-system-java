@@ -85,6 +85,7 @@ public class DeleteDoctorGUI implements Initializable {
         successAlert.setContentText(content);
         Stage stage2 = (Stage) successAlert.getDialogPane().getScene().getWindow();
         stage2.getIcons().add(app_image);
-        successAlert.show();
+        successAlert.showAndWait();
+        doctorBox.getScene().getWindow().hide();
     }
 }
