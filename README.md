@@ -93,9 +93,7 @@ Such as:
 * Data Structures: HashMap and ArrayList
 * Streams
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- GETTING STARTED -->
 ## Getting Started
 
 Hospi is written with Java 21 and only requires core JavaFX libraries. 
@@ -125,13 +123,11 @@ Hospi is written with Java 21 and only requires core JavaFX libraries.
 
 And you are good to go!
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ## Gallery
 
 Main menu
+
   <a>
     <img src="images/mainmenu.png" alt="Logo" width="720" height="">
   </a>
@@ -170,8 +166,6 @@ Minimal and Modern Design for fast usage
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- CONTRIBUTING -->
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -192,7 +186,6 @@ Don't forget to give the project a star! Thanks again!
 </a>
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -201,7 +194,6 @@ Don't forget to give the project a star! Thanks again!
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
