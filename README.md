@@ -10,7 +10,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/mertgulerx/hospital-reservation-system-java">
-    <img src="images/logo.png" alt="Logo" width="221" height="60">
+    <img src="images/logo.png" alt="Logo" width="369" height="100">
   </a>
 
 <h3 align="center">Hospital Appointment System Java</h3>
