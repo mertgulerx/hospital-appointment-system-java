@@ -34,8 +34,8 @@ public class TextUI {
             header();
             int input = 9;
             System.out.println("\n\nWARNING! TextUI is outdated!\n\nDefaults:");
-            System.out.println("Max Rendezvous Per Patient: " + MAX_RENDEZVOUS_PER_PATIENT);
-            System.out.println("Rendezvous Day Limit: " + RENDEZVOUS_DAY_LIMIT + " days");
+            System.out.println("Max Appointment Per Patient: " + MAX_RENDEZVOUS_PER_PATIENT);
+            System.out.println("Appointment Day Limit: " + RENDEZVOUS_DAY_LIMIT + " days");
 
             System.out.println("\nChange Defaults: 0");
             System.out.println("Continue with Defaults: 1");
@@ -52,7 +52,7 @@ public class TextUI {
                 while (true){
                     clear();
                     header();
-                    System.out.println("\nEnter new value for `Max Rendezvous Per Patient`");
+                    System.out.println("\nEnter new value for `Max Appointment Per Patient`");
 
                     try {
                         input = Integer.valueOf(scanner.nextLine());
@@ -70,8 +70,8 @@ public class TextUI {
 
                     crs.setMaxRendezvousPerPatient(input);
 
-                    System.out.println("Max Rendezvous Per Patient is set to: " + input);
-                    System.out.println("\nEnter new value for `Rendezvous Day Limit`");
+                    System.out.println("Max Appointment Per Patient is set to: " + input);
+                    System.out.println("\nEnter new value for `Appointment Day Limit`");
 
                     try {
                         input = Integer.valueOf(scanner.nextLine());
@@ -89,7 +89,7 @@ public class TextUI {
 
                     crs.setRendezvousDayLimit(input);
 
-                    System.out.println("Rendezvous Day Limit is set to: " + input);
+                    System.out.println("Appointment Day Limit is set to: " + input);
                     returner(scanner);
                     break;
                 }
@@ -148,7 +148,7 @@ public class TextUI {
     }
 
     public static void header() {
-        System.out.println("Hospital Rendezvous System - Text UI V1.0");
+        System.out.println("Hospital Appointment System - Text UI V1.2");
     }
 
     public static void clear() {

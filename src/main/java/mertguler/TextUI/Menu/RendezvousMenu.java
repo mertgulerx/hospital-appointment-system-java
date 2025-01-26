@@ -43,10 +43,10 @@ public class RendezvousMenu {
             header();
             int input = 9;
 
-            System.out.println("\nAdd Rendezvous: 1");
-            System.out.println("Delete Rendezvous: 2");
-            System.out.println("Check Rendezvous Info: 3");
-            System.out.println("List All Rendezvouses: 4");
+            System.out.println("\nAdd Appointment: 1");
+            System.out.println("Delete Appointment: 2");
+            System.out.println("Check Appointment Info: 3");
+            System.out.println("List All Appointment: 4");
             System.out.println("Return to last menu: 0");
             System.out.println("\nSelect operating mode (1-4):");
 
@@ -100,7 +100,7 @@ public class RendezvousMenu {
             return false;
         }
 
-        System.out.println("\nWhich Rendezvous to check? Enter Rendezvous ID from list above:");
+        System.out.println("\nWhich Appointment to check? Enter Appointment ID from list above:");
 
         Rendezvous rendezvous;
         int input = 0;
@@ -117,7 +117,7 @@ public class RendezvousMenu {
 
         clear();
         header();
-        System.out.println("\nRendezvous Info: ");
+        System.out.println("\nAppointment Info: ");
         System.out.println("Patient Name: " + patient.getName());
         System.out.println("Patient ID: " + patient.getNational_id());
         System.out.println("Doctor Name: " + rendezvous.getDoctor().getName());
@@ -190,7 +190,7 @@ public class RendezvousMenu {
             System.out.println("Doctor: " + doctor);
             System.out.println("Current Time: " + DateManager.getFormatedDate(currentDate));
 
-            System.out.println("\nYou can create rendezvous for next " + RENDEZVOUS_DAY_LIMIT + " days");
+            System.out.println("\nYou can book appointment for next " + RENDEZVOUS_DAY_LIMIT + " days");
             System.out.println("Last Date: " + DateManager.getFormatedDate(lastRendezvousDate));
 
             System.out.println("\nPlease enter desired date as dd-mm-yyyy format");
@@ -239,7 +239,7 @@ public class RendezvousMenu {
                 crs.addRendezvous(doctor, rendezvous, patient);
                 clear();
                 header();
-                System.out.println("\nRendezvous is successfully made\n");
+                System.out.println("\nAppointment is successfully made\n");
                 System.out.println("Patient Name: " + patient.getName());
                 System.out.println("Patient National ID: " + patient.getNational_id());
                 System.out.println("Doctor Name: " + doctor.getName());
@@ -279,7 +279,7 @@ public class RendezvousMenu {
             ArrayList<Rendezvous> rendezvousList = patient.getRendezvouses();
             rendezvousLister(rendezvousList, patient);
 
-            System.out.println("\nWhich Rendezvous to delete? Enter Rendezvous ID from list above:");
+            System.out.println("\nWhich Appointment to delete? Enter Appointment ID from list above:");
 
             Rendezvous rendezvous;
             int input = 0;
@@ -295,7 +295,7 @@ public class RendezvousMenu {
             }
 
             crs.deleteRendezvous(rendezvous);
-            System.out.println("\nRendezvous is successfully deleted");
+            System.out.println("\nAppointment is successfully deleted");
             returner(scanner);
             return true;
         }
@@ -306,7 +306,7 @@ public class RendezvousMenu {
     public boolean rendezvousLister(){
         ArrayList<Rendezvous> rendezvouses = crs.getRendezvouses();
         if (rendezvouses.isEmpty()){
-            System.out.println("No rendezvous is found in system");
+            System.out.println("No appointment is found in system");
             returner(scanner);
             clear();
             return false;
@@ -326,7 +326,7 @@ public class RendezvousMenu {
 
     public boolean rendezvousLister(ArrayList<Rendezvous> rendezvousList, Patient patient) throws NoSuchElementException {
         if (rendezvousList.isEmpty()){
-            System.out.println("\nThis patient doesnt have any rendezvous");
+            System.out.println("\nThis patient doesnt have any appointments");
             returner(scanner);
             clear();
             return false;
@@ -334,7 +334,7 @@ public class RendezvousMenu {
 
         clear();
         header();
-        System.out.println("\nRendezvous List for Patient: " + patient);
+        System.out.println("\nAppointment List for Patient: " + patient);
 
         int index = 0;
         for (Rendezvous rendezvous: rendezvousList){

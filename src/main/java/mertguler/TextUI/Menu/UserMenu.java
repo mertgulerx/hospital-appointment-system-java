@@ -31,7 +31,7 @@ public class UserMenu {
             header();
             int input = 9;
             System.out.println("\nPatient Management: 1");
-            System.out.println("Rendezvous Management: 2");
+            System.out.println("Appointment Management: 2");
             System.out.println("Save Data: 3");
             System.out.println("Load Data: 4");
             System.out.println("Return to last menu: 0");
