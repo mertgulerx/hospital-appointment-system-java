@@ -74,7 +74,7 @@ Some of the features are:
 * Additional Command Line Interface option
 
 
-Hospi is a great desktop application that can simulate hospital management. Supports data saving and loading with Java Serialization but i know it is not a very good in practice. With a good database integration it can be used as a modern day application. Also supporting seperate classes for patients and doctors so adding username and authentication could be implemented.
+Hospi is a great desktop application that can simulate hospital management. Supports data saving and loading with Java Serialization but i know it is not a very good in practice. With a good database integration it can be used as a modern day application. Also using seperate classes for patients and doctors, making it compatible with future user authentication implementations
 
 It is still a very nice practice for learning base Java features and methods. User Interface on the other hand is designed modernly by every single detail and suitable for 2025
 
