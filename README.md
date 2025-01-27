@@ -68,7 +68,7 @@ Some of the features are:
 * Encrypted Data Saving and Loading 
 * Data Analytics Dashboards for Admins and Doctors
 * Compatible with large amounts of data thanks to fast working algorithms
-* Hospital, Section, Doctor, Patient, Appointment menus are designed for modern problems and made to be super functional yet with a good looking User Interface
+* Hospital, Section, Doctor, Patient, Appointment menus are designed for modern problems and made to be super functional yet with a good looking style
 * Appointment Date Management with self updating system. Works with every device locally.
 * Custom settings for day limits and restrictions for maximum amount of appointments for a patient
 * Additional Command Line Interface option
