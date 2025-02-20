@@ -76,7 +76,7 @@ Some of the features are:
 
 Hospi is a great desktop application that can simulate hospital management. Supports data saving and loading with Java Serialization but i know it is not a very good in practice. With a good database integration it can be used as a modern day application. Also using seperate classes for patients and doctors, making it compatible with future user authentication implementations
 
-It is still a very nice practice for learning core Java features and methods. User Interface on the other hand is designed modernly by every single detail and suitable for 2025
+It is still a very nice practice for learning core Java features and methods. User Interface on the other hand is designed modernly by every single detail and suitable for modern standards
 
 
 
@@ -109,7 +109,7 @@ Hospi is written with Java 21 and only requires core JavaFX libraries.
 
 1. Download Java JDK 21 for your operating system: [https://adoptium.net/temurin/releases/](https://adoptium.net/temurin/releases/)
 2. Download JavaFX 21 SDK for your operating system: [https://gluonhq.com/products/javafx/](https://gluonhq.com/products/javafx/)
-3. Unzip the JavaFX SDK and put the folder inside to a suitable place. For windows it must be your userprofile path. Which you can Windows + R and enter command below:
+3. Unzip the JavaFX SDK and put the folder inside to a suitable place. For windows it must be your userprofile path. Which you can use Windows + R key combination and run the command below:
    ```sh
    %USERPROFILE%
    ```
