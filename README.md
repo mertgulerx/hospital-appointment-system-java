@@ -58,7 +58,7 @@
   </a>
 
 Hospi is essentially a university project for Object Oriented Programming Class and it is my first ever Java project.
-It has many great features that coded with love and designed with JavaFX.
+It has many great features that coded with **_love_** and designed with JavaFX.
 
 Some of the features are:
 * Minimal & Modern UI, compatible with every device and resolution
