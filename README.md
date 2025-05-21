@@ -57,7 +57,7 @@
     <img src="images/mainmenu.png" alt="Logo" width="648" height="">
   </a>
 
-Hospi is essentially a university project for Object Oriented Programming Class and it is my first ever big Java project.
+Hospi is essentially a university project for Object Oriented Programming Class and it is my first ever large Java project.
 It has many great features that coded with **_love_** and designed with JavaFX.
 
 Some of the features are:
