@@ -174,7 +174,8 @@ Perfectly working CLI for console lovers
 <img src="images/console.png" alt="Logo" width="500" height="">
 </a>
 
-Designed the CLI first then built the GUI to ensure completed backend
+Designed the CLI first then built the GUI to ensure complete backend
+
 <a>
 <img src="images/console2.png" alt="Logo" width="500" height="">
 </a>
