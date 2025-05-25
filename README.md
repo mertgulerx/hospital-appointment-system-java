@@ -168,6 +168,17 @@ Minimal and Modern Design for fast usage
 <img src="images/appointment.png" alt="Logo" width="500" height="">
 </a>
 
+Perfectly working CLI for console lovers
+
+<a>
+<img src="images/console.png" alt="Logo" width="500" height="">
+</a>
+
+Designed the CLI first then built the GUI to ensure completed backend
+<a>
+<img src="images/console2.png" alt="Logo" width="500" height="">
+</a>
+
 
 
 ## Contributing
