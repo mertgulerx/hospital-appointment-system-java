@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 
 import static org.junit.Assert.*;
@@ -57,6 +58,7 @@ public class CRSTest {
             hospital.addSection(section);
             hospital.addSection(childSection);
             section.addDoctor(doctor);
+            childSection.addDoctor(doctor); // Çocuk bölümüne de doktor ekle
         } catch (Exception e) {
             fail("Setup sırasında hata: " + e.getMessage());
         }
