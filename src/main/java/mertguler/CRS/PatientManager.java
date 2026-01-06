@@ -44,6 +44,7 @@ public class PatientManager {
         Patient patient = getPatient(national_id);
         crs.getRendezvouses().removeIf(rendezvous -> (rendezvous.getPatient().getNational_id() == national_id));
         patients.remove(national_id);
+        crs.getPatients().remove(national_id); // CRS'deki hastalar listesinden de sil
     }
 
 }
